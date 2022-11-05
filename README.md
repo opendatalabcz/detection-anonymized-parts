@@ -6,3 +6,5 @@ Tento repozitár obsahuje implementáciu programu na detekovanie anonymizovanýc
 - Zdrojové kódy programu sú obsiahnuté v priečinku [implementation], 
 - Zdrojové kódy latex sú obsiahnuté v priečinku [thesis],
 - Príklady vstupu a výstupu sú obsiahnuté v priečinku [examples].
+
+[implementation]: <implementation/>
