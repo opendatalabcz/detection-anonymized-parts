@@ -8,3 +8,5 @@ Tento repozitár obsahuje implementáciu programu na detekovanie anonymizovanýc
 - Príklady vstupu a výstupu sú obsiahnuté v priečinku [examples].
 
 [implementation]: <implementation/>
+[thesis]: <thesis/>
+[examples]: <examples/>
