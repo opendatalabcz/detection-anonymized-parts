@@ -3,8 +3,8 @@
 %%% Choose a language %%%
 
 \newif\ifEN
-\ENtrue   % uncomment this for english
-%\ENfalse   % uncomment this for czech
+%\ENtrue   % uncomment this for english
+\ENfalse   % uncomment this for czech
 
 %%% Configuration of the title page %%%
 
@@ -18,15 +18,15 @@
 \def\UKName{Charles University in Prague} % this is not used in the "mff" style
 
 % Thesis type names, as used in several places in the title
-\def\ThesisTypeTitle{\ifEN BACHELOR THESIS \else BAKALÁŘSKÁ PRÁCE \fi}
+\def\ThesisTypeTitle{\ifEN BACHELOR THESIS \else BAKALÁRSKA PRÁCA \fi}
 %\def\ThesisTypeTitle{\ifEN MASTER THESIS \else DIPLOMOVÁ PRÁCE \fi}
 %\def\ThesisTypeTitle{\ifEN RIGOROUS THESIS \else RIGORÓZNÍ PRÁCE \fi}
 %\def\ThesisTypeTitle{\ifEN DOCTORAL THESIS \else DISERTAČNÍ PRÁCE \fi}
-\def\ThesisGenitive{\ifEN bachelor \else bakalářské \fi}
+\def\ThesisGenitive{\ifEN bachelor \else bakalárskej \fi}
 %\def\ThesisGenitive{\ifEN master \else diplomové \fi}
 %\def\ThesisGenitive{\ifEN rigorous \else rigorózní \fi}
 %\def\ThesisGenitive{\ifEN doctoral \else disertační \fi}
-\def\ThesisAccusative{\ifEN bachelor \else bakalářskou \fi}
+\def\ThesisAccusative{\ifEN bachelor \else bakalársku \fi}
 %\def\ThesisAccusative{\ifEN master \else diplomovou \fi}
 %\def\ThesisAccusative{\ifEN rigorous \else rigorózní \fi}
 %\def\ThesisAccusative{\ifEN doctoral \else disertační \fi}
@@ -36,24 +36,27 @@
 %%% Fill in your details %%%
 
 % (Note: \xxx is a "ToDo label" which makes the unfilled visible. Remove it.)
-\def\ThesisTitle{\xxx{Thesis title}}
-\def\ThesisAuthor{\xxx{Your Name Surname}}
-\def\YearSubmitted{\xxx{YEAR}}
+\def\ThesisTitle{Detekcia anonymizovaných častí v PDF dokumentoch}
+\def\ThesisAuthor{Lukáš Salak}
+\def\YearSubmitted{2023}
 
 % department assigned to the thesis
-\def\Department{\xxx{Name of the department}}
+\def\Department{Katedra softwaru a výuky informatiky}
 % Is it a department (katedra), or an institute (ústav)?
-\def\DeptType{\xxx{Department}}
+\def\DeptType{Katedra}
 
-\def\Supervisor{\xxx{Supername Supersurname}}
-\def\SupervisorsDepartment{\xxx{department}}
+\def\Supervisor{doc. RNDr. Elena Šikudová, Ph.D.}
+\def\SupervisorsDepartment{Katedra softwaru a výuky informatiky}
 
 % Study programme and specialization
-\def\StudyProgramme{\xxx{study programme}}
-\def\StudyBranch{\xxx{study branch}}
+\def\StudyProgramme{Informatika}
+\def\StudyBranch{Počítačová grafika, vidění a vývoj her}
 
 \def\Dedication{%
-Dedication. \xxx{It is nice to say thanks to supervisors, friends, family, book authors and food providers.}
+Dedikácia. Nesmierne si cením podpory a pomoci, ktoré som dostal od mnohých ľudí, 
+menovite od mojej rodiny, priateľky, priateľov, spolužiakov a kolegov. Najviac však by som chcel 
+poďakovať vedúcej mojej bakalárskej práce,
+doc. RNDr. Elene Šikudovej, Ph.D., ktorá mi pomohla pri všetkom, čo som potreboval.
 }
 
 \def\AbstractEN{%
@@ -81,12 +84,12 @@ Dedication. \xxx{It is nice to say thanks to supervisors, friends, family, book 
 \ifEN\relax\else
 % If you are writing a czech thesis, you additionally need to fill in the
 % english translation of the metadata here!
-\def\ThesisTitleEN{\xxx{Thesis title in English}}
-\def\DepartmentEN{\xxx{Name of the department in English}}
-\def\DeptTypeEN{\xxx{Department}}
-\def\SupervisorsDepartmentEN{\xxx{Superdepartment}}
-\def\StudyProgrammeEN{\xxx{study programme}}
-\def\StudyBranchEN{\xxx{study branch}}
+\def\ThesisTitleEN{Detection of anonymized parts in PDFs}
+\def\DepartmentEN{Department of Software and Computer Science Education}
+\def\DeptTypeEN{Department}
+\def\SupervisorsDepartmentEN{Department of Software and Computer Science Education}
+\def\StudyProgrammeEN{Computer Science}
+\def\StudyBranchEN{Computer Graphics, Vision and Game Development}
 \def\KeywordsEN{%
 \xxx{{key} {words}}
 }
