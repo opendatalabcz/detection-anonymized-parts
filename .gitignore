@@ -360,3 +360,32 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore LaTeX temporary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.nlo
+*.nls
+*.out
+/*.pdf
+pdfa.xmpi
+*.snm
+.*.swp
+*.synctex.gz
+thesis-blx.bib
+thesis-run.xml
+thesis.run.xml
+*.toc
+*.vrb
