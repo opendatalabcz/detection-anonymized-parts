@@ -1,24 +1,53 @@
-
 \chapwithtoc{Úvod}
 
 Problém anonymizácie dát je dôležitý v rôznych oblastiach, napríklad v oblasti verejnej správy či
-v oblasti marketingu. Pod pojmom anonymizácie dokumentov si môžeme predstaviť vymazanie či skrytie osobných údajov 
+v oblasti marketingu. Pod pojmom anonymizácie dokumentov si môžeme predstaviť vymazanie či skrytie údajov 
 alebo iných citlivých informácií. Možností, ako pristupovať k anonymizácii dokumentov, je veľa. 
 
-V tejto práci sa budeme zaoberať anonymizáciou PDF dokumentov a budeme sa snažiť vytvoriť nástroj, ktorý bude schopný
-detekovať anonymizované časti dokumentu.   
-\newline
+Typickým miestom, kde sa stretávame s anonymizáciou dokumentov, je oblasť verejnej správy.
+V Českej republike majú organizácie verejnej správy povinnosť zverejňovať informácie o svojej činnosti,
+k čomu patrí aj zverejňovanie uzavrených zmlúv nad určitú čiastku do \textit{registru zmlúv}, 
+ktorý je verejne prístupný. Nachádzajú sa tu nielen informácie o predmete zmlúv, zmluvných stranách a cene,
+ale takisto všetky súbory, ktoré sú súčasťou zmlúv. Register zmlúv je výnzamným nástrojom, ktorý zlepšuje 
+transparentnosť; podstatou je kontrolovať a mať možnosť obmedziť korupciu a zneužívanie verejnej moci 
+kvôli uzatváraniu nevýhodných zmlúv.
 
-Introduction should answer the following questions, ideally in this order:
-\begin{enumerate}
-\item What is the nature of the problem the thesis is addressing?
-\item What is the common approach for solving that problem now?
-\item How this thesis approaches the problem?
-\item What are the results? Did something improve?
-\item What can the reader expect in the individual chapters of the thesis?
-\end{enumerate}
+Aj napriek tomu, že zverejňovanie dát do registra zmlúv je právne vynútiteľné, nezabezpečuje to automaticky
+možnosť jednoduchého vyhľadávania či analýzy týchto dát. K tomu bol vytvorený projekt, webový portál 
+\textit{Hlídač smluv}, ktorý má za úlohu zlepšiť prístup k registru zmlúv. Neskôr, po skombinovaní ďalších 
+verejne prístupných dát z registrov a databází, sa vytvoril projekt \textit{Hlídač státu}
+\footnote{\url{https://hlidacstatu.cz}}, ktorý má za úlohu zlepšiť prístup k verejným informáciám. Poskytuje
+napríklad plnohodnotné vyhľadávanie v texte zmlúv.
 
-Expected length of the introduction is between 1--4 pages. Longer introductions may require sub-sectioning with appropriate headings --- use \texttt{\textbackslash{}section*} to avoid numbering (with section names like `Motivation' and `Related work'), but try to avoid lengthy discussion of anything specific. Any ``real science'' (definitions, theorems, methods, data) should go into other chapters.
-\todo{You may notice that this paragraph briefly shows different ``types'' of `quotes' in TeX, and the usage difference between a hyphen (-), en-dash (--) and em-dash (---).}
+V registri zmlúv sú dokumenty z rôznych oblastí, napríklad z oblasti zdravotníctva, školstva, realitných služieb alebo
+IT projektov. V prípade, že dokumenty obsahujú citlivé údaje, sú častokrát anonymizované. V súčasnej dobe neexistuje 
+štatistický nástroj, ktorý by znázorňoval koľko percent v takýchto dokumentoch je zanonymizovaných.
 
-It is very advisable to skim through a book about scientific English writing before starting the thesis. I can recommend `\citetitle{glasman2010science}' by \citet{glasman2010science}.
+V tejto práci sa budeme zaoberať anonymizovanými PDF dokumentmi a budeme sa snažiť vytvoriť nástroj, 
+ktorý bude schopný detekovať anonymizované časti dokumentu, využiť metódy strojového učenia a ďalších algoritmov na 
+spracovanie obrazu a navrhnúť tak systém, ktorý umožní na základe dostupných dát vyhodnotiť percento anonymizácie 
+jednotlivých zmlúv pri použití konkrétnych implementačných metód.
+
+Túto implementáciu potom bude možné nasadiť na webový portál Hlídače státu.
+
+Pri implementácii je nutné uvedomiť si rozličné spôsoby anonymizovania týchto dát, z ktorých najčastejšími sú:
+\begin{itemize}
+    \item prekrytie časti dokumentu čiernou farbou
+    \item prekrytie časti dokumentu bielou farbou
+    \item zašumenie časti dokumentu
+\end{itemize}
+
+
+% Introduction should answer the following questions, ideally in this order:
+% \begin{enumerate}
+% \item What is the nature of the problem the thesis is addressing?
+% \item What is the common approach for solving that problem now?
+% \item How this thesis approaches the problem?
+% \item What are the results? Did something improve?
+% \item What can the reader expect in the individual chapters of the thesis?
+% \end{enumerate}
+
+% Expected length of the introduction is between 1--4 pages. Longer introductions may require sub-sectioning with appropriate headings --- use \texttt{\textbackslash{}section*} to avoid numbering (with section names like `Motivation' and `Related work'), but try to avoid lengthy discussion of anything specific. Any ``real science'' (definitions, theorems, methods, data) should go into other chapters.
+% \todo{You may notice that this paragraph briefly shows different ``types'' of `quotes' in TeX, and the usage difference between a hyphen (-), en-dash (--) and em-dash (---).}
+
+% It is very advisable to skim through a book about scientific English writing before starting the thesis. I can recommend `\citetitle{glasman2010science}' by \citet{glasman2010science}.
