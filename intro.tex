@@ -1,5 +1,5 @@
 \chapwithtoc{Úvod}
-
+\label{chap:intro}
 Problém anonymizácie dát je dôležitý v rôznych oblastiach, napríklad v oblasti verejnej správy či
 v oblasti marketingu. Pod pojmom anonymizácie dokumentov si môžeme predstaviť vymazanie či skrytie údajov 
 alebo iných citlivých informácií. Možností, ako pristupovať k anonymizácii dokumentov, je veľa. 
@@ -27,7 +27,6 @@ V tejto práci sa budeme zaoberať anonymizovanými PDF dokumentmi a budeme sa s
 ktorý bude schopný detekovať anonymizované časti dokumentu, využiť metódy strojového učenia a ďalších algoritmov na 
 spracovanie obrazu a navrhnúť tak systém, ktorý umožní na základe dostupných dát vyhodnotiť percento anonymizácie 
 jednotlivých zmlúv pri použití konkrétnych implementačných metód.
-
 Túto implementáciu potom bude možné nasadiť na webový portál Hlídače státu.
 
 Pri implementácii je nutné uvedomiť si rozličné spôsoby anonymizovania týchto dát, z ktorých najčastejšími sú:
@@ -36,7 +35,22 @@ Pri implementácii je nutné uvedomiť si rozličné spôsoby anonymizovania tý
     \item prekrytie časti dokumentu bielou farbou
     \item zašumenie časti dokumentu
 \end{itemize}
+Jednou z ďalších komplikácií je fakt, že neexistuje sada zmlúv, kde je známe či je dokument anonymizovaný a ak, 
+tak aké percento dokumentu je anonymizované.
 
+Hlavným prínosom práce je porovnanie jednotlivých odvetví, ktoré zverejňujú zmluvy vzhľadom ku percentu anonymizácie a
+tvorba štatistiky vzhľadom na anonymizáciu dokumentov relatívne k jednotlivým oblastiam. 
+
+Vďaka tomuto procesu sme našli najvýhodnejšie metódy, ktoré sa môžu použiť na detekciu anonymizovaných častí dokumentov.
+\newline
+
+Práca je štruktúrovaná následovne. \ref{chap:FirstChapter}. kapitola je venovaná popisu registru zmlúv
+v Česku a medzinárodnému porovnaniu vzhľadom k anonymizácii dokumentov. V \ref{chap:SecondChapter}. kapitole
+je špecifikovaný konkrétny problém a zadanie, ktorému sa v práci venujeme. \ref{chap:ThirdChapter}. kapitola
+je venovaná popisu vstupných dát, ich obsah a štruktúra. Takisto je tu popísaný proces získavania dát a ich
+príprava na ďalšie spracovanie. V \ref{chap:FourthChapter}. kapitole je popísaný proces detekcie anonymizovaných
+častí dokumentov. V \ref{chap:FifthChapter}. kapitole je popísaný proces vytvorenia štatistík a ich vizualizácie.
+\Cref{chap:SixthChapter} je venovaná diskusii a záveru práce.
 
 % Introduction should answer the following questions, ideally in this order:
 % \begin{enumerate}

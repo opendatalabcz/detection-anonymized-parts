@@ -1,5 +1,7 @@
-\documentclass[12pt,a4paper,twoside,openright]{report}
-\let\openright=\cleardoublepage
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \let\openright=\cleardoublepage
+
+\documentclass[12pt,a4paper]{report}
 
 \input{metadata}
 
@@ -116,19 +118,21 @@
 \include{title}
 
 \tableofcontents
-
 \include{intro}
 \include{ch1}
 \include{ch2}
 \include{ch3}
+\include{ch4}
+\include{ch5}
+\include{ch6}
 \include{conclusion}
 \include{bibliography}
 
 \appendix
-\include{howto}
+\include{appendixA}
 
 % if your attachments are complicated, describe them in a separate appendix
 %\include{attachments}
 
-\openright
+%\openright
 \end{document}
