@@ -25,11 +25,31 @@ namespace DAPP
 #endif
 			var analyzer = new AnalyzerController(analyzerFacade);
 			Console.WriteLine("Loading contracts...");
+			Console.WriteLine("|--------------------------------------------------------------|");
 			analyzer.LoadContracts(contractsFolderPath);
 			Console.WriteLine("Analyzing contracts...");
+			Console.WriteLine("|--------------------------------------------------------------|");
 			analyzer.Run();
 			Console.WriteLine("Done.");
-
+			Console.WriteLine("|--------------------------------------------------------------|");
+			Console.WriteLine("Results:");
+			Console.WriteLine("|--------------------------------------------------------------|");
+saveOption:
+			Console.WriteLine("Would you like to save results ? (y/n)");
+			var r = Console.ReadLine();
+			if (r == "y" || r == "n")
+			{
+				if (r == "y")
+				{
+					Console.WriteLine("NOT IMPLEMENTED YET");
+				}
+			}
+			else
+			{
+				Console.WriteLine("Please type \"y\" for yes or \"n\" for no.");
+				goto saveOption;
+			}
+			Console.WriteLine("|--------------------------------------------------------------|");
 		}
 	}
 }
