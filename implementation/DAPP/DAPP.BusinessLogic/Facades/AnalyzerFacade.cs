@@ -20,7 +20,6 @@
 
 		public void Run()
 		{
-			// case switch decide based on parameter what operation to call
 			analyzeContractsOperation.Execute();
 		}
 	}

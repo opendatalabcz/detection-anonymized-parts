@@ -2,6 +2,7 @@
 {
 	using DAPP.BusinessLogic.Interfaces.Operations;
 	using DAPP.BusinessLogic.Interfaces.Repositories;
+	using DAPP.Entities;
 
 	public sealed class LoadContractsOperation : ILoadContractsOperation
 	{
@@ -16,9 +17,9 @@
 		{
 			// for each file in contractsFolderPath call contractRepository.AddContract
 			var directoryInfo = new DirectoryInfo(contractsFolderPath);
-			foreach (FileInfo fileInfo in directoryInfo.GetFiles().Where(x => x.Extension == ".pdf"))
+			foreach (FileInfo fileInfo in directoryInfo.GetFiles().Where(x => Enum.TryParse<ContractFileType>(x.Extension[1..], out _)))
 			{
-				Console.WriteLine($"Loading {fileInfo.Name}");
+				Console.WriteLine($"{fileInfo.Name}");
 				contractRepository.AddContract(fileInfo.FullName);
 			}
 

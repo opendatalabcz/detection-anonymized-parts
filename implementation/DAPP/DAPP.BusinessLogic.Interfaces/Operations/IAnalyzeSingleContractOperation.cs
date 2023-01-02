@@ -1,10 +1,13 @@
 ﻿namespace DAPP.BusinessLogic.Interfaces.Operations
 {
+	using DAPP.Entities;
+	using DAPP.Models;
+
 	public interface IAnalyzeSingleContractOperation
 	{
 		/// <summary>
 		/// Runs analysis of a contract
 		/// </summary>
-		public void Execute(int contractId);
+		public AnalyzedContractModel Execute(Contract contract);
 	}
 }
