@@ -2,13 +2,12 @@
 {
 	using DAPP.BusinessLogic.Interfaces.Operations;
 	using DAPP.BusinessLogic.Interfaces.Repositories;
+	using DAPP.Entities;
 	using DAPP.Models;
 
-	using OpenCvSharp;
+	using iText.Kernel.Pdf;
 
-	using System;
 	using System.Diagnostics;
-
 	public sealed class AnalyzeSingleContractOperation : IAnalyzeSingleContractOperation
 	{
 		private readonly IContractRepository contractRepository;
@@ -18,77 +17,41 @@
 			this.contractRepository = contractRepository;
 		}
 
-		public void Execute(int contractId)
+		public AnalyzedContractModel Execute(Contract contract)
 		{
-			Console.WriteLine($"Analyzing contract {contractId}");
-			Entities.Contract contract = contractRepository.GetContract(contractId);
-			if (contract == null)
+			Console.WriteLine($"Analyzing {contract.Name}...");
+			return contract.ContractFileType switch
 			{
-				throw new ArgumentException($"Contract with id {contractId} does not exist");
-			}
-
-			// generate png from pdf pages and save to disk to separate folder
-			ProcessStartInfo processStartInfo = new()
-			{
-				FileName = "pdftoppm.exe",
-				Arguments = $"-png {contract.FilePath} {contract.FilePath}_page",
-				UseShellExecute = false,
-				CreateNoWindow = true,
-				RedirectStandardOutput = true,
-				RedirectStandardError = true
+				ContractFileType.pdf => AnalyzePdf(contract),
+				ContractFileType.jpg => throw new NotImplementedException(),
+				ContractFileType.jpeg => throw new NotImplementedException(),
+				ContractFileType.png => throw new NotImplementedException(),
+				_ => throw new UnreachableException(),
 			};
-			var p = Process.Start(processStartInfo);
-			p.WaitForExit();
+		}
 
-			// for each png file in folder
-			// 1. load png file
-			// 2. convert to grayscale
-			// 3. apply threshold
-			// 4. apply canny edge detection
-			// 5. find contours
-			// 6. find bounding boxes
-			// 7. save bounding boxes to AnalyzedContractModel
-			// 8. save AnalyzedContractModel to contractRepository
+		private AnalyzedContractModel AnalyzePdf(Contract contract)
+		{
+			SavePdfAsIndividualPagesAsPng(contract);
+			throw new NotImplementedException();
+		}
 
-			// 1. load png files
-
-			Mat image = Cv2.ImRead($"{contract.FilePath}_page-1.png");
-			// 2. convert to grayscale
-			Mat grayImage = new();
-			Cv2.CvtColor(image, grayImage, ColorConversionCodes.BGR2GRAY);
-			// 3. apply threshold
-			Mat thresholdImage = new();
-			_ = Cv2.Threshold(grayImage, thresholdImage, 0, 255, ThresholdTypes.Binary | ThresholdTypes.Otsu);
-			// 4. apply canny edge detection
-			Mat cannyImage = new();
-			Cv2.Canny(thresholdImage, cannyImage, 100, 200);
-
-			// 5. find contours
-			Cv2.FindContours(cannyImage, out Point[][] contours, out _, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
-			// 6. find bounding boxes
-			List<Rect> boundingBoxes = new();
-			foreach (Point[] contour in contours)
+		private void SavePdfAsIndividualPagesAsPng(Contract contract)
+		{
+			string dest = contract.Id + "\\" + contract.Name + "_removed_outlines.pdf";
+			var file = new FileInfo(dest);
+			file.Directory.Create();
+			var reader = new PdfReader(contract.FilePath);
+			var writer = new PdfWriter(dest);
+			var pdfDocument = new PdfDocument(reader, writer);
+			int pages = pdfDocument.GetNumberOfPages();
+			for (int i = 1; i <= pages; i++)
 			{
-				boundingBoxes.Add(Cv2.BoundingRect(contour));
+				_ = pdfDocument.GetPage(i);
+				throw new NotImplementedException();
 			}
-			// 7. save bounding boxes to AnalyzedContractModel
-			AnalyzedContractModel analyzedContractModel = new()
-			{
-				ContractId = contractId,
-			};
-			foreach (Rect boundingBox in boundingBoxes)
-			{
-				analyzedContractModel.BoundingBoxes.Add(new BoundingBoxModel
-				{
-					X = boundingBox.X,
-					Y = boundingBox.Y,
-					Width = boundingBox.Width,
-					Height = boundingBox.Height
-				});
-			}
-
-			contractRepository.SaveAnalyzedContract(analyzedContractModel);
-
+			pdfDocument.Close();
+			pdfDocument.Close();
 		}
 	}
 }
