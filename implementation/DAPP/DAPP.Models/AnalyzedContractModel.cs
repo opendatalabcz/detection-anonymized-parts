@@ -6,6 +6,6 @@
 		public string? Name { get; set; }
 		public string? Description { get; set; }
 		public string? FilePath { get; set; }
-		public List<BoundingBoxModel>? BoundingBoxes { get; set; }
+		public List<(int Page, BoundingBoxModel BoundingBox)>? BoundingBoxes { get; set; }
 	}
 }
