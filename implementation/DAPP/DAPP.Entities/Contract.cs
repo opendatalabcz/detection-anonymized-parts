@@ -8,21 +8,27 @@
 			Id = id;
 			FilePath = filePath;
 			Name = Path.GetFileNameWithoutExtension(filePath);
-			ContractFileType = Enum.Parse<ContractFileType>(Path.GetExtension(filePath)[1..].ToLower());
+			Extension = Path.GetExtension(filePath);
 		}
 
 		public int Id { get; set; }
+		/// <summary>
+		///  Name of file
+		/// </summary>
 		public string? Name { get; set; }
+		/// <summary>
+		/// Full fillepath including Extension
+		/// </summary>
 		public string? FilePath { get; set; }
 
-		public ContractFileType ContractFileType { get; set; }
-	}
+		/// <summary>
+		/// List of Contract pages
+		/// </summary>
+		public List<ContractPage> ContractPages { get; set; }
 
-	public enum ContractFileType
-	{
-		pdf,
-		jpg,
-		jpeg,
-		png
+		/// <summary>
+		///  Extension, e.g. .pdf
+		/// </summary>
+		public string Extension { get; set; }
 	}
 }

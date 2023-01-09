@@ -17,7 +17,7 @@
 		{
 			// for each file in contractsFolderPath call contractRepository.AddContract
 			var directoryInfo = new DirectoryInfo(contractsFolderPath);
-			foreach (FileInfo fileInfo in directoryInfo.GetFiles().Where(x => Enum.TryParse<ContractFileType>(x.Extension[1..], out _)))
+			foreach (FileInfo fileInfo in directoryInfo.GetFiles())
 			{
 				Console.WriteLine($"{fileInfo.Name}");
 				contractRepository.AddContract(fileInfo.FullName);
