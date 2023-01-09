@@ -22,11 +22,6 @@
 		public string? FilePath { get; set; }
 
 		/// <summary>
-		/// List of Contract pages
-		/// </summary>
-		public List<ContractPage> ContractPages { get; set; }
-
-		/// <summary>
 		///  Extension, e.g. .pdf
 		/// </summary>
 		public string Extension { get; set; }

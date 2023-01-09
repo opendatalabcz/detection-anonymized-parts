@@ -4,24 +4,17 @@
 	using DAPP.BusinessLogic.Interfaces.Repositories;
 	using DAPP.Entities;
 	using DAPP.Models;
-	using iText.Kernel.Colors;
-	using iText.Kernel.Font;
-	using iText.Kernel.Pdf;
-	using iText.Kernel.Pdf.Annot;
-	using iText.Kernel.Pdf.Canvas;
-	using iText.Kernel.Pdf.Canvas.Parser;
-	using iText.Kernel.Pdf.Canvas.Parser.Listener;
 	using System.Diagnostics;
-	using System.Text;
-	using System.Text.RegularExpressions;
+	using ImageMagick;
 
 	public sealed class AnalyzeSingleContractOperation : IAnalyzeSingleContractOperation
 	{
 		private readonly IContractRepository contractRepository;
-
-		public AnalyzeSingleContractOperation(IContractRepository contractRepository)
+		private (int, int) densitySettings;
+		public AnalyzeSingleContractOperation(IContractRepository contractRepository, (int, int) densitySettings)
 		{
 			this.contractRepository = contractRepository;
+			this.densitySettings = densitySettings;
 		}
 
 		public AnalyzedContractModel Execute(Contract contract)
@@ -39,35 +32,42 @@
 
 		private AnalyzedContractModel AnalyzePdf(Contract contract)
 		{
-			// Load pdf // Get list of individual pages
+			// Load pdf // Get list of individual pages as Image object
 			// For each page change color of all text to white;
-			var outputPath = contract.FilePath.Replace(contract.Extension, "") + "\\whitened_text" + contract.Extension;
-			Directory.CreateDirectory(contract.FilePath.Replace(contract.Extension, ""));
-			using (PdfDocument pdf = new PdfDocument(new PdfReader(contract.FilePath), new PdfWriter(outputPath)))
+			string pdfFileName = Path.Combine("pngs", contract.Name);
+			string pngFolderPath = Path.GetDirectoryName(contract.FilePath) + "\\.." + "\\pngs";
+			if (!Directory.Exists(pngFolderPath))
 			{
-				//TODO : trigger for prints
-				Console.WriteLine("Whitening text in pages for furhter processing...");
-				for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
-				{
-					//TODO : trigger for prints
-					Console.WriteLine($"Page {i}...");
-					PdfPage page = pdf.GetPage(i);
-					var strategy = new LocationTextExtractionStrategy();
-					PdfCanvasProcessor processor = new PdfCanvasProcessor(strategy);
-					processor.ProcessPageContent(page);
-					var text = strategy.GetResultantText();
-					Console.WriteLine(text);
-					// text = Regex.Replace(text, "1 g", "1 g"); // change color to white
-					byte[] data = Encoding.UTF8.GetBytes(text);
-					PdfStream stream = new PdfStream(data);
-					stream.Put(PdfName.Filter, PdfName.FlateDecode);
-					page.Put(PdfName.Contents, stream);
-				}
-				pdf.Close();
-				//TODO : trigger for prints
-				Console.WriteLine("Whitening finished\n");
+				Directory.CreateDirectory(pngFolderPath);
 			}
-			return null;
+
+			MagickReadSettings settings = new MagickReadSettings();
+			settings.Density = new Density(densitySettings.Item1, densitySettings.Item2, DensityUnit.PixelsPerCentimeter);
+
+			using (MagickImageCollection images = new MagickImageCollection())
+			{
+				images.Read(contract.FilePath);
+
+				string pdfDir = Path.Combine(pngFolderPath, contract.Name);
+				if (!Directory.Exists(pdfDir))
+				{
+					Directory.CreateDirectory(pdfDir);
+				}
+
+				Console.WriteLine($"Saving {contract.Name} to pngs...");
+				Console.WriteLine($"Total pages:{images.Count()}");
+				// iterate over all images
+				int page = 1;
+				foreach (MagickImage image in images)
+				{
+					Console.WriteLine($"Saving page number {page} to: page_{page}.png ...");
+					// save 
+					image.Write(Path.Combine(pdfDir, $"page_{page}.png"));
+					page++;
+				}
+
+				return null;
+			}
 		}
 
 		//private void SavePdfAsIndividualPagesAsPng(Contract contract)

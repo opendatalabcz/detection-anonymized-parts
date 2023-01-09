@@ -12,14 +12,16 @@ namespace DAPP
 		{
 			//var analyzer = new AnalyzerController(ArgsParser.Parse(args));
 
+
 			// using BusinessLogic and Repository reference because of "Dependency Injection". Can't really go makearound.
 			var contractRepository = new ContractRepository();
+			var pxPerCmDensity = (100, 100);
 			var analyzerFacade = new AnalyzerFacade(
 				 new LoadContractsOperation(contractRepository),
 				 new AnalyzeContractsOperation(contractRepository,
-				 new AnalyzeSingleContractOperation(contractRepository)));
+				 new AnalyzeSingleContractOperation(contractRepository, pxPerCmDensity)));
 #if _DEBUG
-			string contractsFolderPath = @"../../../../TestData/";
+			string contractsFolderPath = @"../../../../TestData/pdfs/";
 #else
 			var contractsFolderPath = @""; // something with args 
 #endif
@@ -34,10 +36,10 @@ namespace DAPP
 			Console.WriteLine("|--------------------------------------------------------------|");
 			Console.WriteLine("Results:");
 			Console.WriteLine("|--------------------------------------------------------------|");
-saveOption:
+		saveOption:
 			Console.WriteLine("Would you like to save results ? (y/n)");
 			var r = Console.ReadLine();
-			if (r == "y" || r == "n")
+			if (r is "y" or "n")
 			{
 				if (r == "y")
 				{
