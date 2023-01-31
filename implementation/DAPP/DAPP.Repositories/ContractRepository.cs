@@ -11,9 +11,10 @@
 		private readonly List<Contract> Contracts = new();
 		private readonly List<AnalyzedContractModel> AnalyzedContractModels = new();
 
-		public void AddContract(string s)
+		public int AddContract(string s)
 		{
 			Contracts.Add(new Contract(Contracts.Count, s));
+			return Contracts.Count - 1;
 		}
 
 		public IEnumerable<Contract> GetAllContracts()

@@ -19,7 +19,7 @@
 		{
 			foreach (Entities.Contract contract in contractRepository.GetAllContracts())
 			{
-				analyzeSingleContractOperation.Execute(contract);
+				analyzeSingleContractOperation.Execute(contract.Id);
 			}
 		}
 	}

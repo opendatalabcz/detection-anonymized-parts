@@ -8,10 +8,10 @@
 	public interface IContractRepository
 	{
 		/// <summary>
-		/// Adds a contract to the repository
+		/// <param>Adds a contract to the repository</param>
+		/// <param>Returns id of saved contract</param>
 		/// </summary>
-		/// <param name="s"></param>
-		public void AddContract(string s);
+		public int AddContract(string s);
 
 		/// <summary>
 		/// Gets all contracts

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DAPP.BusinessLogic.Interfaces\DAPP.BusinessLogic.Interfaces.csproj" />
+    <ProjectReference Include="..\DAPP.Config\DAPP.Config.csproj" />
     <ProjectReference Include="..\DAPP.Models\DAPP.Models.csproj" />
     <ProjectReference Include="..\DAPP.Repositories\DAPP.Repositories.csproj" />
   </ItemGroup>

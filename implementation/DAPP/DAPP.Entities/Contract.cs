@@ -25,5 +25,7 @@
 		///  Extension, e.g. .pdf
 		/// </summary>
 		public string Extension { get; set; }
+
+		public ICollection<ContractPage> ContractPages { get; set; } = new List<ContractPage>();
 	}
 }

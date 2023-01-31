@@ -10,31 +10,58 @@ namespace DAPP
 	{
 		private static void Main(string[] args)
 		{
+			// load config file
 			//var analyzer = new AnalyzerController(ArgsParser.Parse(args));
 
 			// using BusinessLogic and Repository reference because of "Dependency Injection". Can't really go makearound.
 			var contractRepository = new ContractRepository();
-			(int, int) pxPerCmDensity = (100, 100);
+			var loadSingleConctractOperation = new LoadSingleContractOperation(contractRepository);
+			var analyzeSingleContractOperation = new AnalyzeSingleContractOperation(contractRepository);
 			var analyzerFacade = new AnalyzerFacade(
-				 new LoadContractsOperation(contractRepository, pxPerCmDensity),
-				 new AnalyzeContractsOperation(contractRepository,
-				 new AnalyzeSingleContractOperation(contractRepository)));
+				 new LoadContractsOperation(loadSingleConctractOperation),
+				 new AnalyzeContractsOperation(contractRepository, analyzeSingleContractOperation),
+				 loadSingleConctractOperation,
+				 analyzeSingleContractOperation);
 #if _DEBUG
-			string contractsFolderPath = @"../../../../TestData/pdfs/";
 #else
 			var contractsFolderPath = @""; // something with args 
 #endif
 			var analyzer = new AnalyzerController(analyzerFacade);
-			Console.WriteLine("Loading contracts...");
-			Console.WriteLine("|--------------------------------------------------------------|");
-			analyzer.LoadContracts(contractsFolderPath);
-			Console.WriteLine("Analyzing contracts...");
-			Console.WriteLine("|--------------------------------------------------------------|");
-			analyzer.Run();
-			Console.WriteLine("Done.");
-			Console.WriteLine("|--------------------------------------------------------------|");
-			Console.WriteLine("Results:");
-			Console.WriteLine("|--------------------------------------------------------------|");
+
+			if (Config.LoadAllThenAnalyzeAll)
+			{
+				// loading 
+				Console.WriteLine("Loading contracts...");
+				Console.WriteLine(Config.ConsoleDelimeter);
+				analyzer.LoadContracts(Config.ContractsFolderPath);
+
+				// analyze
+				Console.WriteLine("Analyzing contracts...");
+				Console.WriteLine(Config.ConsoleDelimeter);
+				analyzer.Run();
+				Console.WriteLine("Done.");
+				Console.WriteLine(Config.ConsoleDelimeter);
+				Console.WriteLine("Results:");
+				Console.WriteLine(Config.ConsoleDelimeter);
+			}
+			else // load one and analyze one, then another one and so on
+			{
+				foreach (string item in Directory.GetFiles(Config.ContractsFolderPath))
+				{
+
+					// loading 
+					Console.WriteLine($"Loading contract {item.Split('/')[^1]}...");
+					Console.WriteLine(Config.ConsoleDelimeter);
+					int contractId = analyzer.LoadContract(item);
+
+					Console.WriteLine($"Analyzing contract {item.Split('/')[^1]}...");
+					analyzer.Run(contractId);
+					Console.WriteLine("Done.");
+					Console.WriteLine(Config.ConsoleDelimeter);
+					Console.WriteLine("Results:");
+					Console.WriteLine(Config.ConsoleDelimeter);
+				}
+			}
 saveOption:
 			Console.WriteLine("Would you like to save results ? (y/n)");
 			string? r = Console.ReadLine();
@@ -54,3 +81,4 @@ saveOption:
 		}
 	}
 }
+

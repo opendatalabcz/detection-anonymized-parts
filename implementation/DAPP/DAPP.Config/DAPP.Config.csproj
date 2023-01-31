@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DAPP.BusinessLogic.Interfaces\DAPP.BusinessLogic.Interfaces.csproj" />
-    <ProjectReference Include="..\DAPP.Models\DAPP.Models.csproj" />
-  </ItemGroup>
-
 </Project>

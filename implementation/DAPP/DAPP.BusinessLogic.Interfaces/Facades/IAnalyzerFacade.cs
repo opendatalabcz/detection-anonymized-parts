@@ -10,8 +10,11 @@
 		void LoadContracts(string contractsFolderPath);
 		/// <summary>
 		/// Runs analysis of contracts
-		/// <para>TODO: Add parameters</para>
+		/// <para>contractId - default -1, analyzes all contracts in repository</para>
+		/// <para>if contractId is set to nonnegative value, analyzes selected contract with that id.</para>
 		/// </summary>
-		void Run();
+		void Run(int contractId);
+
+		int LoadContract(string contractPath);
 	}
 }

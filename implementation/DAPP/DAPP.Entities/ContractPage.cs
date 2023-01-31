@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace DAPP.Entities
+﻿namespace DAPP.Entities
 {
 	public class ContractPage
 	{
+		public string? Path { get; set; }
 
 	}
 }

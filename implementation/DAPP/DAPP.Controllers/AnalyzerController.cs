@@ -16,9 +16,14 @@
 			analyzerFacade.LoadContracts(contractsFolderPath);
 		}
 
-		public void Run()
+		public int LoadContract(string contractPath)
 		{
-			analyzerFacade.Run();
+			return analyzerFacade.LoadContract(contractPath);
+		}
+
+		public void Run(int contractId = -1)
+		{
+			analyzerFacade.Run(contractId);
 		}
 	}
 }
