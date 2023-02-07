@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Operations\GetBlackBoundingBoxesHighPassFilter.cs~RFf1a37d4.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="12.2.2" />
     <PackageReference Include="Magick.NET.Core" Version="12.2.2" />
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />

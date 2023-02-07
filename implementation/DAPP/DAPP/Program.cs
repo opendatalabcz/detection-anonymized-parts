@@ -16,7 +16,15 @@ namespace DAPP
 			// using BusinessLogic and Repository reference because of "Dependency Injection". Can't really go makearound.
 			var contractRepository = new ContractRepository();
 			var loadSingleConctractOperation = new LoadSingleContractOperation(contractRepository);
-			var analyzeSingleContractOperation = new AnalyzeSingleContractOperation(contractRepository);
+			var analyzeSingleContractOperation = new AnalyzeSingleContractOperation(
+				contractRepository,
+				new()
+				{
+					//new GetBlackBoundingBoxesOperation(),
+					//new GetBlackBoundingBoxesHighPassFilterOperation(),
+					new GetBlackBoundingBoxesSegmentatedFilterOperation(),
+				});
+
 			var analyzerFacade = new AnalyzerFacade(
 				 new LoadContractsOperation(loadSingleConctractOperation),
 				 new AnalyzeContractsOperation(contractRepository, analyzeSingleContractOperation),
