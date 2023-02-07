@@ -11,4 +11,5 @@
 	public static bool LoadAllThenAnalyzeAll = true;
 
 	public static int SegmentsCount { get; } = 50000;
+	public static string TestDataFolderPath { get; set; } = @"../../../../TestData/";
 }

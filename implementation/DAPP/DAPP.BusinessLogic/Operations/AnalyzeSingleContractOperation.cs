@@ -11,6 +11,7 @@
 
 	using System;
 	using System.Diagnostics;
+	using System.IO;
 
 	public sealed class AnalyzeSingleContractOperation : IAnalyzeSingleContractOperation
 	{
@@ -33,19 +34,44 @@
 
 			//var result = new AnalyzedContractModel();
 
+			AnalyzedContractModel result = new()
+			{
+				Name = contract.Name,
+				ContractId = contractId,
+				FilePath = contract.FilePath,
+				PagesCount = contract.ContractPages.Count,
+				AnonymizedAreaInPercentages = new List<float>(),
+			};
+
 			foreach (ContractPage page in contract.ContractPages)
 			{
+
 				foreach (IGetBlackBoundingBoxesOperation fc in getBlackBoundingBoxesOperations)
 				{
 
 					List<BoundingBoxModel> boundingBoxes = fc.Execute(page);
-					DisplayBoundingBoxes(page, boundingBoxes, fc.Name);
+					(Mat combinedBoundingBoxes, Mat overlay) = OverlayBoundingBoxes(page, boundingBoxes);
+					SaveAsImage(overlay, contract, page);
+					result.AnonymizedAreaInPercentages.Add(CalculateBlackenedAreaPercentage(combinedBoundingBoxes));
 				}
 			}
-			return null;
+			DeleteTempFiles(contract);
+			return result;
 		}
 
-		private void DisplayBoundingBoxes(ContractPage page, List<BoundingBoxModel> boundingBoxes, string fcName)
+		private void DeleteTempFiles(Contract contract)
+		{
+			foreach (string file in Directory.GetFiles(Config.TestDataFolderPath + "pngs/" + contract.Name))
+			{
+				File.Delete(file);
+			}
+			foreach (string file in Directory.GetFiles(Config.TestDataFolderPath + "results/" + contract.Name))
+			{
+				File.Delete(file);
+			}
+		}
+
+		private (Mat combinedBoundingBoxes, Mat overlay) OverlayBoundingBoxes(ContractPage page, List<BoundingBoxModel> boundingBoxes)
 		{
 			Mat src = Cv2.ImRead(page.Path, ImreadModes.Grayscale);
 			var color = new Mat(src.Rows, src.Cols, MatType.CV_8UC3, new Scalar(0, 0, 0));
@@ -63,27 +89,21 @@
 
 			color = RemoveSmallObjects(color, 8);
 			Cv2.CvtColor(src, result, ColorConversionCodes.GRAY2BGR);
-			Cv2.AddWeighted(result, 0.5, color, 0.5, 0, result);
+			Cv2.AddWeighted(result, 1, color, 1, 0, result);
 			//Cv2.ImShow($"Page n. {page.Number} Function used to detect bounding boxes: {fcName}", result);
 			_ = Cv2.Threshold(color, color, 1, 255, ThresholdTypes.Binary);
-			_ = Cv2.Threshold(src, src, 5, 255, ThresholdTypes.Binary);
-			Console.WriteLine($"Page n. {page.Number} Function used to detect bounding boxes: {fcName}");
-			Cv2.ImShow($"Page n. {page.Number} Function used to detect bounding boxes: {fcName}", src);
-
-			Console.WriteLine($"Percentage of anonymized part: {CalculateBlackenedAreaPercentage(color, src) * 100} %.");
-			_ = Cv2.WaitKey();
-
+			return (color, result);
 		}
 
-		private static float CalculateBlackenedAreaPercentage(Mat color, Mat original)
+		private static float CalculateBlackenedAreaPercentage(Mat color)
 		{
 			long black = 0;
-			long total = original.Width * original.Height;
-			for (int x = 0; x < original.Width; x++)
+			long total = color.Width * color.Height;
+			for (int x = 0; x < color.Width; x++)
 			{
-				for (int y = 0; y < original.Height; y++)
+				for (int y = 0; y < color.Height; y++)
 				{
-					Vec3b px = original.At<Vec3b>(x, y);
+					Vec3b px = color.At<Vec3b>(x, y);
 					if (px.Item1 + px.Item2 + px.Item0 > 0)
 					{
 						black++;
@@ -121,6 +141,24 @@
 			return 0;
 		}
 
+		private void SaveAsImage(Mat overlay, Contract contract, ContractPage contractPage)
+		{
+			_ = Path.Combine("results", contract.Name);
+			string resultsFolderPath = Path.GetDirectoryName(contract.FilePath) + "\\.." + "\\results";
+			if (!Directory.Exists(resultsFolderPath))
+			{
+				_ = Directory.CreateDirectory(resultsFolderPath);
+			}
+			string pdfDir = Path.Combine(resultsFolderPath, contract.Name);
+			if (!Directory.Exists(pdfDir))
+			{
+				_ = Directory.CreateDirectory(pdfDir);
+			}
+			Console.WriteLine($"Saving {contract.Name} results...");
+			Console.WriteLine($"Page n. {contractPage.Number}...");
+			_ = overlay.SaveImage(Path.Combine(pdfDir, $"page_{contractPage.Number}.png"));
+		}
+
 		private dynamic SaveAsImages(Contract contract)
 		{
 			// Load pdf // Get list of individual pages as Image object
@@ -134,7 +172,7 @@
 
 			var settings = new MagickReadSettings
 			{
-				Density = new Density(Config.Density.x, Config.Density.y, DensityUnit.PixelsPerCentimeter)
+				Density = new Density(Config.Density.x, Config.Density.y, DensityUnit.PixelsPerCentimeter),
 			};
 
 			using var images = new MagickImageCollection(contract.FilePath, settings);
