@@ -2,6 +2,9 @@
 {
 	using DAPP.BusinessLogic.Interfaces.Facades;
 	using DAPP.BusinessLogic.Interfaces.Operations;
+	using DAPP.Models;
+
+	using System.Collections.Generic;
 
 	public sealed class AnalyzerFacade : IAnalyzerFacade
 	{
@@ -31,16 +34,11 @@
 			loadContractsOperation.Execute(contractsFolderPath);
 		}
 
-		public void Run(int contractId)
+		public List<List<AnalyzedContractModel>> Run(int contractId)
 		{
-			if (contractId == -1)
-			{
-				analyzeContractsOperation.Execute();
-			}
-			else
-			{
-				_ = analyzeSingleContractOperation.Execute(contractId);
-			}
+			return contractId == -1
+				? analyzeContractsOperation.Execute()
+				: new List<List<AnalyzedContractModel>>() { analyzeSingleContractOperation.Execute(contractId) };
 		}
 	}
 }

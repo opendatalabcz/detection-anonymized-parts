@@ -1,5 +1,7 @@
 ﻿namespace DAPP.BusinessLogic.Interfaces.Facades
 {
+	using DAPP.Models;
+
 	public interface IAnalyzerFacade
 	{
 
@@ -13,7 +15,7 @@
 		/// <para>contractId - default -1, analyzes all contracts in repository</para>
 		/// <para>if contractId is set to nonnegative value, analyzes selected contract with that id.</para>
 		/// </summary>
-		void Run(int contractId);
+		List<List<AnalyzedContractModel>> Run(int contractId);
 
 		int LoadContract(string contractPath);
 	}

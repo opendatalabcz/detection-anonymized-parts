@@ -20,8 +20,8 @@ namespace DAPP
 				contractRepository,
 				new()
 				{
-					//new GetBlackBoundingBoxesOperation(),
-					//new GetBlackBoundingBoxesHighPassFilterOperation(),
+					new GetBlackBoundingBoxesOperation(),
+					new GetBlackBoundingBoxesHighPassFilterOperation(),
 					new GetBlackBoundingBoxesSegmentatedFilterOperation(),
 				});
 
@@ -46,11 +46,29 @@ namespace DAPP
 				// analyze
 				Console.WriteLine("Analyzing contracts...");
 				Console.WriteLine(Config.ConsoleDelimeter);
-				analyzer.Run();
+				List<List<Models.AnalyzedContractModel>> results = analyzer.Run();
 				Console.WriteLine("Done.");
 				Console.WriteLine(Config.ConsoleDelimeter);
 				Console.WriteLine("Results:");
-				Console.WriteLine(Config.ConsoleDelimeter);
+				string res = "";
+				foreach (List<Models.AnalyzedContractModel> re in results)
+				{
+					foreach (var result in re)
+					{
+
+						res += $"Contract: {result.Name}\n";
+						res += $"Number of pages: {result.PagesCount}\n";
+						res += $"Method used to determine anonymized parts: {result.FcName}\n";
+						res += $"Anonymized area %:\n{result.PercentagesAsString}\n";
+						res += Config.ConsoleDelimeter + "\n";
+					}
+				}
+				if (!File.Exists(Config.ResultsFolderPath + "results.txt"))
+				{
+					using (File.CreateText(Config.ResultsFolderPath + "results.txt"))
+					{ }
+				}
+				File.WriteAllText(Config.ResultsFolderPath + "results.txt", res);
 			}
 			else // load one and analyze one, then another one and so on
 			{

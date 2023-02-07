@@ -7,6 +7,6 @@
 		/// <summary>
 		/// Runs analysis of a contract
 		/// </summary>
-		public AnalyzedContractModel Execute(int contractId);
+		public List<AnalyzedContractModel> Execute(int contractId);
 	}
 }

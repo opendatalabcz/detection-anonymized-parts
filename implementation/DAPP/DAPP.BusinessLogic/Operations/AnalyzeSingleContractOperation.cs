@@ -22,7 +22,7 @@
 			this.contractRepository = contractRepository;
 			this.getBlackBoundingBoxesOperations = getBlackBoundingBoxesOperations;
 		}
-		public AnalyzedContractModel? Execute(int contractId)
+		public List<AnalyzedContractModel> Execute(int contractId)
 		{
 			Contract? contract = contractRepository.GetContract(contractId);
 
@@ -33,15 +33,7 @@
 			Console.WriteLine($"Analyzing {contract.Name}...");
 
 			//var result = new AnalyzedContractModel();
-
-			AnalyzedContractModel result = new()
-			{
-				Name = contract.Name,
-				ContractId = contractId,
-				FilePath = contract.FilePath,
-				PagesCount = contract.ContractPages.Count,
-				AnonymizedAreaInPercentages = new List<float>(),
-			};
+			var res = new List<AnalyzedContractModel>();
 
 			foreach (ContractPage page in contract.ContractPages)
 			{
@@ -49,14 +41,29 @@
 				foreach (IGetBlackBoundingBoxesOperation fc in getBlackBoundingBoxesOperations)
 				{
 
+					AnalyzedContractModel result = new()
+					{
+						Name = contract.Name,
+						ContractId = contractId,
+						FilePath = contract.FilePath,
+						PagesCount = contract.ContractPages.Count,
+						AnonymizedAreaInPercentages = new List<float>(),
+					};
+
 					List<BoundingBoxModel> boundingBoxes = fc.Execute(page);
 					(Mat combinedBoundingBoxes, Mat overlay) = OverlayBoundingBoxes(page, boundingBoxes);
 					SaveAsImage(overlay, contract, page);
 					result.AnonymizedAreaInPercentages.Add(CalculateBlackenedAreaPercentage(combinedBoundingBoxes));
+					result.FcName = fc.Name;
+					//Cv2.ImShow($"{result.Name}", overlay);
+					//Console.WriteLine($"{result.AnonymizedAreaInPercentages.Last() * 100}%");
+					//_ = Cv2.WaitKey();
+					res.Add(result);
 				}
 			}
 			DeleteTempFiles(contract);
-			return result;
+
+			return res;
 		}
 
 		private void DeleteTempFiles(Contract contract)
@@ -97,6 +104,7 @@
 
 		private static float CalculateBlackenedAreaPercentage(Mat color)
 		{
+
 			long black = 0;
 			long total = color.Width * color.Height;
 			for (int x = 0; x < color.Width; x++)
@@ -104,12 +112,14 @@
 				for (int y = 0; y < color.Height; y++)
 				{
 					Vec3b px = color.At<Vec3b>(x, y);
-					if (px.Item1 + px.Item2 + px.Item0 > 0)
+					if (px[2] > 0 || px[1] > 0 || px[0] > 0)
 					{
 						black++;
 					}
 				}
 			}
+			//Cv2.ImShow($"Total: {total}, black: {black}", color);
+			//_ = Cv2.WaitKey();
 			return black / (float)total;
 		}
 

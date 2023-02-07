@@ -1,6 +1,7 @@
 ﻿namespace DAPP.Controllers
 {
 	using DAPP.BusinessLogic.Interfaces.Facades;
+	using DAPP.Models;
 
 	public sealed class AnalyzerController
 	{
@@ -21,9 +22,9 @@
 			return analyzerFacade.LoadContract(contractPath);
 		}
 
-		public void Run(int contractId = -1)
+		public List<List<AnalyzedContractModel>> Run(int contractId = -1)
 		{
-			analyzerFacade.Run(contractId);
+			return analyzerFacade.Run(contractId);
 		}
 	}
 }

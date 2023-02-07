@@ -2,6 +2,9 @@
 {
 	using DAPP.BusinessLogic.Interfaces.Operations;
 	using DAPP.BusinessLogic.Interfaces.Repositories;
+	using DAPP.Models;
+
+	using System.Collections.Generic;
 
 	public sealed class AnalyzeContractsOperation : IAnalyzeContractsOperation
 	{
@@ -14,13 +17,14 @@
 			this.contractRepository = contractRepository;
 			this.analyzeSingleContractOperation = analyzeSingleContractOperation;
 		}
-
-		public void Execute()
+		public List<List<AnalyzedContractModel>> Execute()
 		{
+			var result = new List<List<AnalyzedContractModel>>();
 			foreach (Entities.Contract contract in contractRepository.GetAllContracts())
 			{
-				analyzeSingleContractOperation.Execute(contract.Id);
+				result.Add(analyzeSingleContractOperation.Execute(contract.Id));
 			}
+			return result;
 		}
 	}
 }
