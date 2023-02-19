@@ -20,8 +20,8 @@ namespace DAPP
 				contractRepository,
 				new()
 				{
-					new GetBlackBoundingBoxesOperation(),
-					new GetBlackBoundingBoxesHighPassFilterOperation(),
+					//new GetBlackBoundingBoxesOperation(),
+					//new GetBlackBoundingBoxesHighPassFilterOperation(),
 					new GetBlackBoundingBoxesSegmentatedFilterOperation(),
 				});
 
@@ -88,7 +88,7 @@ namespace DAPP
 					Console.WriteLine(Config.ConsoleDelimeter);
 				}
 			}
-saveOption:
+		saveOption:
 			Console.WriteLine("Would you like to save results ? (y/n)");
 			string? r = Console.ReadLine();
 			if (r is "y" or "n")

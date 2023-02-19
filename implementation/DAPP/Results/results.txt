@@ -1,21 +1,5 @@
 Contract: 1003
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1003
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1003
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
@@ -24,135 +8,39 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1003
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1003
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1003
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 15.49782%
-Total: 7.74891%
-
-|--------------------------------------------------------------|
-Contract: 1330
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1330
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 15,49782%
+Total: 7,74891%
 
 |--------------------------------------------------------------|
 Contract: 1330
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 1.7188363%
-Total: 0.85941815%
-
-|--------------------------------------------------------------|
-Contract: 1330
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1330
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 1,7188363%
+Total: 0,85941815%
 
 |--------------------------------------------------------------|
 Contract: 1330
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 3.4395113%
-Total: 1.7197556%
-
-|--------------------------------------------------------------|
-Contract: 1333
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1333
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 3,4395113%
+Total: 1,7197556%
 
 |--------------------------------------------------------------|
 Contract: 1333
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 1.2653106%
-Total: 0.6326553%
-
-|--------------------------------------------------------------|
-Contract: 1333
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0.14565785%
-Total: 0.072828926%
-
-|--------------------------------------------------------------|
-Contract: 1333
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 1,2653106%
+Total: 0,6326553%
 
 |--------------------------------------------------------------|
 Contract: 1333
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1380
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1380
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -168,39 +56,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1380
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1380
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1380
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -216,15 +72,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1397
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -240,66 +88,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1397
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1397
-Number of pages: 4
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 4.267569%
-Total: 1.0668923%
-
-|--------------------------------------------------------------|
-Contract: 1423
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1423
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 4,267569%
+Total: 1,0668923%
 
 |--------------------------------------------------------------|
 Contract: 1423
@@ -312,42 +104,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1423
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1423
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1423
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 4.464177%
-Total: 2.2320886%
-
-|--------------------------------------------------------------|
-Contract: 1440
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1440
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 4,464177%
+Total: 2,2320886%
 
 |--------------------------------------------------------------|
 Contract: 1440
@@ -360,42 +120,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1440
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1440
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1440
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 4.4227257%
-Total: 2.2113628%
-
-|--------------------------------------------------------------|
-Contract: 1444
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1444
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 4,4227257%
+Total: 2,2113628%
 
 |--------------------------------------------------------------|
 Contract: 1444
@@ -408,42 +136,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1444
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1444
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1444
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 4.0055523%
-Total: 2.0027761%
-
-|--------------------------------------------------------------|
-Contract: 1449
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1449
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 4,0055523%
+Total: 2,0027761%
 
 |--------------------------------------------------------------|
 Contract: 1449
@@ -456,42 +152,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1449
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1449
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1449
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 7.2440677%
-Total: 3.6220338%
-
-|--------------------------------------------------------------|
-Contract: 1497
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1497
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 7,2440677%
+Total: 3,6220338%
 
 |--------------------------------------------------------------|
 Contract: 1497
@@ -504,39 +168,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1497
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1497
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1497
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1598
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1598
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -552,15 +184,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1598
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1598
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -570,45 +194,13 @@ Contract: 1598
 Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
+0: 5,5059404%
+Total: 1,8353134%
 
 |--------------------------------------------------------------|
-Contract: 1598
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1598
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1598
+Contract: 1760
 Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 5.5059404%
-Total: 1.8353134%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -624,66 +216,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1760
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1760
-Number of pages: 3
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 1.0251223%
-Total: 0.34170744%
-
-|--------------------------------------------------------------|
-Contract: 1903
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1903
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 1,0251223%
+Total: 0,34170744%
 
 |--------------------------------------------------------------|
 Contract: 1903
@@ -696,39 +232,15 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1903
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1903
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1903
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 13.101156%
-Total: 6.550578%
+0: 13,101156%
+Total: 6,550578%
 
 |--------------------------------------------------------------|
 Contract: 1952
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1952
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -744,46 +256,6 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1952
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1952
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1952
-Number of pages: 3
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1952
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1952
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1952
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
@@ -792,15 +264,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1977
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1977
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -816,858 +280,274 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 1977
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1977
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1977
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1977
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1977
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 1977
-Number of pages: 3
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 11.08894%
-Total: 3.6963131%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 11,08894%
+Total: 3,6963131%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 62.28675%
-Total: 2.0762253%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 62,28675%
+Total: 2,0762253%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 64.550705%
-Total: 2.15169%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 64,550705%
+Total: 2,15169%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 72.5343%
-Total: 2.41781%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 72,5343%
+Total: 2,41781%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.05476%
-Total: 2.435159%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,05476%
+Total: 2,435159%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.83952%
-Total: 2.4613173%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,83952%
+Total: 2,4613173%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 86.88362%
-Total: 2.8961208%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 86,88362%
+Total: 2,8961208%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 79.59356%
-Total: 2.6531186%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 79,59356%
+Total: 2,6531186%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 75.98319%
-Total: 2.532773%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 75,98319%
+Total: 2,532773%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.4546%
-Total: 2.4484866%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,4546%
+Total: 2,4484866%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 36.18016%
-Total: 1.2060052%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 36,18016%
+Total: 1,2060052%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 74.75595%
-Total: 2.491865%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 74,75595%
+Total: 2,491865%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 80.30345%
-Total: 2.676782%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 80,30345%
+Total: 2,676782%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 82.13815%
-Total: 2.7379386%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 82,13815%
+Total: 2,7379386%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 75.29518%
-Total: 2.5098393%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 75,29518%
+Total: 2,5098393%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 75.25233%
-Total: 2.508411%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 75,25233%
+Total: 2,508411%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 76.9421%
-Total: 2.5647368%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 76,9421%
+Total: 2,5647368%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 72.43738%
-Total: 2.4145792%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 72,43738%
+Total: 2,4145792%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 78.322365%
-Total: 2.6107454%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 78,322365%
+Total: 2,6107454%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 71.086365%
-Total: 2.3695457%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 71,086365%
+Total: 2,3695457%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.78397%
-Total: 2.459466%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,78397%
+Total: 2,459466%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.98389%
-Total: 2.4661298%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,98389%
+Total: 2,4661298%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.23096%
-Total: 2.441032%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,23096%
+Total: 2,441032%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 74.68385%
-Total: 2.489462%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 74,68385%
+Total: 2,489462%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 75.135544%
-Total: 2.504518%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 75,135544%
+Total: 2,504518%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 63.47684%
-Total: 2.1158946%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 63,47684%
+Total: 2,1158946%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 71.903114%
-Total: 2.3967705%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 71,903114%
+Total: 2,3967705%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 73.577446%
-Total: 2.4525816%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 73,577446%
+Total: 2,4525816%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 72.01218%
-Total: 2.400406%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 72,01218%
+Total: 2,400406%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 74.303894%
-Total: 2.4767966%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2064
-Number of pages: 30
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 74,303894%
+Total: 2,4767966%
 
 |--------------------------------------------------------------|
 Contract: 2064
 Number of pages: 30
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 60.199364%
-Total: 2.0066452%
-
-|--------------------------------------------------------------|
-Contract: 2068
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2068
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 60,199364%
+Total: 2,0066452%
 
 |--------------------------------------------------------------|
 Contract: 2068
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 2.5857947%
-Total: 1.2928973%
-
-|--------------------------------------------------------------|
-Contract: 2068
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2068
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 2,5857947%
+Total: 1,2928973%
 
 |--------------------------------------------------------------|
 Contract: 2068
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 5.6788173%
-Total: 2.8394086%
-
-|--------------------------------------------------------------|
-Contract: 2170
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2170
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 5,6788173%
+Total: 2,8394086%
 
 |--------------------------------------------------------------|
 Contract: 2170
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 3.165851%
-Total: 1.5829256%
-
-|--------------------------------------------------------------|
-Contract: 2170
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2170
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 3,165851%
+Total: 1,5829256%
 
 |--------------------------------------------------------------|
 Contract: 2170
@@ -1680,42 +560,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 2463
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2463
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2463
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 3.3337016%
-Total: 1.1112338%
-
-|--------------------------------------------------------------|
-Contract: 2463
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2463
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 3,3337016%
+Total: 1,1112338%
 
 |--------------------------------------------------------------|
 Contract: 2463
@@ -1728,114 +576,34 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 2463
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2463
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 2463
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 15.05763%
-Total: 5.01921%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 15,05763%
+Total: 5,01921%
 
 |--------------------------------------------------------------|
 Contract: 399
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.37021372%
-Total: 0.09255343%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,37021372%
+Total: 0,09255343%
 
 |--------------------------------------------------------------|
 Contract: 399
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.26005074%
-Total: 0.065012686%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,26005074%
+Total: 0,065012686%
 
 |--------------------------------------------------------------|
 Contract: 399
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.09765697%
-Total: 0.024414243%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 399
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,09765697%
+Total: 0,024414243%
 
 |--------------------------------------------------------------|
 Contract: 399
@@ -1848,90 +616,26 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 522
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,42005372%
+Total: 0,10501343%
 
 |--------------------------------------------------------------|
 Contract: 522
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.42005372%
-Total: 0.10501343%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,32074153%
+Total: 0,08018538%
 
 |--------------------------------------------------------------|
 Contract: 522
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.32074153%
-Total: 0.08018538%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0.10041564%
-Total: 0.02510391%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 522
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,10041564%
+Total: 0,02510391%
 
 |--------------------------------------------------------------|
 Contract: 522
@@ -1944,87 +648,23 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 525
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,6017582%
+Total: 0,15043955%
 
 |--------------------------------------------------------------|
 Contract: 525
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.6017582%
-Total: 0.15043955%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,3538456%
+Total: 0,0884614%
 
 |--------------------------------------------------------------|
 Contract: 525
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0.3538456%
-Total: 0.0884614%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 525
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2040,66 +680,18 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 535
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,6017582%
+Total: 0,15043955%
 
 |--------------------------------------------------------------|
 Contract: 535
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.6017582%
-Total: 0.15043955%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0.32625887%
-Total: 0.08156472%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,32625887%
+Total: 0,08156472%
 
 |--------------------------------------------------------------|
 Contract: 535
@@ -2112,63 +704,15 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 535
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 535
-Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.035494905%
-Total: 0.008873726%
-
-|--------------------------------------------------------------|
-Contract: 668
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 668
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,035494905%
+Total: 0,008873726%
 
 |--------------------------------------------------------------|
 Contract: 668
 Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 668
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 668
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2184,22 +728,6 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 670
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 670
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 670
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
 0: 0%
@@ -2208,39 +736,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 670
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 670
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 670
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 672
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 672
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2256,39 +752,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 672
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0.017655497%
-Total: 0.008827749%
-
-|--------------------------------------------------------------|
-Contract: 672
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 672
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 679
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 679
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2304,39 +768,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 679
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 679
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 679
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 682
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 682
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2352,39 +784,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 682
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 682
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 682
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 683
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 683
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2400,39 +800,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 683
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 683
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 683
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 685
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 685
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2448,39 +816,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 685
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 685
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 685
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 689
-Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 689
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2496,39 +832,7 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 689
 Number of pages: 2
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 689
-Number of pages: 2
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 689
-Number of pages: 2
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2538,69 +842,21 @@ Contract: 74
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.3635929%
-Total: 0.09089822%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,3635929%
+Total: 0,09089822%
 
 |--------------------------------------------------------------|
 Contract: 74
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.2821201%
-Total: 0.07053003%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,2821201%
+Total: 0,07053003%
 
 |--------------------------------------------------------------|
 Contract: 74
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 74
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2616,42 +872,10 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 787
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 787
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 787
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.955052%
-Total: 0.31835067%
-
-|--------------------------------------------------------------|
-Contract: 787
-Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 787
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,955052%
+Total: 0,31835067%
 
 |--------------------------------------------------------------|
 Contract: 787
@@ -2664,111 +888,31 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 787
 Number of pages: 3
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 787
-Number of pages: 3
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 787
-Number of pages: 3
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 6.0887556%
-Total: 2.0295854%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 6,0887556%
+Total: 2,0295854%
 
 |--------------------------------------------------------------|
 Contract: 80
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.37021372%
-Total: 0.09255343%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,37021372%
+Total: 0,09255343%
 
 |--------------------------------------------------------------|
 Contract: 80
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.3538456%
-Total: 0.0884614%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,3538456%
+Total: 0,0884614%
 
 |--------------------------------------------------------------|
 Contract: 80
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 80
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2784,111 +928,31 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 844
 Number of pages: 1
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 844
-Number of pages: 1
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 844
-Number of pages: 1
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 2.459125%
-Total: 2.459125%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 2,459125%
+Total: 2,459125%
 
 |--------------------------------------------------------------|
 Contract: 85
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.3635929%
-Total: 0.09089822%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,3635929%
+Total: 0,09089822%
 
 |--------------------------------------------------------------|
 Contract: 85
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.35936293%
-Total: 0.08984073%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,35936293%
+Total: 0,08984073%
 
 |--------------------------------------------------------------|
 Contract: 85
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 85
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -2904,87 +968,23 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 92
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,37021372%
+Total: 0,09255343%
 
 |--------------------------------------------------------------|
 Contract: 92
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.37021372%
-Total: 0.09255343%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,37591496%
+Total: 0,09397874%
 
 |--------------------------------------------------------------|
 Contract: 92
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0.37591496%
-Total: 0.09397874%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 92
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
 Anonymized area %:
 0: 0%
 Total: 0%
@@ -3000,90 +1000,26 @@ Total: 0%
 |--------------------------------------------------------------|
 Contract: 93
 Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
+Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,37021372%
+Total: 0,09255343%
 
 |--------------------------------------------------------------|
 Contract: 93
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.37021372%
-Total: 0.09255343%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,29867217%
+Total: 0,07466804%
 
 |--------------------------------------------------------------|
 Contract: 93
 Number of pages: 4
 Method used to determine anonymized parts: Performs segmentation of an image
 Anonymized area %:
-0: 0.29867217%
-Total: 0.07466804%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Performs segmentation of an image
-Anonymized area %:
-0: 0.08441535%
-Total: 0.021103837%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Tresholding image and Finding contours
-Anonymized area %:
-0: 0%
-Total: 0%
-
-|--------------------------------------------------------------|
-Contract: 93
-Number of pages: 4
-Method used to determine anonymized parts: Performs High pass filter using gaussian blur
-Anonymized area %:
-0: 0%
-Total: 0%
+0: 0,08441535%
+Total: 0,021103837%
 
 |--------------------------------------------------------------|
 Contract: 93

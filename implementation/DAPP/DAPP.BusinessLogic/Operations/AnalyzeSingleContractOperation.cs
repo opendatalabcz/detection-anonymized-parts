@@ -55,13 +55,13 @@
 					SaveAsImage(overlay, contract, page);
 					result.AnonymizedAreaInPercentages.Add(CalculateBlackenedAreaPercentage(combinedBoundingBoxes));
 					result.FcName = fc.Name;
-					//Cv2.ImShow($"{result.Name}", overlay);
+					Cv2.ImShow($"{result.Name}", overlay);
 					//Console.WriteLine($"{result.AnonymizedAreaInPercentages.Last() * 100}%");
 					//_ = Cv2.WaitKey();
 					res.Add(result);
 				}
 			}
-			DeleteTempFiles(contract);
+			//DeleteTempFiles(contract);
 
 			return res;
 		}
@@ -97,8 +97,8 @@
 			color = RemoveSmallObjects(color, 8);
 			Cv2.CvtColor(src, result, ColorConversionCodes.GRAY2BGR);
 			Cv2.AddWeighted(result, 1, color, 1, 0, result);
-			//Cv2.ImShow($"Page n. {page.Number} Function used to detect bounding boxes: {fcName}", result);
-			_ = Cv2.Threshold(color, color, 1, 255, ThresholdTypes.Binary);
+			//Cv2.ImShow($"Page n. {page.Number} Function used to detect bounding boxes: ", result);
+			//_ = Cv2.Threshold(color, color, 1, 255, ThresholdTypes.Binary);
 			return (color, result);
 		}
 
@@ -118,8 +118,8 @@
 					}
 				}
 			}
-			//Cv2.ImShow($"Total: {total}, black: {black}", color);
-			//_ = Cv2.WaitKey();
+			Cv2.ImShow($"Total: {total}, black: {black}", color);
+			_ = Cv2.WaitKey();
 			return black / (float)total;
 		}
 
