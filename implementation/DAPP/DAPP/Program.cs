@@ -1,11 +1,6 @@
 ﻿#define _DEBUG
 namespace DAPP
 {
-	using DAPP.BusinessLogic.Facades;
-	using DAPP.BusinessLogic.Operations;
-	using DAPP.Controllers;
-	using DAPP.Repositories;
-
 	public sealed class Program
 	{
 		private static void Main(string[] args)
@@ -20,10 +15,12 @@ namespace DAPP
 				contractRepository,
 				new()
 				{
-					//new GetBlackBoundingBoxesOperation(),
-					//new GetBlackBoundingBoxesHighPassFilterOperation(),
-					new GetBlackBoundingBoxesSegmentatedFilterOperation(),
-				});
+					// new GetBlackBoundingBoxesOperation(),
+					// new GetBlackBoundingBoxesHighPassFilterOperation(),
+					// new GetBlackBoundingBoxesSegmentatedFilterOperation(),
+					new GetBlackBoundingBoxesQuadtreeOperation(),
+				})
+			;
 
 			var analyzerFacade = new AnalyzerFacade(
 				 new LoadContractsOperation(loadSingleConctractOperation),
@@ -88,7 +85,7 @@ namespace DAPP
 					Console.WriteLine(Config.ConsoleDelimeter);
 				}
 			}
-		saveOption:
+saveOption:
 			Console.WriteLine("Would you like to save results ? (y/n)");
 			string? r = Console.ReadLine();
 			if (r is "y" or "n")
