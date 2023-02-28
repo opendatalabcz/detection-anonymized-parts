@@ -389,3 +389,5 @@ thesis-run.xml
 thesis.run.xml
 *.toc
 *.vrb
+/implementation/DAPP/TestData/results
+/implementation/DAPP/TestData/pngs
