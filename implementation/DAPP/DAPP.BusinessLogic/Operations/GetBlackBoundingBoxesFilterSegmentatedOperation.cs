@@ -1,12 +1,12 @@
 ﻿namespace DAPP.BusinessLogic.Operations
 {
+	using System.Collections.Generic;
+
 	using DAPP.BusinessLogic.Interfaces.Operations;
 	using DAPP.Entities;
 	using DAPP.Models;
 
 	using OpenCvSharp;
-
-	using System.Collections.Generic;
 
 	public sealed class GetBlackBoundingBoxesSegmentatedFilterOperation : IGetBlackBoundingBoxesOperation
 	{
@@ -17,8 +17,12 @@
 		{
 			List<BoundingBoxModel> res = new();
 			Mat src = Cv2.ImRead(page.Path, ImreadModes.Grayscale);
+			if (src.Cols == 0 || src.Rows == 0)
+			{
+				src = Cv2.ImRead(page.Path, ImreadModes.Unchanged);
+			}
 			_ = Cv2.Threshold(src, src, 170, 255, ThresholdTypes.Binary);
-			List<(Mat, int, int)> smallerImages = SegmentateImage(RemoveBorder(src, 20), Config.SegmentsCount);
+			List<(Mat, int, int)> smallerImages = SegmentateImage(/*RemoveBorder(src, 40)*/src, Config.SegmentsCount);
 			foreach ((Mat, int, int) simg in smallerImages)
 			{
 				if (AllPixelsBlack(simg.Item1))

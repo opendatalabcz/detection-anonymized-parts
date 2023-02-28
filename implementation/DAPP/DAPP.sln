@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAPP.Models", "DAPP.Models\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAPP.Controllers", "DAPP.Controllers\DAPP.Controllers.csproj", "{E6C3276C-E5E8-41A6-B44C-0D137C3A1EEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAPP.Config", "DAPP.Config\DAPP.Config.csproj", "{551C2973-1CE9-4D50-BDD4-E009606030E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAPP.Config", "DAPP.Config\DAPP.Config.csproj", "{551C2973-1CE9-4D50-BDD4-E009606030E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

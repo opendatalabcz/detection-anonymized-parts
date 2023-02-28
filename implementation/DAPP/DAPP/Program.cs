@@ -1,44 +1,30 @@
 ﻿#define _DEBUG
 namespace DAPP
 {
+	using System;
+
+	using DAPP.BusinessLogic.Facades;
+	using DAPP.BusinessLogic.Operations;
+	using DAPP.Controllers;
+	using DAPP.Repositories;
+
 	public sealed class Program
 	{
 		private static void Main(string[] args)
 		{
-			// load config file
-			//var analyzer = new AnalyzerController(ArgsParser.Parse(args));
-
-			// using BusinessLogic and Repository reference because of "Dependency Injection". Can't really go makearound.
-			var contractRepository = new ContractRepository();
-			var loadSingleConctractOperation = new LoadSingleContractOperation(contractRepository);
-			var analyzeSingleContractOperation = new AnalyzeSingleContractOperation(
-				contractRepository,
-				new()
-				{
-					// new GetBlackBoundingBoxesOperation(),
-					// new GetBlackBoundingBoxesHighPassFilterOperation(),
-					// new GetBlackBoundingBoxesSegmentatedFilterOperation(),
-					new GetBlackBoundingBoxesQuadtreeOperation(),
-				})
-			;
-
-			var analyzerFacade = new AnalyzerFacade(
-				 new LoadContractsOperation(loadSingleConctractOperation),
-				 new AnalyzeContractsOperation(contractRepository, analyzeSingleContractOperation),
-				 loadSingleConctractOperation,
-				 analyzeSingleContractOperation);
 #if _DEBUG
 #else
 			var contractsFolderPath = @""; // something with args 
 #endif
-			var analyzer = new AnalyzerController(analyzerFacade);
+			var analyzer = Initialize();
 
 			if (Config.LoadAllThenAnalyzeAll)
 			{
 				// loading 
 				Console.WriteLine("Loading contracts...");
 				Console.WriteLine(Config.ConsoleDelimeter);
-				analyzer.LoadContracts(Config.ContractsFolderPath);
+				//analyzer.LoadContracts(Config.ContractsFolderPath);
+				analyzer.LoadContracts(Config.SamplesFolderPath);
 
 				// analyze
 				Console.WriteLine("Analyzing contracts...");
@@ -101,6 +87,34 @@ saveOption:
 				goto saveOption;
 			}
 			Console.WriteLine("|--------------------------------------------------------------|");
+		}
+
+		private static AnalyzerController Initialize()
+		{
+			// load config file
+			//var analyzer = new AnalyzerController(ArgsParser.Parse(args));
+
+			// using BusinessLogic and Repository reference because of "Dependency Injection". Can't really go makearound.
+			var contractRepository = new ContractRepository();
+			var loadSingleConctractOperation = new LoadSingleContractOperation(contractRepository);
+			var analyzeSingleContractOperation = new AnalyzeSingleContractOperation(
+				contractRepository,
+				new()
+				{
+					// new GetBlackBoundingBoxesOperation(),
+					// new GetBlackBoundingBoxesHighPassFilterOperation(),
+					 new GetBlackBoundingBoxesSegmentatedFilterOperation(),
+					// new GetBlackBoundingBoxesQuadtreeOperation(),
+				})
+			;
+
+			var analyzerFacade = new AnalyzerFacade(
+				 new LoadContractsOperation(loadSingleConctractOperation),
+				 new AnalyzeContractsOperation(contractRepository, analyzeSingleContractOperation),
+				 loadSingleConctractOperation,
+				 analyzeSingleContractOperation);
+
+			return new AnalyzerController(analyzerFacade);
 		}
 	}
 }

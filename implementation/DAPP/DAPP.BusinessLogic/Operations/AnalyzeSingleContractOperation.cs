@@ -1,5 +1,9 @@
 ﻿namespace DAPP.BusinessLogic.Operations
 {
+	using System;
+	using System.Diagnostics;
+	using System.IO;
+
 	using DAPP.BusinessLogic.Interfaces.Operations;
 	using DAPP.BusinessLogic.Interfaces.Repositories;
 	using DAPP.Entities;
@@ -8,10 +12,6 @@
 	using ImageMagick;
 
 	using OpenCvSharp;
-
-	using System;
-	using System.Diagnostics;
-	using System.IO;
 
 	public sealed class AnalyzeSingleContractOperation : IAnalyzeSingleContractOperation
 	{
@@ -55,7 +55,7 @@
 					SaveAsImage(overlay, contract, page);
 					result.AnonymizedAreaInPercentages.Add(CalculateBlackenedAreaPercentage(combinedBoundingBoxes));
 					result.FcName = fc.Name;
-					Cv2.ImShow($"{result.Name}", overlay);
+					//Cv2.ImShow($"{result.Name}", overlay);
 					//Console.WriteLine($"{result.AnonymizedAreaInPercentages.Last() * 100}%");
 					//_ = Cv2.WaitKey();
 					res.Add(result);
@@ -87,7 +87,7 @@
 			foreach (BoundingBoxModel box in boundingBoxes)
 			{
 				var rect = new Rect(box.X, box.Y, box.Width, box.Height);
-				Cv2.Rectangle(color, rect, Scalar.Red, 2);
+				Cv2.Rectangle(color, rect, Scalar.Red, 3);
 				if (src.Rows != color.Rows || src.Cols != color.Cols)
 				{
 					Cv2.Resize(color, src, new Size(src.Cols, src.Rows));
@@ -111,15 +111,15 @@
 			{
 				for (int y = 0; y < color.Height; y++)
 				{
-					Vec3b px = color.At<Vec3b>(x, y);
+					Vec3b px = color.At<Vec3b>(y, x);
 					if (px[2] > 0 || px[1] > 0 || px[0] > 0)
 					{
 						black++;
 					}
 				}
 			}
-			Cv2.ImShow($"Total: {total}, black: {black}", color);
-			_ = Cv2.WaitKey();
+			//Cv2.ImShow($"Total: {total}, black: {black}", color);
+			//_ = Cv2.WaitKey();
 			return black / (float)total;
 		}
 
@@ -147,7 +147,13 @@
 
 		private dynamic CopyToImagesFolder(Contract contract)
 		{
-			File.Copy(contract.FilePath, Config.ContractsFolderPath + "\\.." + "\\pngs\\" + contract.Name + "\\" + contract.Name + contract.Extension);
+			if (!Path.Exists(Config.ContractsFolderPath + "\\.." + "\\pngs\\" + contract.Name + "\\"))
+			{
+				Directory.CreateDirectory(Config.ContractsFolderPath + "\\.." + "\\pngs\\" + contract.Name + "\\");
+			}
+			File.Copy(contract.FilePath, Config.ContractsFolderPath + "\\.." + "\\pngs\\" + contract.Name + "\\" + contract.Name + contract.Extension, true);
+
+			contract.ContractPages.Add(new() { Path = Path.Combine(Config.ContractsFolderPath + "\\.." + "\\pngs\\" + contract.Name + "\\", $"{contract.Name}.png"), Number = 1 });
 			return 0;
 		}
 
