@@ -5,6 +5,7 @@
 		public static AnonymizationTypeEnum None => AnonymizationTypeEnum.None;
 		public static AnonymizationTypeEnum BlackRectangle => AnonymizationTypeEnum.BlackRectangle;
 		public static AnonymizationTypeEnum RandomNoise => AnonymizationTypeEnum.RandomNoise;
+		public static AnonymizationTypeEnum ColoredSticker => AnonymizationTypeEnum.ColoredSticker;
 		public static AnonymizationTypeEnum Other => AnonymizationTypeEnum.Other;
 	}
 
@@ -13,6 +14,7 @@
 		None = 1,
 		BlackRectangle = 2,
 		RandomNoise = 3,
-		Other = 4,
+		ColoredSticker = 4,
+		Other = 5,
 	}
 }

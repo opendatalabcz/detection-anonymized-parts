@@ -1,12 +1,10 @@
 ﻿namespace DAPP.Analyzer
 {
 	using System;
-
-	using DAPP.Application.Interfaces;
-	using DAPP.Domain.Aggregates.AnalyzedResultAggregate.Entities;
+    using DAPP.Application.Interfaces;
+    using DAPP.Domain.Aggregates.AnalyzedResultAggregate.Entities;
 	using DAPP.Domain.Aggregates.ContractAggregate.Entities;
 	using DAPP.Domain.Common;
-
 	using ErrorOr;
 
 	using ImageMagick;
@@ -34,113 +32,192 @@
 			Mat img = ToMat(image);
 
 			// Determine whether there are any color pixels (might be colorful sticker used as anonymization)
-			var isColorful = IsColorful(img);
+			var coloredPixels = ColoredPixels(img);
 
-			// Determine Scan type (whether its digital or scanned)
-			var scanType = DetermineScanType(img);
 			// Determine Type of Anonymization, if any
-			var anonymizationType = DetermineAnonymizationType(img, isColorful.scanType);
+			var anonymization = FindAnonymized(img, coloredPixels);
 
 			// Calculate the area that was anonymized based on anonymization type
 
 			return new AnalyzedPage()
 			{
-				IsGrayscale = !isColorful,
-				AnonymizationType = anonymizationType,
+				IsGrayscale = coloredPixels.Any(),
+				AnonymizationType = anonymization.Item1,
 				ContractPage = page,
+				AnonymizationPercentage = anonymization.Item2,
 			};
 		}
 
-		private AnonymizationTypeEnum DetermineAnonymizationType(Mat img, bool isColorful, ScanTypeEnum scanType)
+		/// <summary>
+		/// Determines the type of anonymization used on the image
+		/// </summary>
+		/// <param name="img"> The image to be analyzed </param>
+		/// <param name="isColorful"> Whether the image contains any colorful pixels </param>
+		/// <returns> The type of anonymization used, The areas that were anonymized  </returns>
+		private (AnonymizationTypeEnum, float anonymizedArea) FindAnonymized(Mat img, List<Point> coloredPixels)
 		{
-
-			// Try to detect colorful areas (most likely used as anonymization)
-			if (isColorful)
+			List<Rect> boundingBoxes = new List<Rect>();
+			var anonymizationType = AnonymizationType.None;
+			if(coloredPixels.Any())
 			{
-				// try to find colorful areas
-				// if found, return AnonymizationTypeEnum.Colorful
-
-			}
-			// Try to detect black rectangles (most likely used as anonymization)
-			// Try to detect grainy areas (less likely used as anonymization)
-			bool foundBlackRectangles = TryToFindBlackRectangles(img, scanType);
-			if (foundBlackRectangles)
-			{
-				return AnonymizationTypeEnum.BlackRectangle;
-			}
-			return AnonymizationTypeEnum.None;
-		}
-
-		private bool TryToFindBlackRectangles(Mat img, ScanTypeEnum scanType)
-		{
-			throw new NotImplementedException();
-		}
-
-		private ScanTypeEnum DetermineScanType(Mat img)
-		{
-			// Convert the image to grayscale
-			Mat gray = new Mat();
-			Cv2.CvtColor(img, gray, ColorConversionCodes.BGR2GRAY);
-
-			// Apply Gaussian blur to the image
-			Mat blur = new Mat();
-			Cv2.GaussianBlur(gray, blur, new Size(3, 3), 0);
-
-			// Apply Canny edge detection
-			Mat canny = new Mat();
-			Cv2.Canny(blur, canny, 50, 150);
-
-			// Find contours
-			Point[][] contours;
-			HierarchyIndex[] hierarchy;
-			Cv2.FindContours(canny, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
-
-			// Find the largest contour
-			double maxArea = 0;
-			int maxAreaIndex = 0;
-			for (int i = 0; i < contours.Length; i++)
-			{
-				double area = Cv2.ContourArea(contours[i]);
-				if (area > maxArea)
-				{
-					maxArea = area;
-					maxAreaIndex = i;
-				}
+				// Create bounding boxes around the colored pixels
+				boundingBoxes = FindBoundingBoxesColored(img, coloredPixels);
+                anonymizationType = AnonymizationType.ColoredSticker;
 			}
 
-			// Create a mask of the largest contour
-			Mat mask = Mat.Zeros(img.Size(), MatType.CV_8UC1);
-			Cv2.DrawContours(mask, contours, maxAreaIndex, Scalar.All(255), -1);
-
-			// Calculate the percentage of the largest contour
-			double percentage = (double)Cv2.CountNonZero(mask) / (img.Rows * img.Cols);
-
-			// If the percentage is greater than 0.5, then the image is a digital image
-			if (percentage > 0.5)
-			{
-				return ScanType.Digital;
-			}
 			else
 			{
-				return ScanType.Paperscan;
+				// Create bounding boxes around black rectangles (black pixels)
+				boundingBoxes = FindBoundingBoxesBlack(img);
+				// Remove small bounding boxes and bounding boxes that are too large (98% of the image)
+				anonymizationType = AnonymizationType.BlackRectangle;
 			}
+			boundingBoxes = boundingBoxes.Where(
+				b => b.Width * b.Height > 200 && 
+				b.Width > 8 && b.Height > 8 &&
+				b.Width * b.Height < img.Width * img.Height * 0.98).ToList();
+
+			if (boundingBoxes.Count == 0)
+			{
+				anonymizationType = AnonymizationType.None;
+			}
+            // Render the bounding boxes on the copy of an image
+            Mat imgCopy = img.Clone();
+			foreach (var box in boundingBoxes)
+			{
+				Cv2.Rectangle(imgCopy, box, Scalar.Red, 2);
+			}
+
+
+            // Calculate the area that was anonymized using the bounding boxes
+            var anonymizedArea = CalculateAnonymizedArea(img, boundingBoxes);
+
+            Cv2.ImShow("Original", img);
+			// Display 
+			Cv2.ImShow($"Anonymization type: {anonymizationType}, Anonymized area: {anonymizedArea}", imgCopy);
+			Cv2.WaitKey(0);
+
+
+			return (anonymizationType, anonymizedArea);
 		}
 
-		private bool IsColorful(Mat img)
+		private float CalculateAnonymizedArea(Mat img, List<Rect> boundingBoxes)
 		{
-			// iterate through each pixel and check if it is colorful
+			float area = 0;
+			foreach (var box in boundingBoxes)
+				area += box.Width * box.Height;
+			return area / (img.Width * img.Height);
+		}
+
+
+        private List<Rect> FindBoundingBoxesBlack(Mat img)
+		{
+			var boundingBoxes = new List<Rect>();
+			
+			// Create a copy of the image
+			var imgCopy = img.Clone();
+
+			// Convert the image to grayscale
+			Cv2.CvtColor(imgCopy, imgCopy, ColorConversionCodes.BGR2GRAY);
+			
+			// Find the contours of the image
+            var contours = new Point[][] { };
+			var hierarchy = new HierarchyIndex[] { };
+			Cv2.FindContours(imgCopy, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple);
+			
+			// Loop over the contours
+			foreach (var contour in contours)
+			{
+                // Calculate the bounding box of the contour
+                var boundingBox = Cv2.BoundingRect(contour);
+                // Add the bounding box to the list
+                boundingBoxes.Add(boundingBox);
+            }
+            // Filter bounding boxes that have more than 20% of white inside
+            // Convert to grayscale, threshold to 2 colors and count the percentage
+			var filteredBoundingBoxes = new List<Rect>();
+            foreach (var box in boundingBoxes)
+            {
+                // Create a mat for the bounding box
+                var boxMat = img.SubMat(box);
+                // Convert to grayscale
+                Cv2.CvtColor(boxMat, boxMat, ColorConversionCodes.BGR2GRAY);
+                // Threshold to 2 colors
+                Cv2.Threshold(boxMat, boxMat, 0, 255, ThresholdTypes.Otsu);
+                // Count the white pixels in the bounding box
+                var whitePixels = boxMat.CountNonZero();
+                // Calculate the percentage of white pixels
+                var percentage = whitePixels / (float)(box.Width * box.Height);
+                // If the percentage is less than 10%, add the bounding box to the list
+                if (percentage < 0.30)
+                    filteredBoundingBoxes.Add(box);
+            }
+            // Return the filtered bounding boxes
+            return filteredBoundingBoxes;
+			
+		}
+       private List<Rect> FindBoundingBoxesColored(Mat img, List<Point> coloredPixels)
+        {
+			// Create new image, where every pixel is 0 (black) except for the colored pixels which are 255 (white)
+		
+			Mat mask = new Mat(img.Rows, img.Cols, MatType.CV_8UC1, new Scalar(0));
+			foreach (var pixel in coloredPixels)
+			{
+                mask.Set(pixel.X, pixel.Y, 255);
+            }
+
+			// Find the contours of the colored pixels
+
+			Point[][] contours;
+			var hierarchy = new HierarchyIndex[0];
+			Cv2.FindContours(mask, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+
+			// Create bounding boxes around the contours
+
+			List<Rect> boundingBoxes = new List<Rect>();
+			foreach (var contour in contours)
+			{
+				boundingBoxes.Add(Cv2.BoundingRect(contour));
+			}
+
+			// Filter bounding boxes that have more than 5% of black inside
+			// Convert to grayscale, threshold to 2 colors and count the percentage
+			Mat imgGray = new Mat();
+			Cv2.CvtColor(img, imgGray, ColorConversionCodes.BGR2GRAY);
+			Mat imgThresh = new Mat();
+			Cv2.Threshold(imgGray, imgThresh, 127, 255, ThresholdTypes.Binary);
+			List<Rect> filteredBoundingBoxes = new List<Rect>();
+			foreach (var box in boundingBoxes)
+			{
+                var subMat = imgThresh.SubMat(box);
+                var blackPixels = subMat.CountNonZero();
+                var percentage = blackPixels / (float)(box.Width * box.Height);
+                if (percentage > 0.95)
+                    filteredBoundingBoxes.Add(box);
+            }
+			return filteredBoundingBoxes;
+        }
+
+        private List<Point> ColoredPixels(Mat img)
+        {
+			List<Point> coloredPixels = new List<Point>();
+            // iterate through each pixel and check if it is colorful
 			for (int i = 0; i < img.Rows; i++)
 			{
 				for (int j = 0; j < img.Cols; j++)
 				{
-					Vec3b pixel = img.At<Vec3b>(i, j);
-					if (pixel.Item0 != pixel.Item1 || pixel.Item1 != pixel.Item2)
+					if( 
+						Math.Abs(img.At<Vec3b>(i, j)[0] - img.At<Vec3b>(i, j)[1]) > 35 
+					||  Math.Abs(img.At<Vec3b>(i, j)[0] - img.At<Vec3b>(i, j)[2]) > 35 
+					||  Math.Abs(img.At<Vec3b>(i, j)[1] - img.At<Vec3b>(i, j)[2]) > 35)
 					{
-						return true;
-					}
+                        coloredPixels.Add(new Point(i, j));
+                    }
 				}
 			}
-			return false;
+			if (coloredPixels.Count < 40)
+				return new List<Point>();
+			return coloredPixels;
 		}
 
 		private Mat ToMat(MagickImage image)

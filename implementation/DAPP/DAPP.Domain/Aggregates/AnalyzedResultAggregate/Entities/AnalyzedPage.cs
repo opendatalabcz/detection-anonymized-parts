@@ -9,5 +9,7 @@
 
 		public AnonymizationTypeEnum AnonymizationType { get; set; }
 		public bool IsGrayscale { get; set; }
+
+		public float AnonymizationPercentage { get; set; }
 	}
 }
