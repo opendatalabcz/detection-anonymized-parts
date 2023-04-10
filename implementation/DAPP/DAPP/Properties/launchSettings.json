@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "DAPP": {
-      "commandName": "Project",
-      "commandLineArgs": "-f"
-    }
-  }
-}

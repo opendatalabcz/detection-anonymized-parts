@@ -1,8 +1,9 @@
 ﻿#define TEST
 namespace DAPP.Console
 {
-
-	using DAPP.API;
+    using System;
+    using System.Text;
+    using DAPP.API;
 	using DAPP.DI;
 	using DAPP.Domain.Aggregates.AnalyzedResultAggregate;
 	using DAPP.Domain.Aggregates.AnalyzedResultAggregate.Entities;
@@ -29,32 +30,22 @@ namespace DAPP.Console
 					controller.AddAnalyzedContract(result.Value);
 			}
 
-			// print to console
+			var totalStats = new StringBuilder();
 			foreach (var analyzedContract in controller.GetAnalyzedContracts())
 			{
 				(Contract c, List<ErrorOr<AnalyzedPage>> pages) = analyzedContract;
+				// print to console
+				var stats = analyzedContract.Statistics;
+                Console.WriteLine(stats);
+				// save to results.txt
+				totalStats.AppendLine(stats);
+            }
+            File.WriteAllText(@"..\..\..\..\Results\results.txt", totalStats.ToString());
 
-				System.Console.WriteLine($"Contract: {c.Name}");
-				System.Console.WriteLine($"Pages: {pages.Count}");
-				foreach (var page in pages)
-				{
-					System.Console.Write('\t');
-					if (page.IsError)
-					{
-						System.Console.WriteLine($"Error: {page.FirstError}");
-					}
-					else
-					{
-						System.Console.WriteLine($"Page: {page.Value.ContractPage.Id + 1}");
-						System.Console.Write('\t');
-						System.Console.WriteLine($"Anonymization type: {page.Value.AnonymizationType}");
-					}
-				}
-			}
-		}
+        }
 #endif
 #if TEST
-		private static IEnumerable<ErrorOr<AnalyzedContract>> AnalyzeTestData(DAPPController controller)
+        private static IEnumerable<ErrorOr<AnalyzedContract>> AnalyzeTestData(DAPPController controller)
 		{
 			DirectoryInfo pdfsDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\pdfs\");
 			foreach (var file in pdfsDirectoryInfo.GetFiles())
@@ -62,11 +53,11 @@ namespace DAPP.Console
 				yield return controller.AnalyzeContract(file.FullName);
 			}
 
-			DirectoryInfo samplesDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\samples\");
-			foreach (var file in samplesDirectoryInfo.GetFiles())
-			{
-				yield return controller.AnalyzeContract(file.FullName);
-			}
+			//DirectoryInfo samplesDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\samples\");
+			//foreach (var file in samplesDirectoryInfo.GetFiles())
+			//{
+			//	yield return controller.AnalyzeContract(file.FullName);
+			//}
 
 		}
 #endif

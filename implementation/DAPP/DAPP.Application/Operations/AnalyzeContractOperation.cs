@@ -36,7 +36,9 @@
 				foreach (MagickImage page in pages)
 				{
 					page.Quality = 100;
-					var analyzed = analyzer.AnalyzePage(page, contract.Pages[i++]);
+                    Console.WriteLine($"Analyzing page {i}...");
+
+                    var analyzed = analyzer.AnalyzePage(page, contract.Pages[i++]);
 					result.AnalyzedPages.Add(analyzed);
 				}
 			}
@@ -45,8 +47,8 @@
 			else
 			{
 				var page = new MagickImage(contract.Path);
-
-				var analyzed = analyzer.AnalyzePage(page, contract.Pages[0]);
+                Console.WriteLine($"Analyzing page {0}...");
+                var analyzed = analyzer.AnalyzePage(page, contract.Pages[0]);
 				analyzed.Value.ContractPage = contract.Pages[0];
 				result.AnalyzedPages.Add(analyzed);
 			}
