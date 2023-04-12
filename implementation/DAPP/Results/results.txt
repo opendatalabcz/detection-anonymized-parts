@@ -1,0 +1,36 @@
+Contract: black1
+Total pages: 1
+Page number 0
+Anonymization percentage: 0.07810997
+Total average per page: 0.07810997
+
+Contract: black2
+Total pages: 1
+Page number 0
+Anonymization percentage: 0.08779345
+Total average per page: 0.08779345
+
+Contract: color1
+Total pages: 1
+Page number 0
+Anonymization percentage: 0.102245055
+Total average per page: 0.102245055
+
+Contract: color2
+Total pages: 1
+Page number 0
+Anonymization percentage: 0.43589234
+Total average per page: 0.43589234
+
+Contract: color3
+Total pages: 1
+Page number 0
+Anonymization percentage: 0.20506534
+Total average per page: 0.20506534
+
+Contract: gray1
+Total pages: 1
+Page number 0
+Anonymization percentage: 0.104956314
+Total average per page: 0.104956314
+

@@ -47,17 +47,17 @@ namespace DAPP.Console
 #if TEST
         private static IEnumerable<ErrorOr<AnalyzedContract>> AnalyzeTestData(DAPPController controller)
 		{
-			DirectoryInfo pdfsDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\pdfs\");
-			foreach (var file in pdfsDirectoryInfo.GetFiles())
-			{
-				yield return controller.AnalyzeContract(file.FullName);
-			}
-
-			//DirectoryInfo samplesDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\samples\");
-			//foreach (var file in samplesDirectoryInfo.GetFiles())
+			//DirectoryInfo pdfsDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\pdfs\");
+			//foreach (var file in pdfsDirectoryInfo.GetFiles())
 			//{
 			//	yield return controller.AnalyzeContract(file.FullName);
 			//}
+
+			DirectoryInfo samplesDirectoryInfo = new DirectoryInfo(@"..\..\..\..\TestData\samples\");
+			foreach (var file in samplesDirectoryInfo.GetFiles())
+			{
+				yield return controller.AnalyzeContract(file.FullName);
+			}
 
 		}
 #endif
