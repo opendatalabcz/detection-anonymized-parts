@@ -13,11 +13,11 @@ latexmk:
   stage: build
   image: aergus/latex
   script: |
-    latexmk thesis && latexmk abstract-cz && latexmk abstract-en;
+    latexmk thesis && latexmk abstract-sk && latexmk abstract-en;
   artifacts:
     paths:
       - thesis.pdf
-      - abstract-cz.pdf
+      - abstract-sk.pdf
       - abstract-en.pdf
 
 verapdf:
