@@ -24,4 +24,4 @@ verapdf:
   stage: verify
   image: ghcr.io/mff-cuni-cz/cuni-thesis-validator
   script: |
-    verify *.pdf |tee /dev/stderr |grep -qE 'nonCompliant="0"'
+    verify thesis.pdf | grep 'isCompliant="true"'
