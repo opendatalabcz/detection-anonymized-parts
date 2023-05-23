@@ -14,8 +14,7 @@
     {
 
         static readonly string rootPath = "..\\..\\..\\..\\Results\\";
-
-        public ErrorOr<AnalyzedPage> AnalyzePage(MagickImage image, ContractPage page)
+        public ErrorOr<AnalyzedPage> AnalyzePage(MagickImage image, ContractPage page, bool saveResults = false)
         {
             // Validate if image is in correct format
             var validation = ValidateImage(image);
@@ -25,19 +24,28 @@
             }
 
             // Create temporary folder for storing computational data (such as preprocessed image etc)
-            EnsureDirectoryExists(page);
-
+            if (saveResults)
+            {
+                EnsureDirectoryExists(page);
+            }
             // Create Mat object in Cv2
             Mat img = ToMat(image);
+            // Crop the image 80% of the original in size (-10% from each side)
+            int cropX = img.Width / 10;
+            int cropY = img.Height / 10;
+            Rect cropRect = new Rect(cropX, cropY, img.Width - (2 * cropX), img.Height - (2 * cropY));
 
-            // Save original
-            Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\original.jpg", img);
-
-            Mat result = GetAnonymizedParts(img, erodeValue: 9, dilateValue: 3);
-
-            Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\result.jpg", result);
-            Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\result_masked.jpg", MaskOriginal(img, result));
-
+            img = new Mat(img, cropRect);
+            if (saveResults)
+            {
+                // Save original
+                Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\original.jpg", img);
+            }
+            Mat result = GetAnonymizedParts(img, erodeValue: 7, dilateValue: 4);
+            if (saveResults)
+            {
+                Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\result.jpg", result);
+            }
             var fl = (float)CalculateAnonymizedArea(img, result);
             return new AnalyzedPage()
             {
@@ -46,7 +54,7 @@
             };
         }
 
-        private Mat GetAnonymizedParts(Mat img, int erodeValue = 8, int dilateValue = 4)
+        private static Mat GetAnonymizedParts(Mat img, int erodeValue = 8, int dilateValue = 4)
         {
 
             var coloredPixels = ColoredPixels(img);
@@ -73,15 +81,30 @@
                 result = Dilate(result, se);
             }
 
-            // Remove black parts that are directly touching borders
+            // Remove small (less than 2% by 2% of width/height) rectangles
+            // Find contours of white regions
+            Point[][] contours;
+            HierarchyIndex[] hierarchy;
+            Cv2.FindContours(result, out contours, out hierarchy, RetrievalModes.List, ContourApproximationModes.ApproxSimple);
 
-            return result;
-        }
+            // Calculate the threshold size based on the original image dimensions
+            double thresholdWidth = img.Width * 0.02;    // 5% of the original width
+            double thresholdHeight = img.Height * 0.02;  // 5% of the original height
 
-        private static Mat MaskOriginal(Mat img, Mat eroded)
-        {
-            var result = new Mat();
-            Cv2.BitwiseAnd(img, img, result, mask: eroded);
+            // Iterate through the contours and remove small rectangles
+            for (int i = 0; i < contours.Length; i++)
+            {
+                // Calculate the bounding rectangle for the contour
+                Rect boundingRect = Cv2.BoundingRect(contours[i]);
+
+                // Check if the bounding rectangle is smaller than the threshold size
+                if (boundingRect.Width < thresholdWidth || boundingRect.Height < thresholdHeight)
+                {
+                    // Remove the contour by painting it white
+                    Cv2.DrawContours(result, contours, i, Scalar.White, -1);
+                }
+            }
+
             return result;
         }
 
@@ -103,7 +126,7 @@
             }
         }
 
-        private double CalculateAnonymizedArea(Mat img, Mat mask, double maskPercentageAccounting = 0.08)
+        private static double CalculateAnonymizedArea(Mat img, Mat mask, double maskPercentageAccounting = 0.08)
         {
             // count mask
             long blackPixels = 0;
@@ -143,9 +166,9 @@
             return blackPixelsAfterAccountingForMasking / (blackPixels + blackPixelsAfterAccountingForMasking);
         }
 
-        private List<Point> ColoredPixels(Mat img)
+        private static List<Point> ColoredPixels(Mat img)
         {
-            List<Point> coloredPixels = new List<Point>();
+            List<Point> coloredPixels = new();
             // iterate through each pixel and check if it is colorful
             for (int i = 0; i < img.Rows; i++)
             {
@@ -168,7 +191,7 @@
             return coloredPixels;
         }
 
-        private Mat ToMat(MagickImage image)
+        private static Mat ToMat(MagickImage image)
         {
             // Convert the MagickImage image to a byte array
             byte[] bytes = image.ToByteArray(MagickFormat.Bmp);
@@ -193,23 +216,23 @@
             return null;
         }
 
-        private Mat Dilate(Mat src, Mat pattern)
+        private static Mat Dilate(Mat src, Mat pattern)
         {
-            Mat result = new Mat();
+            Mat result = new();
             Cv2.Dilate(src, result, pattern);
             return result;
         }
 
-        private Mat Erode(Mat src, Mat pattern)
+        private static Mat Erode(Mat src, Mat pattern)
         {
-            Mat result = new Mat();
+            Mat result = new();
             Cv2.Erode(src, result, pattern);
             return result;
         }
 
-        private Mat Threshold(Mat src, int val)
+        private static Mat Threshold(Mat src, int val)
         {
-            Mat gray = new Mat();
+            Mat gray = new();
             if (src.Channels() == 1)
             {
                 gray = src.Clone();
@@ -218,20 +241,20 @@
             {
                 Cv2.CvtColor(src, gray, ColorConversionCodes.BGR2GRAY);
             }
-            Mat result = new Mat();
+            Mat result = new();
             Cv2.Threshold(gray, result, val, 255, ThresholdTypes.Otsu);
 
             return result;
         }
 
-        private Mat IncreaseSaturation(Mat src, List<Point> points, double value)
+        private static Mat IncreaseSaturation(Mat src, List<Point> points, double value)
         {
             if (points.Count == 0)
             {
                 return src;
             }
 
-            Mat hsv = new Mat();
+            Mat hsv = new();
             Cv2.CvtColor(src, hsv, ColorConversionCodes.BGR2HSV);
 
             // change it to purple

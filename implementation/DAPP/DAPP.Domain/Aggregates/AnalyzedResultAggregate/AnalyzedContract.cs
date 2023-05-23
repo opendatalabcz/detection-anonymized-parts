@@ -37,6 +37,7 @@
                     d.Add(i++, page.FirstError);
                 });
             }
+            totalStats /= d.Count();
             return JsonSerializer.Serialize(new { ContractName = Contract.Name, PagesCount = AnalyzedPages.Count, IndividualPages = d, AveragePerPage = totalStats });
         }
     }

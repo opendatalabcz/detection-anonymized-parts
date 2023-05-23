@@ -24,13 +24,12 @@
 			services.AddScoped<AnalyzeContractOperation>();
 			services.AddScoped<CreateContractOperation>();
 			services.AddScoped<AddAnalyzedContractOperation>();
-			services.AddScoped<AddManuallyAnalyzedContractOperation>();
 			services.AddScoped<GetAnalyzedContractsOperation>();
 			// repositories
 			services.AddScoped<IAnalyzedContractRepository, AnalyzedContractRepository>();
 
 			// analyzer
-			services.AddScoped<IAnalyzer, Analyzer>();
+			services.AddSingleton<IAnalyzer, Analyzer>();
 
 			return services.BuildServiceProvider();
 		}

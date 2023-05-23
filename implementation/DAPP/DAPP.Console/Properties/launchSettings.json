@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DAPP.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "c:\\Users\\lsalak\\Documents\\skola\\bc\\smlouvy\\pdfs_random200\\ -s"
+    }
+  }
+}

@@ -2,7 +2,6 @@
 {
 	using DAPP.Application.Facades;
 	using DAPP.Domain.Aggregates.AnalyzedResultAggregate;
-	using DAPP.Domain.Aggregates.ManuallyAnalyzedResultAggregate;
 
 	using ErrorOr;
 
@@ -15,14 +14,9 @@
 			this.contractFacade = contractFacade;
 		}
 
-		public ErrorOr<AnalyzedContract> AnalyzeContract(string path)
+		public ErrorOr<AnalyzedContract> AnalyzeContract(string path, bool saveImages = false)
 		{
-			return contractFacade.AnalyzeContract(path);
-		}
-
-		public ErrorOr<int> AddManuallyAnalyzedContract(ManuallyAnalyzedResult r)
-		{
-			return contractFacade.AddManuallyAnalyzedContract(r);
+			return contractFacade.AnalyzeContract(path, saveImages);
 		}
 
 		public ErrorOr<int> AddAnalyzedContract(AnalyzedContract r)

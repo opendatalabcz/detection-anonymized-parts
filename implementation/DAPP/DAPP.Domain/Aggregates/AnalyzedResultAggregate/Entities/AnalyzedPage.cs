@@ -5,7 +5,7 @@
 
     public sealed class AnalyzedPage
     {
-        public ContractPage ContractPage { get; set; }
+        public ContractPage ContractPage { get; set; } = default!;
         public float AnonymizationPercentage { get; set; }
 
 

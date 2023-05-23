@@ -18,7 +18,7 @@
 			this.analyzer = analyzer;
 		}
 
-		public ErrorOr<AnalyzedContract> Execute(Contract contract)
+		public ErrorOr<AnalyzedContract> Execute(Contract contract, bool saveImages)
 		{
 			Console.WriteLine($"Analyzing {contract.Extension}: {contract.Name}...");
 
@@ -36,9 +36,9 @@
 				foreach (MagickImage page in pages)
 				{
 					page.Quality = 100;
-                    Console.WriteLine($"Analyzing page {i}...");
+					Console.WriteLine($"Analyzing page {i}...");
 
-                    var analyzed = analyzer.AnalyzePage(page, contract.Pages[i++]);
+					var analyzed = analyzer.AnalyzePage(page, contract.Pages[i++], saveImages);
 					result.AnalyzedPages.Add(analyzed);
 				}
 			}
@@ -47,8 +47,8 @@
 			else
 			{
 				var page = new MagickImage(contract.Path);
-                Console.WriteLine($"Analyzing page {0}...");
-                var analyzed = analyzer.AnalyzePage(page, contract.Pages[0]);
+				Console.WriteLine($"Analyzing page {0}...");
+				var analyzed = analyzer.AnalyzePage(page, contract.Pages[0]);
 				analyzed.Value.ContractPage = contract.Pages[0];
 				result.AnalyzedPages.Add(analyzed);
 			}

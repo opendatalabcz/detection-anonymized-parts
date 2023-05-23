@@ -15,9 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAPP.Console", "DAPP.Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAPP.DI", "DAPP.DI\DAPP.DI.csproj", "{715F8252-E7F6-40DA-8206-1C4A87C456D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAPP.Analyzer", "DAPP.Analyzer\DAPP.Analyzer.csproj", "{4CB3EDF2-380B-441A-BEB2-A1DAC4D995B4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAPP.UI", "DAPP.UI\DAPP.UI.csproj", "{4107F826-8C9C-49C0-BCC7-47C73B48CC3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAPP.Analyzer", "DAPP.Analyzer\DAPP.Analyzer.csproj", "{4CB3EDF2-380B-441A-BEB2-A1DAC4D995B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +51,6 @@ Global
 		{4CB3EDF2-380B-441A-BEB2-A1DAC4D995B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB3EDF2-380B-441A-BEB2-A1DAC4D995B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB3EDF2-380B-441A-BEB2-A1DAC4D995B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4107F826-8C9C-49C0-BCC7-47C73B48CC3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4107F826-8C9C-49C0-BCC7-47C73B48CC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4107F826-8C9C-49C0-BCC7-47C73B48CC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4107F826-8C9C-49C0-BCC7-47C73B48CC3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

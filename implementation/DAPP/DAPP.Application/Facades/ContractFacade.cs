@@ -5,7 +5,6 @@ namespace DAPP.Application.Facades
 
 	using DAPP.Application.Operations;
 	using DAPP.Domain.Aggregates.AnalyzedResultAggregate;
-	using DAPP.Domain.Aggregates.ManuallyAnalyzedResultAggregate;
 
 	using ErrorOr;
 
@@ -13,7 +12,6 @@ namespace DAPP.Application.Facades
 	{
 		private readonly AnalyzeContractOperation analyzeContractOperation;
 		private readonly CreateContractOperation createContractOperation;
-		private readonly AddManuallyAnalyzedContractOperation addManuallyAnalyzedContractOperation;
 		private readonly AddAnalyzedContractOperation addAnalyzedContractOperation;
 		private readonly GetAnalyzedContractsOperation getAnalyzedContractsOperation;
 		public ContractFacade(
@@ -28,12 +26,7 @@ namespace DAPP.Application.Facades
 			this.getAnalyzedContractsOperation = getAnalyzedContractsOperation;
 		}
 
-		public int AddManuallyAnalyzedContract(ManuallyAnalyzedResult r)
-		{
-			return addManuallyAnalyzedContractOperation.Execute(r);
-		}
-
-		public ErrorOr<AnalyzedContract> AnalyzeContract(string filepath)
+		public ErrorOr<AnalyzedContract> AnalyzeContract(string filepath, bool saveImages)
 		{
 			var contract = createContractOperation.Execute(filepath);
 
@@ -42,7 +35,7 @@ namespace DAPP.Application.Facades
 				?
 				contract.Errors
 				:
-				analyzeContractOperation.Execute(contract.Value);
+				analyzeContractOperation.Execute(contract.Value, saveImages);
 		}
 
 		public ErrorOr<int> AddAnalyzedContract(AnalyzedContract contract)

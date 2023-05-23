@@ -1,17 +1,10 @@
-﻿#define TEST
-namespace DAPP.Console
+﻿namespace DAPP.Console
 {
-    using System;
-    using System.Text;
     using DAPP.API;
     using DAPP.DI;
-    using DAPP.Domain.Aggregates.AnalyzedResultAggregate;
-    using DAPP.Domain.Aggregates.AnalyzedResultAggregate.Entities;
-    using DAPP.Domain.Aggregates.ContractAggregate;
-
-    using ErrorOr;
 
     using Microsoft.Extensions.DependencyInjection;
+    using System.Text;
 
     internal class Program
     {
@@ -20,7 +13,42 @@ namespace DAPP.Console
             var services = DependencyInjectionService.ConfigureServices(new ServiceCollection());
 
             using var scope = services.CreateScope();
-            var controller = scope.ServiceProvider.GetService<DAPPController>();
+            var controller = scope.ServiceProvider.GetRequiredService<DAPPController>();
+
+            // Args 
+            if (args.Length == 0)
+            {
+                System.Console.WriteLine("No arguments provided.");
+                return;
+            }
+            string file = args[0];
+            bool saveImages = false;
+            if ((args.Length > 1 && args[1] == "--saveImages") || args[1] == "-saveImages" || args[1] == "-s")
+            {
+                saveImages = true;
+            }
+
+            StringBuilder results = new();
+
+            if (File.Exists(file))
+            {
+                var result = controller.AnalyzeContract(file, saveImages);
+                controller.AddAnalyzedContract(result.Value);
+            }
+            else if (Directory.Exists(file))
+            {
+                // file is actually directory
+                foreach (var fname in Directory.GetFiles(file))
+                {
+                    controller.AddAnalyzedContract(controller.AnalyzeContract(fname, saveImages).Value);
+                }
+            }
+            foreach (var c in controller.GetAnalyzedContracts())
+            {
+                System.Console.WriteLine(c.ToJson());
+                results.AppendLine(c.ToJson());
+            }
+            File.WriteAllText(@"..\..\..\..\Results\results.txt", results.ToString());
 
 #if TEST
             // analyze test data
@@ -64,5 +92,6 @@ namespace DAPP.Console
         }
 #endif
 
+        }
     }
 }
