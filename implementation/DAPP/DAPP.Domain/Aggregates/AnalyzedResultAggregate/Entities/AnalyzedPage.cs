@@ -1,21 +1,23 @@
 ﻿namespace DAPP.Domain.Aggregates.AnalyzedResultAggregate.Entities
 {
-	using DAPP.Domain.Aggregates.ContractAggregate.Entities;
-	using DAPP.Domain.Common;
-    using System.Text;
+    using DAPP.Domain.Aggregates.ContractAggregate.Entities;
+    using System.Text.Json;
 
     public sealed class AnalyzedPage
-	{
-		public ContractPage ContractPage { get; set; }
-		public float AnonymizationPercentage { get; set; }
+    {
+        public ContractPage ContractPage { get; set; }
+        public float AnonymizationPercentage { get; set; }
 
-		public string Statistics { get
-			{
-				var sb = new StringBuilder();
-				sb.AppendLine($"Page number {ContractPage.Id}");
-				sb.AppendLine($"Anonymization percentage: {AnonymizationPercentage}");
-				return sb.ToString();
-			}
-		}
-	}
+
+        public dynamic AsJson()
+        {
+            return JsonSerializer.Serialize(
+                new
+                {
+                    AnonymizationPercentage,
+                    ContractPageId = ContractPage.Id,
+                }
+            );
+        }
+    }
 }
