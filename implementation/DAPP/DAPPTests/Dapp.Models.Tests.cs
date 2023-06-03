@@ -10,7 +10,7 @@ namespace DAPPTests
             var pdf = await DappPDF.Create(File.ReadAllBytes("../../../TestFiles/1.pdf"));
             Assert.NotNull(pdf);
             Assert.NotNull(pdf.Pages);
-            Assert.Equal(1, pdf.Pages.Count);
+            Assert.Single(pdf.Pages);
         }
     }
 }
