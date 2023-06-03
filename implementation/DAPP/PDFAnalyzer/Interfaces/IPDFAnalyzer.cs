@@ -1,5 +1,7 @@
-﻿namespace DAPPAnalyzer.Interfaces;
+﻿using DAPPAnalyzer.Models;
+
+namespace DAPPAnalyzer.Interfaces;
 public interface IPDFAnalyzer
 {
-    Task<object> AnalyzeAsync(object data);
+    Task<object> AnalyzeAsync(DappPDF data);
 }
