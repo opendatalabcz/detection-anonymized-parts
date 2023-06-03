@@ -14,6 +14,11 @@ namespace DAPPAnalyzer.Models
         public List<Mat> Pages { get; set; } = default!;
 
         /// <summary>
+        /// Gets or sets a value indicating whether the PDF file has been analyzed
+        /// </summary>
+        public bool Analyzed { get; set; } = false;
+
+        /// <summary>
         /// Creates a DappPDF object from a byte array
         /// </summary>
         /// <param name="data"> The byte array of the PDF file</param>
@@ -30,19 +35,38 @@ namespace DAPPAnalyzer.Models
         /// </summary>
         /// <param name="pdfPath"> The byte array of the PDF file</param>
         /// <returns> A list of images</returns>
-        private List<Mat> ConvertToImages(byte[] pdfPath)
+        private List<Mat> ConvertToImages(byte[] pdfBytes)
         {
             var result = new List<Mat>();
-            using (var images = new MagickImageCollection())
+            var tempFilePath = Path.GetTempFileName();
+
+            try
             {
-                images.Read(pdfPath);
-                foreach (var image in images)
+                // Save the PDF data to a temporary file
+                File.WriteAllBytes(tempFilePath, pdfBytes);
+
+                using (var images = new MagickImageCollection())
                 {
-                    Mat mat = new Mat();
-                    mat = Cv2.ImDecode(image.ToByteArray(), ImreadModes.Color);
-                    result.Add(mat);
+                    // Read the temporary PDF file
+                    images.Read(tempFilePath);
+
+                    foreach (var image in images)
+                    {
+                        // Convert the MagickImage image to a byte array
+                        byte[] bytes = image.ToByteArray(MagickFormat.Bmp);
+
+                        // Create a Mat object using the byte array
+                        Mat mat = Cv2.ImDecode(bytes, ImreadModes.Unchanged);
+                        result.Add(mat);
+                    }
                 }
             }
+            finally
+            {
+                // Clean up the temporary file
+                File.Delete(tempFilePath);
+            }
+
             return result;
         }
     }

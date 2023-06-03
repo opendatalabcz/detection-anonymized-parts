@@ -18,16 +18,16 @@ namespace API.Services
 
             try
             {
-                // načítanie súboru, uložiť na disk do temp
+                // Check if the path is a url
                 if (path.StartsWith("http"))
                 {
-                    // súbor je na internete
+                    // Download the file
                     using var client = new HttpClient();
                     fileBytes = await client.GetByteArrayAsync(path);
                 }
                 else
                 {
-                    // súbor je na disku
+                    // Read the file
                     fileBytes = await File.ReadAllBytesAsync(path);
                 }
             }

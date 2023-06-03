@@ -31,7 +31,7 @@ app.MapPost("/analyze", async (HttpContext context) =>
     // spracovanie súboru
     var analyzer = new PDFAnalyzer();
     var pdf = await DappPDF.Create(fileBytes.Value);
-    var result = await analyzer.AnalyzeAsync(pdf);
+    var result = await analyzer.AnalyzeAsync(pdf, returnImages: request.ReturnImages);
 
     // vrátenie výsledku vo formáte JSON
     await context.Response.WriteAsJsonAsync(result);

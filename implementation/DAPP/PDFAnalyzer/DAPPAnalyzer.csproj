@@ -7,10 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Models\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="Emgu.CV" Version="4.7.0.5276" />
 	  <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.1.2" />
 	  <PackageReference Include="OpenCvSharp4" Version="4.7.0.20230115" />
