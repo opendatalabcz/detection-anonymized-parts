@@ -17,44 +17,9 @@ jobs:
       - name: Build DAPP-API
         run: |
           cd implementation/DAPP
-          dotnet publish -c Release -r win-x64 --self-contained false -o ./publish
+          dotnet publish -c Release -r win-x64 --self-contained true -o ./publish
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: DAPP-API
-          path: implementation/DAPP/publish/
-
-
-  release:
-    name: Create Release
-    needs: build-dotnet
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: DAAP-API
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::$(date +%Y%m%d%H%M%S)
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
-          draft: false
-          prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./DAAP-API/DAPP.exe
-          asset_name: DAPP.exe
-          asset_content_type: application/octet-stream
+          path: ./implementation/DAPP/publish
