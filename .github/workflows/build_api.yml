@@ -27,7 +27,7 @@ jobs:
 
   release:
     name: Create Release
-    needs: build
+    needs: build-dotnet
     runs-on: ubuntu-latest
 
     steps:
