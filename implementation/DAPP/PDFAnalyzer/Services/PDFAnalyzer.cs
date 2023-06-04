@@ -1,8 +1,5 @@
-﻿using DAPPAnalyzer.Models;
-using OpenCvSharp;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-// internals visible to DAPPTests
 [assembly: InternalsVisibleTo("DAPPTests")]
 namespace DAPPAnalyzer.Services;
 public class PDFAnalyzer
@@ -32,6 +29,7 @@ public class PDFAnalyzer
             }
             return new AnalyzedResult(
                pdf.ContractName,
+               pdf.Url,
                containsAnonymizedData,
                anonymizedPercentage,
                pdf.Pages.Count,
