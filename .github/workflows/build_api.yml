@@ -1,0 +1,46 @@
+name: Build DAPP API
+
+on:
+  push:
+
+jobs:
+  build-dotnet-sc:
+    name: Build self-contained DAPP API
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.x'
+      - name: Build DAPP-API-sc
+        run: |
+          cd implementation/DAPP
+          dotnet publish -c Release -r win-x64 --self-contained true -o ./publish
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: DAPP-API-sc
+          path: implementation/DAPP/publish/
+
+
+  build-dotnet:
+    name: Build DAPP-API
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.x'
+      - name: Build DAPP-API
+        run: |
+          cd implementation/DAPP
+          dotnet publish -c Release -r win-x64 --self-contained false -o ./publish
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: .NET-app
+          path: implementation/DAPP/publish/
