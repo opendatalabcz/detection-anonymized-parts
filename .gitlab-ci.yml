@@ -13,15 +13,16 @@ latexmk:
   stage: build
   image: aergus/latex
   script: |
-    latexmk thesis && latexmk abstract-sk && latexmk abstract-en;
+    cd thesis
+    latexmk thesis && latexmk abstract-sk && latexmk abstract-en
   artifacts:
     paths:
-      - thesis.pdf
-      - abstract-sk.pdf
-      - abstract-en.pdf
+      - thesis/thesis.pdf
+      - thesis/abstract-sk.pdf
+      - thesis/abstract-en.pdf
 
 verapdf:
   stage: verify
   image: ghcr.io/mff-cuni-cz/cuni-thesis-validator
   script: |
-    verify thesis.pdf | grep 'isCompliant="true"'
+    verify thesis/thesis.pdf | grep 'isCompliant="true"'
