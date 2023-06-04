@@ -26,3 +26,13 @@ verapdf:
   image: ghcr.io/mff-cuni-cz/cuni-thesis-validator
   script: |
     verify thesis/thesis.pdf | grep 'isCompliant="true"'
+
+dotnet-build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:7.0
+  script: |
+    cd implementation/DAPP
+    dotnet publish -c Release -r win-x64 --self-contained false -o ./publish
+  artifacts:
+    paths:
+      - implementation/DAPP/publish/
