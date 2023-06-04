@@ -2,9 +2,11 @@
 namespace DAPPAnalyzer.Models
 {
     public record AnalyzedResult(
+        string ContractName,
         bool ContainsAnonymizedData,
-        float anonymizedPercentage,
+        float AnonymizedPercentage,
         int PageCount,
-        Dictionary<int, float> anonymizedPercentagePerPage,
-        Dictionary<int, byte[]> resultImages);
+        Dictionary<int, float> AnonymizedPercentagePerPage,
+        Dictionary<int, byte[]> OriginalImages,
+        Dictionary<int, byte[]> ResultImages);
 }

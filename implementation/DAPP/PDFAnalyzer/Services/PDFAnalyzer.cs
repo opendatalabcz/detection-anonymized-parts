@@ -1,18 +1,21 @@
-﻿using DAPPAnalyzer.Interfaces;
-using DAPPAnalyzer.Models;
+﻿using DAPPAnalyzer.Models;
 using OpenCvSharp;
+using System.Runtime.CompilerServices;
 
+// internals visible to DAPPTests
+[assembly: InternalsVisibleTo("DAPPTests")]
 namespace DAPPAnalyzer.Services;
-public class PDFAnalyzer : IPDFAnalyzer
+public class PDFAnalyzer
 {
-    public async Task<AnalyzedResult> AnalyzeAsync(DappPDF pdf, bool returnImages = false)
+    public static async Task<AnalyzedResult> AnalyzeAsync(DappPDF pdf, bool returnImages = false)
     {
         var anonymizedPercentage = 0f;
         var anonymizedPercentagePerPage = new Dictionary<int, float>();
         var containsAnonymizedData = false;
+        var originalImages = new Dictionary<int, byte[]>();
         var anonymizedImages = new Dictionary<int, byte[]>();
 
-        await Task.Run(() =>
+        return await Task.Run(() =>
         {
             int i = 0;
             foreach (var page in pdf.Pages)
@@ -22,30 +25,31 @@ public class PDFAnalyzer : IPDFAnalyzer
                 anonymizedPercentagePerPage[i++] = ap;
                 if (returnImages)
                 {
-                    anonymizedImages[i] = anonymizedParts.ToBytes(".jpg");
+                    originalImages[i] = page.ToBytes(".jpg");
+                    var masked = MaskOriginal(page, anonymizedParts);
+                    anonymizedImages[i] = masked.ToBytes(".jpg");
                 }
             }
+            return new AnalyzedResult(
+               pdf.ContractName,
+               containsAnonymizedData,
+               anonymizedPercentage,
+               pdf.Pages.Count,
+               anonymizedPercentagePerPage,
+               originalImages,
+               anonymizedImages);
         });
-
-        return new AnalyzedResult(
-            containsAnonymizedData,
-            anonymizedPercentage,
-            pdf.Pages.Count,
-            anonymizedPercentagePerPage,
-            anonymizedImages);
     }
 
-    private (Mat anonymizedParts, bool containsAnonymizedData, float anonymizedPercentage) AnalyzePage(Mat page)
+    internal static (Mat anonymizedParts, bool containsAnonymizedData, float anonymizedPercentage) AnalyzePage(Mat page)
     {
         var anonymizedParts = GetAnonymizedParts(page);
-        Cv2.ImShow("anonymizedParts", anonymizedParts);
-        Cv2.WaitKey();
         var anonymizedPercentage = (float)((page.Rows * page.Cols) - anonymizedParts.CountNonZero()) / (page.Rows * page.Cols);
         var containsAnonymizedData = anonymizedPercentage > 0.01;
         return (anonymizedParts, containsAnonymizedData, anonymizedPercentage);
     }
 
-    private Mat GetAnonymizedParts(Mat img, int erodeValue = 8, int dilateValue = 4)
+    internal static Mat GetAnonymizedParts(Mat img, int erodeValue = 8, int dilateValue = 4)
     {
 
         var coloredPixels = ColoredPixels(img);
@@ -78,7 +82,7 @@ public class PDFAnalyzer : IPDFAnalyzer
     }
 
 
-    private List<Point> ColoredPixels(Mat img)
+    internal static List<Point> ColoredPixels(Mat img)
     {
         List<Point> coloredPixels = new List<Point>();
         // iterate through each pixel and check if it is colorful
@@ -102,21 +106,21 @@ public class PDFAnalyzer : IPDFAnalyzer
 
         return coloredPixels;
     }
-    private Mat Dilate(Mat src, Mat pattern)
+    internal static Mat Dilate(Mat src, Mat pattern)
     {
         Mat result = new Mat();
         Cv2.Dilate(src, result, pattern);
         return result;
     }
 
-    private Mat Erode(Mat src, Mat pattern)
+    internal static Mat Erode(Mat src, Mat pattern)
     {
         Mat result = new Mat();
         Cv2.Erode(src, result, pattern);
         return result;
     }
 
-    private Mat Threshold(Mat src, int val)
+    internal static Mat Threshold(Mat src, int val)
     {
         Mat gray = new Mat();
         if (src.Channels() == 1)
@@ -133,7 +137,7 @@ public class PDFAnalyzer : IPDFAnalyzer
         return result;
     }
 
-    private Mat IncreaseSaturation(Mat src, List<Point> points, double value)
+    internal static Mat IncreaseSaturation(Mat src, List<Point> points, double value)
     {
         if (points.Count == 0)
         {
@@ -176,5 +180,12 @@ public class PDFAnalyzer : IPDFAnalyzer
         Cv2.CvtColor(hsv, hsv, ColorConversionCodes.HSV2BGR);
 
         return hsv;
+    }
+
+    internal static Mat MaskOriginal(Mat img, Mat eroded)
+    {
+        var result = new Mat();
+        Cv2.BitwiseAnd(img, img, result, mask: eroded);
+        return result;
     }
 }

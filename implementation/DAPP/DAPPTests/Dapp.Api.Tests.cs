@@ -1,4 +1,7 @@
-﻿using API.Services;
+﻿using API.Requests;
+using Microsoft.AspNetCore.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace DAPPTests
 {
@@ -16,4 +19,9 @@ namespace DAPPTests
             Assert.True(result.Value.Length > 0);
         }
     }
+
+    public class RequestHandlerTests
+    {
+    }
 }
+

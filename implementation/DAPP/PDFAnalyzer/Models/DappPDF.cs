@@ -9,6 +9,11 @@ namespace DAPPAnalyzer.Models
     public class DappPDF
     {
         /// <summary>
+        /// Gets or sets the name of the contract
+        /// </summary>
+        public string ContractName { get; set; } = default!;
+
+        /// <summary>
         /// Gets or sets the pages of the PDF file
         /// </summary>
         public List<Mat> Pages { get; set; } = default!;
@@ -23,9 +28,10 @@ namespace DAPPAnalyzer.Models
         /// </summary>
         /// <param name="data"> The byte array of the PDF file</param>
         /// <returns> A DappPDF object</returns>
-        public static async Task<DappPDF> Create(byte[] data)
+        public static async Task<DappPDF> Create(byte[] data, string contractName)
         {
             var pdf = new DappPDF();
+            pdf.ContractName = contractName;
             pdf.Pages = await Task.Run(() => pdf.ConvertToImages(data));
             return pdf;
         }
