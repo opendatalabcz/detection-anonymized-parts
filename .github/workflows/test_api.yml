@@ -28,7 +28,9 @@ jobs:
     - name: Test
       run: cd implementation/DAPP && dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
     
+    - name: Generate report
+      run: cd implementation/DAPP && dotnet reportgenerator "-reports:./coverage/coverage.cobertura.xml" "-targetdir:./coverage/report" "-reporttypes:HtmlInline_AzurePipelines;Cobertura"
     - name: Report code coverage
       uses: codecov/codecov-action@v2
       with:
-        file: ./implementation/DAPP/coverage.cobertura.xml
+        file: ./implementation/DAPP/coverage/report/coverage.cobertura.xml
