@@ -6,11 +6,17 @@
 #
 
 stages:
-  - build
-  - verify
+  - pdf-build
+  - pdf-verify
+  - dotnet-build
+  - dotnet-test
+
+variables:
+  COVERLET_OUTPUT_FORMAT: "opencover,cobertura"
+  COVERAGE_FILE: "./coverage/coverage.opencover.xml"
 
 latexmk:
-  stage: build
+  stage: pdf-build
   image: aergus/latex
   script: |
     cd thesis
@@ -22,13 +28,13 @@ latexmk:
       - thesis/abstract-en.pdf
 
 verapdf:
-  stage: verify
+  stage: pdf-verify
   image: ghcr.io/mff-cuni-cz/cuni-thesis-validator
   script: |
     verify thesis/thesis.pdf | grep 'isCompliant="true"'
 
 dotnet-build:
-  stage: build
+  stage: dotnet-build
   image: mcr.microsoft.com/dotnet/sdk:7.0
   script: |
     cd implementation/DAPP
@@ -36,3 +42,14 @@ dotnet-build:
   artifacts:
     paths:
       - implementation/DAPP/publish/
+
+dotnet-test:
+  stage: dotnet-test
+  image: mcr.microsoft.com/dotnet/sdk:7.0
+  script:
+    - 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=${COVERLET_OUTPUT_FORMAT} /p:CoverletOutput=${COVERAGE_FILE} [Your Test Project Name]'
+  artifacts:
+    paths:
+      - './coverage/'
+    reports:
+      cobertura: './coverage/coverage.opencover.xml'
