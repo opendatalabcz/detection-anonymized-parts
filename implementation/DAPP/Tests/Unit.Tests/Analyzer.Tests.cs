@@ -1,4 +1,4 @@
-﻿namespace DAPPTests;
+﻿namespace Unit.Tests;
 
 public class DappAnalyzerTests
 {

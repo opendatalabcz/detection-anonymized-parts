@@ -1,21 +1,34 @@
-﻿namespace API.Services;
+﻿
+
+using API.Responses;
+
+namespace API.Services;
 
 public static class RequestsHandlerService
 {
     public static async Task AnalyzeRequestHandler(HttpContext context)
     {
         // načítanie dát z requestu
-        var request = await context.Request.ReadFromJsonAsync<FileLocationRequest>();
+        AnalyzeRequest? request = null;
+        try
+        {
+            request = await context.Request!.ReadFromJsonAsync<AnalyzeRequest>()!;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+
         if (request == null)
         {
-            await context.Response.WriteAsJsonAsync(new { error = "Invalid request" });
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return;
         }
         var fileBytes = await FileHandleService.GetBytes(request.FileLocation);
 
         if (fileBytes.IsError)
         {
-            await context.Response.WriteAsJsonAsync(new { error = fileBytes.FirstError });
+            await context.Response.WriteAsJsonAsync(ApiErrors.LoadingPdfError);
             return;
         }
 
@@ -26,6 +39,17 @@ public static class RequestsHandlerService
         var result = await PDFAnalyzer.AnalyzeAsync(pdf, returnImages: request.ReturnImages);
 
         // vrátenie výsledku vo formáte JSON
-        await context.Response.WriteAsJsonAsync(result);
+        AnalyzeResponse response = new()
+        {
+            ContractName = result.ContractName,
+            Url = result.Url,
+            ContainsAnonymizedData = result.ContainsAnonymizedData,
+            AnonymizedPercentage = result.AnonymizedPercentage,
+            PageCount = result.PageCount,
+            AnonymizedPercentagePerPage = result.AnonymizedPercentagePerPage,
+            OriginalImages = result.OriginalImages,
+            ResultImages = result.ResultImages
+        };
+        await context.Response.WriteAsJsonAsync(response);
     }
 }

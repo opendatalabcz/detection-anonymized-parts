@@ -5,7 +5,7 @@
 /// as response to a <see cref="FileLocationRequest"/>
 /// </summary>
 /// <param name="ContractName"></param>
-/// <param name="url"></param>
+/// <param name="Url"></param>
 /// <param name="ContainsAnonymizedData"></param>
 /// <param name="AnonymizedPercentage"></param>
 /// <param name="PageCount"></param>
@@ -14,7 +14,7 @@
 /// <param name="ResultImages"></param>
 public record AnalyzedResult(
     string ContractName,
-    string url,
+    string Url,
     bool ContainsAnonymizedData,
     float AnonymizedPercentage,
     int PageCount,

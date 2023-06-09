@@ -8,6 +8,6 @@ public static partial class ApiErrors
     public static Error LoadingPdfError = Error.Failure
         (
             code: "901",
-            description: "Failed to load a pdf"
+            description: "Failed to load a pdf."
         );
 }

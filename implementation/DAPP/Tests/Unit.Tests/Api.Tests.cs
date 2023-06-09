@@ -1,4 +1,6 @@
-﻿namespace DAPPTests;
+﻿using API.Services;
+
+namespace Unit.Tests;
 
 public class DappFileHandleServiceTests
 {

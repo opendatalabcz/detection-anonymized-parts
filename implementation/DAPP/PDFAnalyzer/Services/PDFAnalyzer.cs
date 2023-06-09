@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("DAPPTests")]
+[assembly: InternalsVisibleTo("Unit.Tests")]
 namespace DAPPAnalyzer.Services;
 public class PDFAnalyzer
 {
