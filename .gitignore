@@ -391,3 +391,4 @@ thesis.run.xml
 *.vrb
 /implementation/DAPP/TestData/results
 /implementation/DAPP/TestData/pngs
+/implementation/DAPP/.vs
