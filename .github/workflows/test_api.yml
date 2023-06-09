@@ -36,4 +36,4 @@ jobs:
     - name: Report code coverage
       uses: codecov/codecov-action@v2
       with:
-        file: ./implementation/DAPP/coverage/report/coverage.cobertura.xml
+        file: ./implementation/DAPP/coverage/report/Cobertura.xml
