@@ -19,8 +19,8 @@ jobs:
     - name: Restore dependencies
       run: cd implementation/DAPP && dotnet restore
 
-    - name: Install ImageMagick
-      run: Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) && choco install imagemagick -y
+    - name: Install ImageMagick and Ghostscript
+      run: Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) && choco install imagemagick -y && choco install ghostscript -y
     
     - name: Build
       run: cd implementation/DAPP && dotnet build --no-restore
