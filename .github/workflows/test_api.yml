@@ -28,7 +28,7 @@ jobs:
       run: cd implementation/DAPP && dotnet build --no-restore
     
     - name: Test
-      run: cd implementation/DAPP && dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      run: cd implementation/DAPP && dotnet test --configuration=Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/
 
     - name: Generate report
       run: cd implementation/DAPP && reportgenerator "-reports:./coverage/coverage.cobertura.xml" "-targetdir:./coverage/report" "-reporttypes:HtmlInline_AzurePipelines;Cobertura"
