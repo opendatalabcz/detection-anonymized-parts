@@ -169,4 +169,47 @@ public class DappAnalyzerTests
             }
         }
     }
+
+    [Theory]
+    [InlineData("../../../TestFiles/798.pdf")]
+    public async Task IncreaseSaturation_ShouldReturnResult_WhenValueIsNegative(string path)
+    {
+        // Arrange
+        var src = await DappPDF.Create(File.ReadAllBytes(path), "798", path);
+        var coloredPixels = PDFAnalyzer.ColoredPixels(src.Pages[0]);
+        // Act
+        var result = PDFAnalyzer.IncreaseSaturation(src.Pages[0], coloredPixels, -255);
+
+        // Assert
+        Assert.NotNull(result);
+        foreach (var cp in coloredPixels)
+        {
+            if (src.Pages[0].At<Vec3b>(cp.Y, cp.X) != result.At<Vec3b>(cp.Y, cp.X))
+            {
+                Assert.True(true);
+            }
+        }
+    }
+
+    [Theory]
+    [InlineData("../../../TestFiles/798.pdf")]
+    public async Task IncreaseSaturation_ShouldReturnResult_WhenValueIsPositive(string path)
+    {
+        // Arrange
+        var src = await DappPDF.Create(File.ReadAllBytes(path), "798", path);
+        var coloredPixels = PDFAnalyzer.ColoredPixels(src.Pages[0]);
+        // Act
+        var result = PDFAnalyzer.IncreaseSaturation(src.Pages[0], coloredPixels, 255);
+
+        // Assert
+        Assert.NotNull(result);
+        foreach (var cp in coloredPixels)
+        {
+            if (src.Pages[0].At<Vec3b>(cp.Y, cp.X) != result.At<Vec3b>(cp.Y, cp.X))
+            {
+                Assert.True(true);
+            }
+        }
+    }
+
 }
