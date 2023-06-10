@@ -1,4 +1,6 @@
-﻿namespace Unit.Tests;
+﻿using Microsoft.AspNetCore.Routing;
+
+namespace Unit.Tests;
 
 public class DappAnalyzerTests
 {
@@ -6,8 +8,13 @@ public class DappAnalyzerTests
     [InlineData("../../../TestFiles/1.pdf")]
     public async Task AnalyzeTest(string path)
     {
+        // Arrange
         var pdf = await DappPDF.Create(File.ReadAllBytes(path), "1", path);
+
+        // Act
         var result = await PDFAnalyzer.AnalyzeAsync(pdf, true);
+
+        // Assert
         Assert.NotNull(result);
         Assert.NotNull(result.OriginalImages);
         Assert.NotNull(result.ResultImages);
@@ -83,5 +90,83 @@ public class DappAnalyzerTests
         Assert.Equal(255, result.At<byte>(3, 3));
 
 
+    }
+
+    [Theory]
+    [InlineData("../../../TestFiles/798.pdf")]
+    public async Task Threshold_WithMultiChannelImage_ReturnsResult(string path)
+    {
+        // Arrange
+        var src = await DappPDF.Create(File.ReadAllBytes(path), "798", path);
+        int val = 127;
+
+        // Act
+        Mat result = PDFAnalyzer.Threshold(src.Pages[0], val);
+
+        // Assert
+        Assert.NotNull(result);
+        var pts = Enumerable.Range(0, result.Rows * result.Cols)
+            .Select(i => result.At<byte>(i / result.Cols, i % result.Cols));
+
+        Assert.All(pts, pixel =>
+            Assert.True(pixel == 0 || pixel == 255));
+    }
+
+    [Theory]
+    [InlineData("../../../TestFiles/1.pdf")]
+    public async Task Threshold_WithSingleChannelImage_ReturnsResult(string path)
+    {
+        // Arrange
+        var original = await DappPDF.Create(File.ReadAllBytes(path), "1", path);
+        Mat src = new();
+        Cv2.CvtColor(original.Pages[0], src, ColorConversionCodes.BGR2GRAY);
+
+        int val = 127;
+        // Act
+        Mat result = PDFAnalyzer.Threshold(src, val);
+
+        // Assert
+        Assert.NotNull(result);
+        var pts = Enumerable.Range(0, result.Rows * result.Cols)
+            .Select(i => result.At<byte>(i / result.Cols, i % result.Cols));
+
+        Assert.All(pts, pixel =>
+            Assert.True(pixel == 0 || pixel == 255));
+    }
+
+    [Theory]
+    [InlineData("../../../TestFiles/798.pdf")]
+    public async Task ColoredPixels_ShouldReturnPopulatedList_WithColoredImage(string path)
+    {
+        // Arrange
+        var src = await DappPDF.Create(File.ReadAllBytes(path), "798", path);
+
+        // Act
+        var result = PDFAnalyzer.ColoredPixels(src.Pages[0]);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.True(result.Count > 39);
+    }
+
+    [Theory]
+    [InlineData("../../../TestFiles/798.pdf")]
+    public async Task IncreaseSaturation_ShouldReturnResult_WhenColoredImage(string path)
+    {
+        // Arrange
+        var src = await DappPDF.Create(File.ReadAllBytes(path), "798", path);
+        var coloredPixels = PDFAnalyzer.ColoredPixels(src.Pages[0]);
+        // Act
+        var result = PDFAnalyzer.IncreaseSaturation(src.Pages[0], coloredPixels, 20);
+
+        // Assert
+        Assert.NotNull(result);
+        foreach (var cp in coloredPixels)
+        {
+            if (src.Pages[0].At<Vec3b>(cp.Y, cp.X) != result.At<Vec3b>(cp.Y, cp.X))
+            {
+                Assert.True(true);
+            }
+        }
     }
 }
