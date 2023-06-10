@@ -1,6 +1,6 @@
 [![codecov](https://codecov.io/gh/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/branch/master/graph/badge.svg?token=C7H0CZLJZU)](https://codecov.io/gh/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis)
 ![Tests](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/test_api.yml/badge.svg)
-![Build .NET](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/buid_api.yml/badge.svg)
+![Build .NET](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/build_api.yml/badge.svg)
 ![Build and Verify PDF](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/build_thesis.yml/badge.svg)
 # Špecifikácia pre projekt: Detekcia anonymizovaných častí v PDF dokumentoch
 
