@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/branch/master/graph/badge.svg?token=C7H0CZLJZU)](https://codecov.io/gh/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis)
+
 # Špecifikácia pre projekt: Detekcia anonymizovaných častí v PDF dokumentoch
 
 ## Účel a popis
