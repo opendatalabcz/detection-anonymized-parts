@@ -4,6 +4,7 @@ using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
@@ -16,13 +17,12 @@ namespace Infrastructure
         /// <param name="services"></param>
         /// <returns></returns>
         public static IServiceCollection AddInfrastructure(
-            this IServiceCollection services)
+            this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DappDbContext>(options =>
-                options.UseSqlite());
+                options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
             services.AddPersistance();
-            services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-
+            services.AddServices();
             return services;
         }
 
@@ -36,6 +36,13 @@ namespace Infrastructure
 
             services.AddScoped<IDocumentRepository, DocumentRepository>();
             services.AddScoped<IPageRepository, PageRepository>();
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddSingleton<IFileHandleService, FileHandleService>();
+            services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             return services;
         }
     }

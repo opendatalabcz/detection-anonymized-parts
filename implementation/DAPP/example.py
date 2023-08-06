@@ -9,7 +9,7 @@ import aiohttp
 
 CONTRACTS_FILE_LOCATION = '..\\odkazySmluv.txt'
 CONTRACTS_COUNT = 2
-PATH_TO_API = 'API/bin/Debug/net7.0/API.exe'
+PATH_TO_API = 'API2/bin/Debug/net7.0/API2.exe'
 URL = 'http://localhost:5000/analyze'
 
 def create_post_request(url: str, fileLocation: str, returnImages: bool = False):
@@ -96,5 +96,5 @@ if __name__ == '__main__':
 	except Exception as e:
 		print(e)
 	finally:
-		subprocess.run('taskkill /f /im API.exe')
+		subprocess.run('taskkill /f /im API2.exe')
 		print('API stopped')

@@ -24,6 +24,11 @@ namespace Domain.DocumentAggregate
             Url = url;
         }
 
+
+        private Document() : base(DocumentId.CreateUnique()) // Required for EF
+        {
+        }
+
         public static Document Create(
             string name, string url, List<Page> pages)
         {

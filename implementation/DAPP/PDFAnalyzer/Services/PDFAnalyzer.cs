@@ -82,7 +82,7 @@ public class PDFAnalyzer
 
     internal static List<Point> ColoredPixels(Mat img)
     {
-        List<Point> coloredPixels = new List<Point>();
+        List<Point> coloredPixels = new();
         // iterate through each pixel and check if it is colorful
         for (int i = 0; i < img.Rows; i++)
         {
@@ -106,21 +106,21 @@ public class PDFAnalyzer
     }
     internal static Mat Dilate(Mat src, Mat pattern)
     {
-        Mat result = new Mat();
+        Mat result = new();
         Cv2.Dilate(src, result, pattern);
         return result;
     }
 
     internal static Mat Erode(Mat src, Mat pattern)
     {
-        Mat result = new Mat();
+        Mat result = new();
         Cv2.Erode(src, result, pattern);
         return result;
     }
 
     internal static Mat Threshold(Mat src, int val)
     {
-        Mat gray = new Mat();
+        Mat gray = new();
         if (src.Channels() == 1)
         {
             gray = src.Clone();
@@ -129,7 +129,7 @@ public class PDFAnalyzer
         {
             Cv2.CvtColor(src, gray, ColorConversionCodes.BGR2GRAY);
         }
-        Mat result = new Mat();
+        Mat result = new();
         Cv2.Threshold(gray, result, val, 255, ThresholdTypes.Otsu);
 
         return result;
@@ -142,7 +142,7 @@ public class PDFAnalyzer
             return src;
         }
 
-        Mat hsv = new Mat();
+        Mat hsv = new();
         Cv2.CvtColor(src, hsv, ColorConversionCodes.BGR2HSV);
 
         // change it to purple
@@ -157,7 +157,7 @@ public class PDFAnalyzer
             double s = 100;
             double v = 50;
 
-            s = s + value;
+            s += value;
 
             if (s < 0)
             {

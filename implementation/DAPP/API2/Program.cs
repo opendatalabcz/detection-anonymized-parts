@@ -1,27 +1,34 @@
-using API2;
 using API2.Common.Errors;
 using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+namespace API2;
+
+public class Program
 {
-    _ = builder.Services
-        .AddPresentation()
-        .AddApplication()
-        .AddInfrastructure();
+    public static void Main(string[] args)
+    {
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+        {
+            _ = builder.Services
+                .AddPresentation()
+                .AddApplication()
+                .AddInfrastructure(builder.Configuration);
 
-    _ = builder.Services.AddControllers();
+            _ = builder.Services.AddControllers();
 
-    _ = builder.Services.AddSingleton<ProblemDetailsFactory, DappProblemDetailsFactory>();
-}
+            _ = builder.Services.AddSingleton<ProblemDetailsFactory, DappProblemDetailsFactory>();
+        }
 
-WebApplication app = builder.Build();
-{
-    _ = app
-        .UseExceptionHandler("/error")
-        .UseHttpsRedirection();
-    _ = app.MapControllers();
+        WebApplication app = builder.Build();
+        {
+            _ = app
+                .UseExceptionHandler("/error")
+                .UseHttpsRedirection();
+            _ = app.MapControllers();
 
-    app.Run();
+            app.Run();
+        }
+    }
 }

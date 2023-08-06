@@ -23,7 +23,9 @@ namespace Infrastructure.Persistance.Configurations
             builder.Property(p => p.Id)
                 .ValueGeneratedNever()
                 .HasConversion(id => id.Value,
-                               value => PageId.Create(value));
+                value => PageId.Create(value))
+                .IsRequired();
+
 
 
             builder.Property(p => p.OriginalImageUrl)
@@ -36,7 +38,9 @@ namespace Infrastructure.Persistance.Configurations
 
             // Relationship configurations
             builder.HasOne(p => p.Document)
-                .WithMany(d => d.Pages);
+               .WithMany(d => d.Pages)
+               .HasForeignKey(p => p.DocumentId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

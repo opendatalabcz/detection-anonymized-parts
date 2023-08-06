@@ -1,15 +1,12 @@
-
-
-using API.Responses;
 using Newtonsoft.Json.Linq;
 
 namespace DAPP.Integration.Tests;
 
-public class ApiTests : IClassFixture<WebApplicationFactory<API.Program>>
+public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
 {
-    private readonly WebApplicationFactory<API.Program> _factory;
+    private readonly WebApplicationFactory<API2.Program> _factory;
 
-    public ApiTests(WebApplicationFactory<API.Program> factory)
+    public ApiTests(WebApplicationFactory<API2.Program> factory)
     {
         _factory = factory;
     }
@@ -42,8 +39,8 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API.Program>>
         var responseContent = await response.Content.ReadAsStringAsync();
         var parsedJson = JObject.Parse(responseContent);
         // Assert
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal("Failed to load a pdf.", parsedJson["description"]);
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal("'File Location' must not be empty.", parsedJson["errors"]["FileLocation"][0]);
     }
 
     [Fact]
@@ -54,9 +51,10 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API.Program>>
         var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
         request.Content = new StringContent("{\"fileLocation\":\"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\"}", Encoding.UTF8, "application/json");
 
+        var responseContent = await request.Content.ReadAsStringAsync();
         // Act
         var response = await client.SendAsync(request);
-        var responseContent = await response.Content.ReadAsStringAsync();
+        responseContent = await response.Content.ReadAsStringAsync();
         var parsedJson = JObject.Parse(responseContent);
 
         // Assert
