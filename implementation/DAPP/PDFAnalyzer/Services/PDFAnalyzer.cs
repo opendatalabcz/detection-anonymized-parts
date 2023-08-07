@@ -4,7 +4,7 @@
 namespace DAPPAnalyzer.Services;
 public class PDFAnalyzer
 {
-    public static async Task<AnalyzedResult> AnalyzeAsync(DappPDF pdf, bool returnImages = false)
+    public static async Task<AnalyzedResult> AnalyzeAsync(DappPDF pdf)
     {
         var anonymizedPercentage = 0f;
         var anonymizedPercentagePerPage = new Dictionary<int, float>();
@@ -20,12 +20,9 @@ public class PDFAnalyzer
                 (Mat anonymizedParts, bool cad, float ap) = AnalyzePage(page);
                 containsAnonymizedData |= cad;
                 anonymizedPercentagePerPage[i++] = ap;
-                if (returnImages)
-                {
-                    originalImages[i] = page.ToBytes(".jpg");
-                    var masked = MaskOriginal(page, anonymizedParts);
-                    anonymizedImages[i] = masked.ToBytes(".jpg");
-                }
+                originalImages[i] = page.ToBytes(".jpg");
+                var masked = MaskOriginal(page, anonymizedParts);
+                anonymizedImages[i] = masked.ToBytes(".jpg");
             }
             return new AnalyzedResult(
                pdf.ContractName,

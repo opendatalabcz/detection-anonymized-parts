@@ -16,7 +16,13 @@ namespace Application.Common.Interfaces.Persistance
         /// Gets a document by id
         /// </summary>
         /// <param name="id"> The id of the document</param>
-        /// <returns> The document</returns>
+        /// <returns> The document, if in database</returns>
         Document? Get(DocumentId id);
+        /// <summary>
+        /// Gets a document by document name
+        /// </summary>
+        /// <param name="documentName"> The name of the document</param>
+        /// <returns>The document, if in database</returns>
+        Document? Get(string documentName);
     }
 }

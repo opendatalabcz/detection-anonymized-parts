@@ -23,9 +23,18 @@ namespace Application.Analyzer.Commands.RegisterDocument
             // The contract name is the last part of the path (e.g. "*\contract1.pdf")
             var contractName = request.FileLocation.Split("/").Last().Split(".").First();
 
-            var document = Document.Create(contractName, request.FileLocation, new());
+            var document = documentRepository.Get(contractName);
+            if (document is null)
+            {
+                document = Document.Create(contractName, request.FileLocation, new());
 
-            return documentRepository.Add(document);
+                return documentRepository.Add(document);
+            }
+
+            else
+            {
+                return document.Id;
+            }
         }
     }
 }

@@ -3,8 +3,6 @@ using Application.Common.Interfaces.Services;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories;
 using Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
@@ -17,10 +15,9 @@ namespace Infrastructure
         /// <param name="services"></param>
         /// <returns></returns>
         public static IServiceCollection AddInfrastructure(
-            this IServiceCollection services, IConfiguration configuration)
+            this IServiceCollection services)
         {
-            services.AddDbContext<DappDbContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DappDbContext>();
             services.AddPersistance();
             services.AddServices();
             return services;

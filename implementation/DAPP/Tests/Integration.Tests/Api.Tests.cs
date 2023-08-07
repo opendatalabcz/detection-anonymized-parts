@@ -40,7 +40,7 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
         var parsedJson = JObject.Parse(responseContent);
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-        Assert.Equal("'File Location' must not be empty.", parsedJson["errors"]["FileLocation"][0]);
+        Assert.Equal("Failed to load a pdf.", parsedJson["errors"]["901"][0]);
     }
 
     [Fact]

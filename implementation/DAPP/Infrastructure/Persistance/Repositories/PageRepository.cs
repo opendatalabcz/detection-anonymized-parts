@@ -6,14 +6,31 @@ namespace Infrastructure.Persistance.Repositories
 {
     public class PageRepository : IPageRepository
     {
-        public Task<PageId> Add(Page p)
+        private readonly DappDbContext dbContext;
+
+        public PageRepository(DappDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
         }
 
-        public Task<string> SaveImage(byte[] value, ImageType type)
+        public PageId Add(Page p)
         {
-            throw new NotImplementedException();
+            dbContext.Add(p);
+            dbContext.SaveChanges();
+            return p.Id;
+        }
+
+        public string SaveImage(byte[] value)
+        {
+            var path = dbContext.StoragePath;
+            var fileName = Guid.NewGuid().ToString();
+            var fullPath = Path.Combine(path, fileName + ".jpg");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            File.WriteAllBytes(fullPath, value);
+            return fullPath;
         }
     }
 }

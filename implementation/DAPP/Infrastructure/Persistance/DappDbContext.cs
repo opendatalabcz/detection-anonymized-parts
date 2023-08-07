@@ -3,15 +3,20 @@ using Domain.PageAggregate;
 using Infrastructure.Configurations;
 using Infrastructure.Persistance.Configurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace Infrastructure.Persistance
 {
     public class DappDbContext : DbContext
     {
+        public string DbPath { get; }
+        public string StoragePath { get; }
         public DappDbContext(DbContextOptions<DappDbContext> options)
             : base(options)
         {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            DbPath = Path.Join(path, "DappDatabase.db");
+            StoragePath = Path.Join(path, "DappStorage");
         }
 
         public DbSet<Document> Documents { get; set; }
@@ -25,16 +30,12 @@ namespace Infrastructure.Persistance
             modelBuilder.ApplyConfiguration(new PageConfiguration());
             base.OnModelCreating(modelBuilder);
         }
-    }
 
-    public class DappDbContextFactory : IDesignTimeDbContextFactory<DappDbContext>
-    {
-        public DappDbContext CreateDbContext(string[] args)
+        // The following configures EF to create a Sqlite database file in the
+        // special "local" folder for your platform.
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DappDbContext>();
-            optionsBuilder.UseSqlite("Data Source=dappDatabase.db");
-
-            return new DappDbContext(optionsBuilder.Options);
+            options.UseSqlite($"Data Source={DbPath}");
         }
     }
 }

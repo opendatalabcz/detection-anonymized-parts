@@ -14,7 +14,7 @@ public class Program
             _ = builder.Services
                 .AddPresentation()
                 .AddApplication()
-                .AddInfrastructure(builder.Configuration);
+                .AddInfrastructure();
 
             _ = builder.Services.AddControllers();
 

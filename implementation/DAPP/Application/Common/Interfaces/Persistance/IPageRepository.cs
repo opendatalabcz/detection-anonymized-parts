@@ -5,8 +5,8 @@ namespace Application.Common.Interfaces.Persistance
 {
     public interface IPageRepository
     {
-        Task<PageId> Add(Page p);
-        Task<string> SaveImage(byte[] value, ImageType type);
+        PageId Add(Page p);
+        string SaveImage(byte[] value);
     }
 
     public enum ImageType

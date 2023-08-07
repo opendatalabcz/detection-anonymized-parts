@@ -23,20 +23,21 @@ namespace Application.Analyzer.Commands.AnalyzeDocument
 
         public async Task<ErrorOr<Document>> Handle(AnalyzeDocumentCommand request, CancellationToken cancellationToken)
         {
-            var pdf = request.DappPdf;
-
-            var result = await DAPPAnalyzer.Services.PDFAnalyzer.AnalyzeAsync(pdf, request.ReturnImages);
-
             var doc = documentRepository.Get(request.DocumentId);
             if (doc is null)
             {
                 return Domain.Common.Errors.Repository.EntityDoesNotExist;
             }
 
+            var pdf = request.DappPdf;
+
+            var result = await DAPPAnalyzer.Services.PDFAnalyzer.AnalyzeAsync(pdf);
+
+
             foreach (var item in result.OriginalImages)
             {
-                var originalImageUrl = await pageRepository.SaveImage(item.Value, ImageType.OriginalImage);
-                var resultImageUrl = await pageRepository.SaveImage(result.ResultImages[item.Key], ImageType.ResultImage);
+                var originalImageUrl = pageRepository.SaveImage(item.Value);
+                var resultImageUrl = pageRepository.SaveImage(result.ResultImages[item.Key]);
 
                 var p = Page.Create(
                     doc,
@@ -45,7 +46,7 @@ namespace Application.Analyzer.Commands.AnalyzeDocument
                     resultImageUrl,
                     result.AnonymizedPercentagePerPage[item.Key]);
 
-                await pageRepository.Add(p);
+                pageRepository.Add(p);
             }
 
             return documentRepository.Get(doc.Id)!;

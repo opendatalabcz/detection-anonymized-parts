@@ -31,7 +31,7 @@ namespace API2.Controllers
                 return Problem(registerResponse.Errors);
             }
 
-            var parseCmd = mapper.Map<ParseDocumentCommand>(registerResponse);
+            var parseCmd = new ParseDocumentCommand(registerResponse.Value);
             var parseResponse = await mediator.Send(parseCmd);
 
             if (parseResponse.IsError)
@@ -39,7 +39,7 @@ namespace API2.Controllers
                 return Problem(parseResponse.Errors);
             }
 
-            var cmd = mapper.Map<AnalyzeDocumentCommand>(request);
+            var cmd = new AnalyzeDocumentCommand(parseResponse.Value.Item1, parseResponse.Value.Item2, request.ReturnImages);
             var response = await mediator.Send(cmd);
 
             return response.Match(

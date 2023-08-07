@@ -24,5 +24,10 @@ namespace Infrastructure.Persistance.Repositories
         {
             return dbContext.Documents.SingleOrDefault(x => x.Id == id);
         }
+
+        public Document? Get(string documentName)
+        {
+            return dbContext.Documents.SingleOrDefault(x => x.Name == documentName);
+        }
     }
 }
