@@ -1,4 +1,4 @@
-﻿using API.Services;
+﻿using Infrastructure.Services;
 
 namespace Unit.Tests;
 
@@ -10,7 +10,8 @@ public class DappFileHandleServiceTests
     [InlineData("../../../TestFiles/1.pdf")]
     public async Task LoadPdf(string path)
     {
-        var result = await FileHandleService.GetBytes(path);
+        var fileHandleService = new FileHandleService();
+        var result = await fileHandleService.GetBytes(path);
         Assert.True(!result.IsError);
         Assert.NotNull(result.Value);
         Assert.True(result.Value.Length > 0);
