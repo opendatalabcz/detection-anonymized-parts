@@ -1,6 +1,7 @@
 ﻿using Application.Analyzer.Commands.AnalyzeDocument;
 using Application.Analyzer.Commands.ParseDocument;
 using Application.Analyzer.Commands.RegisterDocument;
+using Application.Analyzer.Queries.GetAnalyzedDocument;
 using Contracts.Analyzer;
 using MapsterMapper;
 using MediatR;
@@ -25,13 +26,19 @@ namespace API2.Controllers
         {
 
             var registerCmd = mapper.Map<RegisterDocumentCommand>(request);
+
+            if (registerCmd is null)
+            {
+                return BadRequest();
+            }
+
             var registerResponse = await mediator.Send(registerCmd);
             if (registerResponse.IsError)
             {
                 return Problem(registerResponse.Errors);
             }
 
-            var parseCmd = new ParseDocumentCommand(registerResponse.Value);
+            var parseCmd = new ParseDocumentCommand(registerResponse.Value.Item1, registerResponse.Value.Item2);
             var parseResponse = await mediator.Send(parseCmd);
 
             if (parseResponse.IsError)
@@ -40,11 +47,37 @@ namespace API2.Controllers
             }
 
             var cmd = new AnalyzeDocumentCommand(parseResponse.Value.Item1, parseResponse.Value.Item2, request.ReturnImages);
-            var response = await mediator.Send(cmd);
+            var analyzeResponse = await mediator.Send(cmd);
 
-            return response.Match(
-                document => Ok(mapper.Map<AnalyzeDocumentResponse>(document)),
-                Problem);
+            if (analyzeResponse.IsError)
+            {
+                return Problem(analyzeResponse.Errors);
+            }
+
+            var q = new GetAnalyzedDocumentDataQuery(analyzeResponse.Value.Id);
+            var response = await mediator.Send(q);
+            if (response.IsError)
+            {
+                return Problem(response.Errors);
+            }
+            var res = new AnalyzeDocumentResponse
+                (
+                   DocumentId: response.Value.DocumentId.Value,
+                   Url: response.Value.Url,
+                   ContainsAnonymizedData: response.Value.ContainsAnonymizedData,
+                   AnonymizedPercentage: response.Value.AnonymizedPercentage,
+                   PageCount: response.Value.PageCount,
+                   AnonymizedPercentagePerPage: response.Value.AnonymizedPercentagePerPage,
+                   OriginalImages: response.Value.OriginalImages,
+                   ResultImages: response.Value.ResultImages
+                );
+            if (!request.ReturnImages)
+            {
+                res = res with { OriginalImages = null };
+                res = res with { ResultImages = null };
+            }
+            return Ok(res);
         }
+
     }
 }

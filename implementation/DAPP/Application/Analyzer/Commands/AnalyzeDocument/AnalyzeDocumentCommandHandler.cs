@@ -8,15 +8,12 @@ namespace Application.Analyzer.Commands.AnalyzeDocument
 {
     public class AnalyzeDocumentCommandHandler : IRequestHandler<AnalyzeDocumentCommand, ErrorOr<Document>>
     {
-        private readonly IMediator mediator;
         private readonly IPageRepository pageRepository;
         private readonly IDocumentRepository documentRepository;
         public AnalyzeDocumentCommandHandler(
-            IMediator mediator,
             IPageRepository pageRepository,
             IDocumentRepository documentRepository)
         {
-            this.mediator = mediator;
             this.pageRepository = pageRepository;
             this.documentRepository = documentRepository;
         }
@@ -27,6 +24,10 @@ namespace Application.Analyzer.Commands.AnalyzeDocument
             if (doc is null)
             {
                 return Domain.Common.Errors.Repository.EntityDoesNotExist;
+            }
+            if (doc.Pages is not null && doc.PageCount > 0)
+            {
+                return doc;
             }
 
             var pdf = request.DappPdf;
@@ -44,7 +45,7 @@ namespace Application.Analyzer.Commands.AnalyzeDocument
                     item.Key,
                     originalImageUrl,
                     resultImageUrl,
-                    result.AnonymizedPercentagePerPage[item.Key]);
+                    result.AnonymizedPercentagePerPage[item.Key - 1]);
 
                 pageRepository.Add(p);
             }

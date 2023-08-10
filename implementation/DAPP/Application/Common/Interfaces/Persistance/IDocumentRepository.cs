@@ -17,6 +17,7 @@ namespace Application.Common.Interfaces.Persistance
         /// </summary>
         /// <param name="id"> The id of the document</param>
         /// <returns> The document, if in database</returns>
+
         Document? Get(DocumentId id);
         /// <summary>
         /// Gets a document by document name
@@ -24,5 +25,12 @@ namespace Application.Common.Interfaces.Persistance
         /// <param name="documentName"> The name of the document</param>
         /// <returns>The document, if in database</returns>
         Document? Get(string documentName);
+
+        /// <summary>
+        ///  Gets a document by hash
+        /// </summary>
+        /// <param name="hash"> The hash of the document</param>
+        /// <returns> The document, if in database</returns>
+        Document? GetByHash(string hash);
     }
 }

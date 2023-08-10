@@ -35,6 +35,10 @@ namespace Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(1024);
 
+            builder.Property(d => d.Hash)
+                .IsRequired()
+                .HasMaxLength(255);
+
             // Ignore PageCount as it is a computed property
             builder.Ignore(d => d.PageCount);
 
@@ -43,7 +47,6 @@ namespace Infrastructure.Configurations
                 .WithOne(p => p.Document)
                 .HasForeignKey(p => p.DocumentId)
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 }

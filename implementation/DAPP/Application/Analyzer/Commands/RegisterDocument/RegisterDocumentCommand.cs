@@ -5,5 +5,5 @@ using MediatR;
 namespace Application.Analyzer.Commands.RegisterDocument
 {
     public record RegisterDocumentCommand
-    (string FileLocation) : IRequest<ErrorOr<DocumentId>>;
+    (string FileLocation) : IRequest<ErrorOr<(DocumentId, byte[])>>;
 }

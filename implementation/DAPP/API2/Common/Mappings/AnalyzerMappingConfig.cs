@@ -7,6 +7,5 @@ namespace API2.Common.Mappings
         public void Register(TypeAdapterConfig config)
         {
         }
-
     }
 }

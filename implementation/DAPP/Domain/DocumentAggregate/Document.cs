@@ -6,35 +6,37 @@ namespace Domain.DocumentAggregate
 {
     public class Document : AggregateRoot<DocumentId>
     {
-        public string Name { get; private set; }
+        public string Name { get; private set; } = null!;
 
         public int PageCount => Pages.Count;
-        public string Url { get; private set; }
+        public string Url { get; private set; } = null!;
 
-        public List<Page> Pages { get; private set; }
+        public string Hash { get; private set; } = null!;
+        public virtual List<Page> Pages { get; private set; } = null!;
 
         private Document(DocumentId id,
                        string name,
                        string url,
+                       string hash,
                        List<Page> pages)
             : base(id)
         {
             Name = name;
             Pages = pages;
+            Hash = hash;
             Url = url;
         }
 
-
-        private Document() : base(DocumentId.CreateUnique()) // Required for EF
+        protected Document() : base(DocumentId.CreateUnique()) // Required for EF
         {
         }
 
         public static Document Create(
-            string name, string url, List<Page> pages)
+            string name, string url, string hash, List<Page> pages)
         {
             return new(
                 DocumentId.CreateUnique(),
-                name, url, pages);
+                name, url, hash, pages);
         }
     }
 }

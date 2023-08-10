@@ -35,6 +35,7 @@ namespace Infrastructure.Persistance
         // special "local" folder for your platform.
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
+            options.UseLazyLoadingProxies();
             options.UseSqlite($"Data Source={DbPath}");
         }
     }

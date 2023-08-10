@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces.Persistance;
 using Domain.DocumentAggregate;
 using Domain.DocumentAggregate.ValueObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistance.Repositories
 {
@@ -22,12 +23,20 @@ namespace Infrastructure.Persistance.Repositories
 
         public Document? Get(DocumentId id)
         {
-            return dbContext.Documents.SingleOrDefault(x => x.Id == id);
+            return dbContext.Documents
+                .Include(x => x.Pages).SingleOrDefault(x => x.Id == id);
         }
 
         public Document? Get(string documentName)
         {
-            return dbContext.Documents.SingleOrDefault(x => x.Name == documentName);
+            return dbContext.Documents
+                .Include(x => x.Pages).SingleOrDefault(x => x.Name == documentName);
+        }
+
+        public Document? GetByHash(string hash)
+        {
+            return dbContext.Documents
+                .Include(x => x.Pages).SingleOrDefault(x => x.Hash == hash);
         }
     }
 }

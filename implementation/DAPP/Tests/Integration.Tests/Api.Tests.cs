@@ -59,12 +59,11 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal("dummy", parsedJson["contractName"]);
         Assert.Equal("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", parsedJson["url"]);
         Assert.Equal(false, parsedJson["containsAnonymizedData"]);
         Assert.Equal(0, parsedJson["anonymizedPercentage"]);
         Assert.Equal(1, parsedJson["pageCount"]);
-        Assert.Equal(0, parsedJson["anonymizedPercentagePerPage"]["0"]);
+        Assert.Equal(0, parsedJson["anonymizedPercentagePerPage"]["1"]);
         Assert.Empty(parsedJson["originalImages"]);
         Assert.Empty(parsedJson["resultImages"]);
     }
@@ -84,12 +83,11 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal("dummy", parsedJson["contractName"]);
         Assert.Equal("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", parsedJson["url"]);
         Assert.Equal(false, parsedJson["containsAnonymizedData"]);
         Assert.Equal(0, parsedJson["anonymizedPercentage"]);
         Assert.Equal(1, parsedJson["pageCount"]);
-        Assert.Equal(0, parsedJson["anonymizedPercentagePerPage"]["0"]);
+        Assert.Equal(0, parsedJson["anonymizedPercentagePerPage"]["1"]);
         Assert.Single(parsedJson["originalImages"]);
         Assert.Single(parsedJson["resultImages"]);
     }

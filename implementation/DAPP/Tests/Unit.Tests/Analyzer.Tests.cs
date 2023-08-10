@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-
-namespace Unit.Tests;
+﻿namespace Unit.Tests;
 
 public class DappAnalyzerTests
 {
@@ -12,7 +10,7 @@ public class DappAnalyzerTests
         var pdf = await DappPDF.Create(File.ReadAllBytes(path), "1", path);
 
         // Act
-        var result = await PDFAnalyzer.AnalyzeAsync(pdf, true);
+        var result = await PDFAnalyzer.AnalyzeAsync(pdf);
 
         // Assert
         Assert.NotNull(result);
@@ -109,7 +107,7 @@ public class DappAnalyzerTests
             .Select(i => result.At<byte>(i / result.Cols, i % result.Cols));
 
         Assert.All(pts, pixel =>
-            Assert.True(pixel == 0 || pixel == 255));
+            Assert.True(pixel is 0 or 255));
     }
 
     [Theory]
@@ -131,7 +129,7 @@ public class DappAnalyzerTests
             .Select(i => result.At<byte>(i / result.Cols, i % result.Cols));
 
         Assert.All(pts, pixel =>
-            Assert.True(pixel == 0 || pixel == 255));
+            Assert.True(pixel is 0 or 255));
     }
 
     [Theory]

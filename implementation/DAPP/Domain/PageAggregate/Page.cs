@@ -7,12 +7,12 @@ namespace Domain.PageAggregate
 {
     public class Page : AggregateRoot<PageId>
     {
-        public string OriginalImageUrl { get; private set; }
-        public string ResultImageUrl { get; private set; }
+        public string OriginalImageUrl { get; private set; } = null!;
+        public string ResultImageUrl { get; private set; } = null!;
         public int PageNumber { get; private set; }
-        public Document Document { get; private set; }
+        public virtual Document Document { get; private set; } = null!;
 
-        public DocumentId DocumentId { get; private set; }
+        public DocumentId DocumentId { get; private set; } = null!;
         public float AnonymizationResult { get; private set; }
         public Page(PageId id,
             Document document,
@@ -29,7 +29,7 @@ namespace Domain.PageAggregate
         }
 
 
-        private Page() : base(PageId.CreateUnique()) // Required for EF
+        protected Page() : base(PageId.CreateUnique()) // Required for EF
         {
         }
         public static Page Create(
