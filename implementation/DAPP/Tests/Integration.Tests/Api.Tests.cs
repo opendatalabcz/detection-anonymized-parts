@@ -69,6 +69,24 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     }
 
     [Fact]
+    public async Task AnalyzeRequestHandler_ShouldReturnError_Validation()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
+        request.Content = new StringContent("{\"fileLocation\":\"\"}", Encoding.UTF8, "application/json");
+
+        // Act
+        var response = await client.SendAsync(request);
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var parsedJson = JObject.Parse(responseContent);
+
+        // Assert
+        Assert.Equal((HttpStatusCode)400, response.StatusCode);
+    }
+
+
+    [Fact]
     public async Task AnalyzeRequestHandler_ShouldReturnResultWithImages_WhenReturnImagesIsTrue()
     {
         // Arrange
@@ -91,4 +109,9 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
         Assert.Single(parsedJson["originalImages"]);
         Assert.Single(parsedJson["resultImages"]);
     }
+
+
+
 }
+
+

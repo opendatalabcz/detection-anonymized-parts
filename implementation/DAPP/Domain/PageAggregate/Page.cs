@@ -2,6 +2,7 @@
 using Domain.DocumentAggregate;
 using Domain.DocumentAggregate.ValueObjects;
 using Domain.PageAggregate.ValueObjects;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.PageAggregate
 {
@@ -12,6 +13,7 @@ namespace Domain.PageAggregate
         public int PageNumber { get; private set; }
         public virtual Document Document { get; private set; } = null!;
 
+        [ExcludeFromCodeCoverage]
         public DocumentId DocumentId { get; private set; } = null!;
         public float AnonymizationResult { get; private set; }
         public Page(PageId id,

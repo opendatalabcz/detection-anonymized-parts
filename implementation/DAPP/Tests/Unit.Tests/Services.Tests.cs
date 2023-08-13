@@ -18,8 +18,20 @@ public class DappFileHandleServiceTests
     }
 }
 
-public class RequestHandlerTests
+public class DateTimeProviderServiceTests
 {
+    [Fact]
+    public void DateTimeProviderService_ShouldReturnValidDateTime_WhenCalled()
+    {
+        // Arrange
+        var dateTimeProviderService = new DateTimeProvider();
 
+        // Act
+        var result = dateTimeProviderService.UtcNow;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.True(result > DateTime.MinValue);
+        Assert.True(result < DateTime.MaxValue);
+    }
 }
-

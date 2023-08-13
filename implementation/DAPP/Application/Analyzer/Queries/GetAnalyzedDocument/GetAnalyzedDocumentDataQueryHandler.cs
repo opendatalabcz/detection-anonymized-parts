@@ -27,7 +27,7 @@ namespace Application.Analyzer.Queries.GetAnalyzedDocument
                 return Domain.Common.Errors.Repository.EntityDoesNotExist;
             }
 
-            if (doc.Pages is null)
+            if (doc.Pages is null || doc.PageCount == 0)
             {
                 return Domain.Common.Errors.Analyzer.DocumentNotYetAnalyzed;
             }
