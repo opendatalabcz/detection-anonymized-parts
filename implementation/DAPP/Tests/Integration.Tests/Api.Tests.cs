@@ -1,3 +1,12 @@
+using Application.Analyzer.Commands.AnalyzeDocument;
+using Application.Analyzer.Queries.GetAnalyzedDocument;
+using Application.Common.Interfaces.Persistance;
+using Domain.DocumentAggregate;
+using Domain.DocumentAggregate.ValueObjects;
+using Infrastructure.Persistance;
+using Infrastructure.Persistance.Repositories;
+using Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
 namespace DAPP.Integration.Tests;
@@ -110,8 +119,40 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
         Assert.Single(parsedJson["resultImages"]);
     }
 
+    [Fact]
+    public async Task AnalyzeDocumentHandler_ReturnError_EntityDoesNotExist()
+    {
+        // Arrange
 
+        var client = _factory.CreateClient();
+        var options = new DbContextOptionsBuilder<DappDbContext>()
+            .Options;
+        var context = new DappDbContext(options);
+        var documentRepository = new DocumentRepository(context);
+        var PageRepository = new PageRepository(context);
+        var handler = new AnalyzeDocumentCommandHandler(PageRepository, documentRepository);
+        // Act
+        var r = await handler.Handle(new AnalyzeDocumentCommand(new(), DocumentId.CreateUnique(), false), CancellationToken.None);
+        // Assert
+        Assert.True(r.IsError);
+        Assert.Equal(Domain.Common.Errors.Repository.EntityDoesNotExist, r.FirstError);
+    }
 
+    [Fact]
+    public async Task GetAnalyzedDocumentHandler_ReturnError_DocumentNotYetAnalyzed()
+    {
+        // Arrange
+        var options = new DbContextOptionsBuilder<DappDbContext>()
+            .Options;
+        var context = new DappDbContext(options);
+        var DocumentRepository = new DocumentRepository(context);
+        var handler = new GetAnalyzedDocumentDataQueryHandler(new FileHandleService(), DocumentRepository);
+        var d = Document.Create("Test", "Test", "Test", new());
+        var id = DocumentRepository.Add(d);
+        // Act
+        var r = await handler.Handle(new GetAnalyzedDocumentDataQuery(id), CancellationToken.None);
+        // Assert
+        Assert.True(r.IsError);
+        Assert.Equal(Domain.Common.Errors.Analyzer.DocumentNotYetAnalyzed, r.FirstError);
+    }
 }
-
-

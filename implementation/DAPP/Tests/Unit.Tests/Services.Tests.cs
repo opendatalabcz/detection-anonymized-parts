@@ -30,7 +30,6 @@ public class DateTimeProviderServiceTests
         var result = dateTimeProviderService.UtcNow;
 
         // Assert
-        Assert.NotNull(result);
         Assert.True(result > DateTime.MinValue);
         Assert.True(result < DateTime.MaxValue);
     }
