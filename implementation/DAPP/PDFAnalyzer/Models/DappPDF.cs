@@ -29,22 +29,26 @@ public class DappPDF
     /// Creates a DappPDF object from a byte array
     /// </summary>
     /// <param name="data"> The byte array of the PDF file</param>
+    /// <param name="contractName"> The name of the contract</param>
+    /// <param name="url"> The url of the PDF file</param>
     /// <returns> A DappPDF object</returns>
     public static async Task<DappPDF> Create(byte[] data, string contractName, string url)
     {
-        var pdf = new DappPDF();
-        pdf.Url = url;
-        pdf.ContractName = contractName;
-        pdf.Pages = await Task.Run(() => pdf.ConvertToImages(data));
+        var pdf = new DappPDF
+        {
+            Url = url,
+            ContractName = contractName,
+            Pages = await Task.Run(() => ConvertToImages(data))
+        };
         return pdf;
     }
 
     /// <summary>
     /// Converts a PDF file to a list of images
     /// </summary>
-    /// <param name="pdfPath"> The byte array of the PDF file</param>
+    /// <param name="pdfBytes"> The byte array of the PDF file</param>
     /// <returns> A list of images</returns>
-    private List<Mat> ConvertToImages(byte[] pdfBytes)
+    private static List<Mat> ConvertToImages(byte[] pdfBytes)
     {
         var result = new List<Mat>();
         var tempFilePath = Path.GetTempFileName();
@@ -54,20 +58,18 @@ public class DappPDF
             // Save the PDF data to a temporary file
             File.WriteAllBytes(tempFilePath, pdfBytes);
 
-            using (var images = new MagickImageCollection())
+            using var images = new MagickImageCollection();
+            // Read the temporary PDF file
+            images.Read(tempFilePath);
+
+            foreach (var image in images)
             {
-                // Read the temporary PDF file
-                images.Read(tempFilePath);
+                // Convert the MagickImage image to a byte array
+                byte[] bytes = image.ToByteArray(MagickFormat.Bmp);
 
-                foreach (var image in images)
-                {
-                    // Convert the MagickImage image to a byte array
-                    byte[] bytes = image.ToByteArray(MagickFormat.Bmp);
-
-                    // Create a Mat object using the byte array
-                    Mat mat = Cv2.ImDecode(bytes, ImreadModes.Unchanged);
-                    result.Add(mat);
-                }
+                // Create a Mat object using the byte array
+                Mat mat = Cv2.ImDecode(bytes, ImreadModes.Unchanged);
+                result.Add(mat);
             }
         }
         finally

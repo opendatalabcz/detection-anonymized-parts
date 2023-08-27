@@ -5,14 +5,25 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configurations
 {
+    /// <summary>
+    /// Configuration for the documents table
+    /// </summary>
     public class DocumentConfiguration : IEntityTypeConfiguration<Document>
     {
+        /// <summary>
+        /// Configures the documents table
+        /// </summary>
+        /// <param name="builder"> The builder</param>
         public void Configure(EntityTypeBuilder<Document> builder)
         {
             ConfigureDocumentsTable(builder);
         }
 
-        private void ConfigureDocumentsTable(EntityTypeBuilder<Document> builder)
+        /// <summary>
+        /// Configures the documents table
+        /// </summary>
+        /// <param name="builder"> The builder</param>
+        private static void ConfigureDocumentsTable(EntityTypeBuilder<Document> builder)
         {
             // Table configuration
             builder.ToTable("Documents");

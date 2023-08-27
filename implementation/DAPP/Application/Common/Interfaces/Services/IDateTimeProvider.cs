@@ -1,5 +1,8 @@
 ﻿namespace Application.Common.Interfaces.Services
 {
+    /// <summary>
+    /// Interface for the date time provider.
+    /// </summary>
     public interface IDateTimeProvider
     {
         /// <summary>

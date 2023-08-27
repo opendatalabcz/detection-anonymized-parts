@@ -1,9 +1,18 @@
 ﻿using System.Runtime.CompilerServices;
 
+
 [assembly: InternalsVisibleTo("Unit.Tests")]
 namespace DAPPAnalyzer.Services;
+/// <summary>
+/// A service for analyzing PDFs.
+/// </summary>
 public class PDFAnalyzer
 {
+    /// <summary>
+    /// Analyzes a PDF.
+    /// </summary>
+    /// <param name="pdf"> The PDF to analyze.</param>
+    /// <returns> The analyzed result.</returns>
     public static async Task<AnalyzedResult> AnalyzeAsync(DappPDF pdf)
     {
         var anonymizedPercentage = 0f;
@@ -36,6 +45,11 @@ public class PDFAnalyzer
         });
     }
 
+    /// <summary>
+    /// Analyzes a page.
+    /// </summary>
+    /// <param name="page"> The page to analyze.</param>
+    /// <returns> The analyzed result.</returns>
     internal static (Mat anonymizedParts, bool containsAnonymizedData, float anonymizedPercentage) AnalyzePage(Mat page)
     {
         var anonymizedParts = GetAnonymizedParts(page);
@@ -44,6 +58,13 @@ public class PDFAnalyzer
         return (anonymizedParts, containsAnonymizedData, anonymizedPercentage);
     }
 
+    /// <summary>
+    /// Masks the original image with the anonymized parts.
+    /// </summary>
+    /// <param name="img"> The original image.</param>
+    /// <param name="erodeValue">The erode value.</param>
+    /// <param name="dilateValue"> The dilate value.</param>
+    /// <returns> The masked image.</returns>
     internal static Mat GetAnonymizedParts(Mat img, int erodeValue = 8, int dilateValue = 4)
     {
 
@@ -54,11 +75,9 @@ public class PDFAnalyzer
         // Create structuring element
         Mat se = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(3, 3));
         var dilated = Dilate(imgSaturatedColors, se);
-        //Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\dilated.jpg", dilated);
 
         var dilated_threshold = Threshold(dilated, 20);
         var dilated2 = Dilate(dilated_threshold, se);
-        //Cv2.ImWrite($"{rootPath}\\{page.Contract.Name}\\{page.Id}\\dilated_threshold_dilated.jpg", dilated2);
 
 
         var result = dilated2;
@@ -71,12 +90,15 @@ public class PDFAnalyzer
             result = Dilate(result, se);
         }
 
-        // Remove black parts that are directly touching borders
-
         return result;
     }
 
 
+    /// <summary>
+    /// Gets the colored pixels.
+    /// </summary>
+    /// <param name="img"> The image.</param>
+    /// <returns>List of colored pixels.</returns>
     internal static List<Point> ColoredPixels(Mat img)
     {
         List<Point> coloredPixels = new();
@@ -101,13 +123,24 @@ public class PDFAnalyzer
 
         return coloredPixels;
     }
+    /// <summary>
+    /// Dilates the image.
+    /// </summary>
+    /// <param name="src"> The image.</param>
+    /// <param name="pattern"> The pattern.</param>
+    /// <returns> The dilated image.</returns>
     internal static Mat Dilate(Mat src, Mat pattern)
     {
         Mat result = new();
         Cv2.Dilate(src, result, pattern);
         return result;
     }
-
+    /// <summary>
+    /// Erodes the image.
+    /// </summary>
+    /// <param name="src"> The image.</param>
+    /// <param name="pattern"> The pattern.</param>
+    /// <returns> The eroded image.</returns>
     internal static Mat Erode(Mat src, Mat pattern)
     {
         Mat result = new();
@@ -115,6 +148,12 @@ public class PDFAnalyzer
         return result;
     }
 
+    /// <summary>
+    /// Thresholds the image.
+    /// </summary>
+    /// <param name="src"> The image.</param>
+    /// <param name="val"> The threshold value.</param>
+    /// <returns></returns>
     internal static Mat Threshold(Mat src, int val)
     {
         Mat gray = new();
@@ -132,6 +171,13 @@ public class PDFAnalyzer
         return result;
     }
 
+    /// <summary>
+    /// Increases the saturation of the image.
+    /// </summary>
+    /// <param name="src"> The image.</param>
+    /// <param name="points"> The points to increase the saturation.</param>
+    /// <param name="value"> The value to increase the saturation.</param>
+    /// <returns> The image with increased saturation.</returns>
     internal static Mat IncreaseSaturation(Mat src, List<Point> points, double value)
     {
         if (points.Count == 0)
@@ -177,6 +223,12 @@ public class PDFAnalyzer
         return hsv;
     }
 
+    /// <summary>
+    /// Masks the original image with the anonymized parts.
+    /// </summary>
+    /// <param name="img"> The original image.</param>
+    /// <param name="eroded"> The eroded image.</param>
+    /// <returns> The masked image.</returns>
     internal static Mat MaskOriginal(Mat img, Mat eroded)
     {
         var result = new Mat();

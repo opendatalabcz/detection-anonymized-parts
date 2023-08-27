@@ -3,6 +3,9 @@ using Domain.DocumentAggregate.ValueObjects;
 
 namespace Application.Common.Interfaces.Persistance
 {
+    /// <summary>
+    /// Interface for the document repository
+    /// </summary>
     public interface IDocumentRepository
     {
         /// <summary>

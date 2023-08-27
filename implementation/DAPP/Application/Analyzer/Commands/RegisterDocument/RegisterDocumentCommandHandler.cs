@@ -8,11 +8,19 @@ using System.Security.Cryptography;
 
 namespace Application.Analyzer.Commands.RegisterDocument
 {
+    /// <summary>
+    /// Command Handler to register a document.
+    /// </summary>
     public class RegisterDocumentCommandHandler : IRequestHandler<RegisterDocumentCommand, ErrorOr<(DocumentId, byte[])>>
     {
 
         private readonly IDocumentRepository documentRepository;
         private readonly IFileHandleService fileHandleService;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="documentRepository"> The document repository.</param>
+        /// <param name="fileHandleService"> The file handle service.</param>
         public RegisterDocumentCommandHandler(
             IDocumentRepository documentRepository, IFileHandleService fileHandleService)
         {
@@ -20,6 +28,12 @@ namespace Application.Analyzer.Commands.RegisterDocument
             this.fileHandleService = fileHandleService;
         }
 
+        /// <summary>
+        /// Handle the command.
+        /// </summary>
+        /// <param name="request"> The command.</param>
+        /// <param name="cancellationToken"> The cancellation token.</param>
+        /// <returns> The document id and the document data.</returns>
         public async Task<ErrorOr<(DocumentId, byte[])>> Handle(RegisterDocumentCommand request, CancellationToken cancellationToken)
         {
 

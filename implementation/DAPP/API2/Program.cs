@@ -7,8 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API2;
 
+/// <summary>
+/// Program.
+/// </summary>
 public class Program
 {
+    /// <summary>
+    /// Entry point to the API application.
+    /// </summary>
+    /// <param name="args"></param>
     public static void Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

@@ -8,12 +8,21 @@ using System.Diagnostics;
 
 namespace API2.Common.Errors
 {
+    /// <summary>
+    /// Problem details factory for the Dapp API.
+    /// </summary>
     public class DappProblemDetailsFactory : ProblemDetailsFactory
     {
 
         private readonly ApiBehaviorOptions options;
         private readonly Action<ProblemDetailsContext>? configure;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="options"> The API behavior options.</param>
+        /// <param name="problemDetailsOptions"> The problem details options.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="options"/> is null.</exception>
         public DappProblemDetailsFactory(IOptions<ApiBehaviorOptions> options,
                                           IOptions<ProblemDetailsOptions>? problemDetailsOptions = null)
         {
@@ -21,6 +30,16 @@ namespace API2.Common.Errors
             configure = problemDetailsOptions?.Value?.CustomizeProblemDetails;
         }
 
+        /// <summary>
+        /// Create a problem details object.
+        /// </summary>
+        /// <param name="httpContext"> The HTTP context.</param>
+        /// <param name="statusCode"> The status code.</param>
+        /// <param name="title"> The title.</param>
+        /// <param name="type"> The type.</param>
+        /// <param name="detail"> The detail.</param>
+        /// <param name="instance"> The instance.</param>
+        /// <returns> The problem details.</returns>
         public override ProblemDetails CreateProblemDetails(HttpContext httpContext,
                                                             int? statusCode = null,
                                                             string? title = null,
@@ -45,6 +64,17 @@ namespace API2.Common.Errors
         }
 
 
+        /// <summary>
+        /// Create a validation problem details object.
+        /// </summary>
+        /// <param name="httpContext"> The HTTP context.</param>
+        /// <param name="modelStateDictionary"> The model state dictionary.</param>
+        /// <param name="statusCode"> The status code.</param>
+        /// <param name="title"> The title.</param>
+        /// <param name="type"> The type.</param>
+        /// <param name="detail"> The detail.</param>
+        /// <param name="instance"> The instance.</param>
+        /// <returns> The validation problem details.</returns>
         public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext,
                                                                                 ModelStateDictionary modelStateDictionary,
                                                                                 int? statusCode = null,
@@ -76,6 +106,12 @@ namespace API2.Common.Errors
             return problemDetails;
         }
 
+        /// <summary>
+        /// Create a validation problem details object.
+        /// </summary>
+        /// <param name="httpContext"> The HTTP context.</param>
+        /// <param name="problemDetails"> The problem details.</param>
+        /// <param name="statusCode"> The status code.</param>
         private void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
         {
             problemDetails.Status ??= statusCode;

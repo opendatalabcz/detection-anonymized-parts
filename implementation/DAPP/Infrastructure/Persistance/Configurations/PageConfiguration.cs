@@ -5,13 +5,24 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistance.Configurations
 {
+    /// <summary>
+    /// Configuration for the pages table
+    /// </summary>
     public class PageConfiguration : IEntityTypeConfiguration<Page>
     {
+        /// <summary>
+        /// Configures the pages table
+        /// </summary>
+        /// <param name="builder"> The builder</param>
         public void Configure(EntityTypeBuilder<Page> builder)
         {
             ConfigurePagesTable(builder);
         }
 
+        /// <summary>
+        /// Configures the pages table
+        /// </summary>
+        /// <param name="builder"> The builder</param>
         private static void ConfigurePagesTable(EntityTypeBuilder<Page> builder)
         {
             // Table configuration

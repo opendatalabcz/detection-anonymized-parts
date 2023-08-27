@@ -6,10 +6,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistance
 {
+    /// <summary>
+    /// The database context for the application
+    /// </summary>
     public class DappDbContext : DbContext
     {
+        /// <summary>
+        /// The path to the database
+        /// </summary>
         public string DbPath { get; }
+        /// <summary>
+        /// The path to the storage
+        /// </summary>
         public string StoragePath { get; }
+        /// <summary>
+        /// The documents in the database
+        /// </summary>
+        public DbSet<Document> Documents { get; set; }
+
+        /// <summary>
+        /// The pages in the database
+        /// </summary>
+        public DbSet<Page> Pages { get; set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="options"></param>
         public DappDbContext(DbContextOptions<DappDbContext> options)
             : base(options)
         {
@@ -19,11 +42,10 @@ namespace Infrastructure.Persistance
             StoragePath = Path.Join(path, "DappStorage");
         }
 
-        public DbSet<Document> Documents { get; set; }
-
-        public DbSet<Page> Pages { get; set; }
-
-
+        /// <summary>
+        /// On model creating
+        /// </summary>
+        /// <param name="modelBuilder"> The model builder</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new DocumentConfiguration());
@@ -33,6 +55,10 @@ namespace Infrastructure.Persistance
 
         // The following configures EF to create a Sqlite database file in the
         // special "local" folder for your platform.
+        /// <summary>
+        /// On configuring
+        /// </summary>
+        /// <param name="options"> The options</param>
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseLazyLoadingProxies();

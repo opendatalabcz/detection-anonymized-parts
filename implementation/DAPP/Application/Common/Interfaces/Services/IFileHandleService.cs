@@ -2,6 +2,9 @@
 
 namespace Application.Common.Interfaces.Services
 {
+    /// <summary>
+    /// Interface for the file handle service.
+    /// </summary>
     public interface IFileHandleService
     {
         /// <summary>

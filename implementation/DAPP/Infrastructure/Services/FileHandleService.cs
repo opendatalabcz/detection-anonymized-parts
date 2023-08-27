@@ -8,6 +8,7 @@ namespace Infrastructure.Services;
 public class FileHandleService : IFileHandleService
 {
 
+    ///<inheritdoc/>
     public async Task<ErrorOr<byte[]>> GetBytes(string path)
     {
         byte[] fileBytes;

@@ -6,10 +6,18 @@ using MediatR;
 
 namespace Application.Analyzer.Queries.GetAnalyzedDocument
 {
+    /// <summary>
+    /// Query to get the analyzed document data.
+    /// </summary>
     public class GetAnalyzedDocumentDataQueryHandler : IRequestHandler<GetAnalyzedDocumentDataQuery, ErrorOr<AnalyzedDocumentData>>
     {
         private readonly IFileHandleService fileHandleService;
         private readonly IDocumentRepository documentRepository;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="fileHandleService"> The file handle service.</param>
+        /// <param name="documentRepository"> The document repository.</param>
         public GetAnalyzedDocumentDataQueryHandler(
             IFileHandleService fileHandleService,
             IDocumentRepository documentRepository)
@@ -18,6 +26,12 @@ namespace Application.Analyzer.Queries.GetAnalyzedDocument
             this.documentRepository = documentRepository;
         }
 
+        /// <summary>
+        /// Handle the query.
+        /// </summary>
+        /// <param name="request"> The query.</param>
+        /// <param name="cancellationToken"> The cancellation token.</param>
+        /// <returns> The analyzed document data.</returns>
         public async Task<ErrorOr<AnalyzedDocumentData>> Handle(GetAnalyzedDocumentDataQuery request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;

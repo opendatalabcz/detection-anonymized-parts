@@ -4,15 +4,23 @@ using Domain.PageAggregate.ValueObjects;
 
 namespace Infrastructure.Persistance.Repositories
 {
+    /// <summary>
+    /// The page repository
+    /// </summary>
     public class PageRepository : IPageRepository
     {
         private readonly DappDbContext dbContext;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dbContext">    The database context</param>
         public PageRepository(DappDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
+        ///<inheritdoc/>
         public PageId Add(Page p)
         {
             dbContext.Add(p);
@@ -20,6 +28,7 @@ namespace Infrastructure.Persistance.Repositories
             return p.Id;
         }
 
+        ///<inheritdoc/>
         public string SaveImage(byte[] value)
         {
             var path = dbContext.StoragePath;

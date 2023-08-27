@@ -6,10 +6,18 @@ using MediatR;
 
 namespace Application.Analyzer.Commands.AnalyzeDocument
 {
+    /// <summary>
+    /// Command to analyze a document.
+    /// </summary>
     public class AnalyzeDocumentCommandHandler : IRequestHandler<AnalyzeDocumentCommand, ErrorOr<Document>>
     {
         private readonly IPageRepository pageRepository;
         private readonly IDocumentRepository documentRepository;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="pageRepository"> The page repository.</param>
+        /// <param name="documentRepository"> The document repository.</param>
         public AnalyzeDocumentCommandHandler(
             IPageRepository pageRepository,
             IDocumentRepository documentRepository)
@@ -18,6 +26,12 @@ namespace Application.Analyzer.Commands.AnalyzeDocument
             this.documentRepository = documentRepository;
         }
 
+        /// <summary>
+        /// Handle the command.
+        /// </summary>
+        /// <param name="request"> The command.</param>
+        /// <param name="cancellationToken"> The cancellation token.</param>
+        /// <returns> The analyzed document.</returns>
         public async Task<ErrorOr<Document>> Handle(AnalyzeDocumentCommand request, CancellationToken cancellationToken)
         {
             var doc = documentRepository.Get(request.DocumentId);

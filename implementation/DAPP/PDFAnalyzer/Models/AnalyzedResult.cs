@@ -2,7 +2,6 @@
 
 /// <summary>
 /// Represents the result of an analysis of a PDF file 
-/// as response to a <see cref="FileLocationRequest"/>
 /// </summary>
 /// <param name="ContractName"></param>
 /// <param name="Url"></param>

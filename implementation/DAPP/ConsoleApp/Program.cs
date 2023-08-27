@@ -1,7 +1,6 @@
 ﻿using CommandLine;
 using Contracts.Analyzer;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -44,15 +43,27 @@ namespace ConsoleApp
         }
     }
 
+    /// <summary>
+    /// Options for the console app.
+    /// </summary>
     public class Options
     {
+        /// <summary>
+        /// File location.
+        /// </summary>
         [Value(0, Required = true, HelpText = "Set the file location.")]
-        public string FileLocation { get; set; }
+        public string FileLocation { get; set; } = default!;
 
+        /// <summary>
+        /// Return images.
+        /// </summary>
         [Value(1, Default = false, HelpText = "Set to true to return images, defaults to false.")]
-        public bool ReturnImages { get; set; }
+        public bool ReturnImages { get; set; } = false;
 
+        /// <summary>
+        /// Output folder.
+        /// </summary>
         [Value(2, Default = null, HelpText = "Output folder for images, defaults to null.")]
-        public string OutputFolder { get; set; }
+        public string OutputFolder { get; set; } = default!;
     }
 }

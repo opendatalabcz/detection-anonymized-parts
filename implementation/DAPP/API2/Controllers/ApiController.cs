@@ -5,8 +5,16 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace API2.Controllers
 {
+    /// <summary>
+    /// Base controller for the API.
+    /// </summary>
     public class ApiController : ControllerBase
     {
+        /// <summary>
+        /// Returns a problem response.
+        /// </summary>
+        /// <param name="errors"> The errors.</param>
+        /// <returns> The problem response.</returns>
         protected IActionResult Problem(List<Error> errors)
         {
             if (errors.Count is 0) return Problem();
@@ -16,6 +24,11 @@ namespace API2.Controllers
             HttpContext.Items[HttpContextItemKeys.Errors] = errors;
             return Problem(errors[0]);
         }
+        /// <summary>
+        /// Returns a problem response.
+        /// </summary>
+        /// <param name="error"> The error.</param>
+        /// <returns> The problem response.</returns>
         private IActionResult Problem(Error error)
         {
             int statusCode = error.Type switch
@@ -29,6 +42,11 @@ namespace API2.Controllers
             return Problem(statusCode: statusCode, title: error.Description);
         }
 
+        /// <summary>
+        /// Returns a validation problem response.
+        /// </summary>
+        /// <param name="errors"> The errors.</param>
+        /// <returns> The validation problem response.</returns>
         private IActionResult ValidationProblem(List<Error> errors)
         {
             ModelStateDictionary modelStateDictionary = new();

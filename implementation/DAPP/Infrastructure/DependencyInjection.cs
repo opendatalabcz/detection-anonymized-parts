@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
 {
+    /// <summary>
+    /// Dependency injection for the infrastructure layer.
+    /// </summary>
     public static class DependencyInjection
     {
         /// <summary>
@@ -36,6 +39,11 @@ namespace Infrastructure
             return services;
         }
 
+        /// <summary>
+        /// Add services, such as file handling, date time provider, etc.
+        /// </summary>
+        /// <param name="services"> The service collection</param>
+        /// <returns> The service collection</returns>
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddSingleton<IFileHandleService, FileHandleService>();

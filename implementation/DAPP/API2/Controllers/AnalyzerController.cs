@@ -9,17 +9,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API2.Controllers
 {
+    /// <summary>
+    /// Analyzer controller.
+    /// </summary>
     public class AnalyzerController : ApiController
     {
         private readonly IMapper mapper;
         private readonly ISender mediator;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public AnalyzerController(IMapper mapper, ISender mediator)
         {
             this.mapper = mapper;
             this.mediator = mediator;
         }
 
+        /// <summary>
+        /// Analyze a document.
+        /// </summary>
+        /// <param name="request"> The request.</param>
+        /// <returns> The response.</returns>
         [HttpPost]
         [Route("/analyze")]
         public async Task<IActionResult> Analyze([FromBody] AnalyzeDocumentRequest request)
