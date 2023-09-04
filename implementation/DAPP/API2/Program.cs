@@ -20,6 +20,7 @@ public class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
         {
+            builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.None);
             _ = builder.Services
                 .AddPresentation()
                 .AddApplication()

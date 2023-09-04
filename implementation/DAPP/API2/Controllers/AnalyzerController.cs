@@ -3,6 +3,9 @@ using Application.Analyzer.Commands.ParseDocument;
 using Application.Analyzer.Commands.RegisterDocument;
 using Application.Analyzer.Queries.GetAnalyzedDocument;
 using Contracts.Analyzer;
+using Contracts.Results;
+using Domain.DocumentAggregate.ValueObjects;
+using Domain.PageAggregate.ValueObjects;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -90,5 +93,36 @@ namespace API2.Controllers
             return Ok(res);
         }
 
+        [HttpGet]
+        [Route("/results")]
+        public async Task<IActionResult> GetResults([FromBody] GetDocumentPagesRequest request)
+        {
+            var q = new GetAnalyzedDocumentDataQuery(DocumentId.Create(new Guid(request.DocumentId)));
+            var response = await mediator.Send(q);
+            if (response.IsError)
+            {
+                return Problem(response.Errors);
+            }
+
+            Dictionary<int, Dictionary<string, byte[]>> pages = new();
+
+            foreach (var kvp in response.Value.OriginalImages)
+            {
+                int pageIndex = kvp.Key;
+                Dictionary<string, byte[]> images = new()
+        {
+            { "Original", kvp.Value },
+            { "Result", response.Value.ResultImages[pageIndex] }
+        };
+                pages.Add(pageIndex, images);
+            }
+
+            var res = new GetDocumentPagesResponse(
+                DocumentId: response.Value.DocumentId.Value,
+                Url: response.Value.Url,
+                Pages: pages);
+
+            return Ok(res);
+        }
     }
 }

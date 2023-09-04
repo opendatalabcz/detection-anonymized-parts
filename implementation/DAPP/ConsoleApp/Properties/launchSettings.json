@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--file-location https://smlouvy.gov.cz/smlouva/soubor/3387922/.pdf --return-images false --output-folder g:\\GitHub\\detection-anonymized-parts-in-pdfs-bachelor-thesis\\results\\"
+    }
+  }
+}
