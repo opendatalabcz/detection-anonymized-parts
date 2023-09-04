@@ -44,10 +44,11 @@ namespace ConsoleApp
             var responseContent = response.Content.ReadAsStringAsync().Result;
             var parsedJson = JObject.Parse(responseContent);
             Console.WriteLine(parsedJson);
-            var documentId = parsedJson["documentId"].ToString();
+            var documentId = parsedJson["documentId"]!.ToString();
 
-            request = new HttpRequestMessage(HttpMethod.Get, "/results");
-            request.Content =
+            request = new HttpRequestMessage(HttpMethod.Get, "/results")
+            {
+                Content =
                 new StringContent(
                     JsonConvert.SerializeObject(
                         new GetDocumentPagesRequest(
@@ -56,23 +57,24 @@ namespace ConsoleApp
                         ),
                         Encoding.UTF8,
                         "application/json"
-                    );
+                    )
+            };
             response = client.SendAsync(request).Result;
             responseContent = response.Content.ReadAsStringAsync().Result;
             parsedJson = JObject.Parse(responseContent);
             // save images to output folder
             if (outputFolder != null)
             {
-                var pages = parsedJson["pages"];
+                var pages = parsedJson["pages"]!;
                 for (int i = 1; i <= pages.Count(); i++)
                 {
-                    var page = pages[i.ToString()];
-                    var imageOriginal = page["Original"].ToString();
-                    var imageResult = page["Result"].ToString();
+                    var page = pages[i.ToString()]!;
+                    var imageOriginal = page["Original"]!.ToString();
+                    var imageResult = page["Result"]!.ToString();
                     var imageBytes = Convert.FromBase64String(imageOriginal);
                     var imageFilePath = $"{outputFolder}/original_{i}.jpg";
                     // ensure folder exists
-                    Directory.CreateDirectory(Path.GetDirectoryName(imageFilePath));
+                    Directory.CreateDirectory(Path.GetDirectoryName(imageFilePath)!);
                     File.WriteAllBytes(imageFilePath, imageBytes);
                     imageBytes = Convert.FromBase64String(imageResult);
                     imageFilePath = $"{outputFolder}/result_{i}.jpg";

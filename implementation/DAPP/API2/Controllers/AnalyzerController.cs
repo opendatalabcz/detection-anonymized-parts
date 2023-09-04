@@ -93,6 +93,11 @@ namespace API2.Controllers
             return Ok(res);
         }
 
+        /// <summary>
+        /// Gets the results of a document.
+        /// </summary>
+        /// <param name="request"> The request.</param>
+        /// <returns> The response.</returns>
         [HttpGet]
         [Route("/results")]
         public async Task<IActionResult> GetResults([FromBody] GetDocumentPagesRequest request)

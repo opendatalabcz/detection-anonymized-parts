@@ -1,6 +1,5 @@
 using Application.Analyzer.Commands.AnalyzeDocument;
 using Application.Analyzer.Queries.GetAnalyzedDocument;
-using Application.Common.Interfaces.Persistance;
 using Domain.DocumentAggregate;
 using Domain.DocumentAggregate.ValueObjects;
 using Infrastructure.Persistance;
@@ -25,8 +24,10 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     {
         // Arrange
         var client = _factory.CreateClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
-        request.Content = new StringContent("invalid request", Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze")
+        {
+            Content = new StringContent("invalid request", Encoding.UTF8, "application/json")
+        };
 
         // Act
         var response = await client.SendAsync(request);
@@ -40,8 +41,10 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     {
         // Arrange
         var client = _factory.CreateClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
-        request.Content = new StringContent("{\"fileLocation\":\"/invalid/path\"}", Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze")
+        {
+            Content = new StringContent("{\"fileLocation\":\"/invalid/path\"}", Encoding.UTF8, "application/json")
+        };
 
         // Act
         var response = await client.SendAsync(request);
@@ -57,13 +60,14 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     {
         // Arrange
         var client = _factory.CreateClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
-        request.Content = new StringContent("{\"fileLocation\":\"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\"}", Encoding.UTF8, "application/json");
-
-        var responseContent = await request.Content.ReadAsStringAsync();
+        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze")
+        {
+            Content = new StringContent("{\"fileLocation\":\"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\"}", Encoding.UTF8, "application/json")
+        };
+        _ = await request.Content.ReadAsStringAsync();
         // Act
         var response = await client.SendAsync(request);
-        responseContent = await response.Content.ReadAsStringAsync();
+        string? responseContent = await response.Content.ReadAsStringAsync();
         var parsedJson = JObject.Parse(responseContent);
 
         // Assert
@@ -82,13 +86,15 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     {
         // Arrange
         var client = _factory.CreateClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
-        request.Content = new StringContent("{\"fileLocation\":\"\"}", Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze")
+        {
+            Content = new StringContent("{\"fileLocation\":\"\"}", Encoding.UTF8, "application/json")
+        };
 
         // Act
         var response = await client.SendAsync(request);
         var responseContent = await response.Content.ReadAsStringAsync();
-        var parsedJson = JObject.Parse(responseContent);
+        _ = JObject.Parse(responseContent);
 
         // Assert
         Assert.Equal((HttpStatusCode)400, response.StatusCode);
@@ -100,8 +106,10 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     {
         // Arrange
         var client = _factory.CreateClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze");
-        request.Content = new StringContent("{\"fileLocation\":\"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\", \"returnImages\": true}", Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "/analyze")
+        {
+            Content = new StringContent("{\"fileLocation\":\"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\", \"returnImages\": true}", Encoding.UTF8, "application/json")
+        };
 
         // Act
         var response = await client.SendAsync(request);
@@ -120,12 +128,14 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     }
 
     [Fact]
-    public async Task GetDocumentPagesRequest()
+    public async Task GetDocumentPagesRequest_entity_not_found()
     {
         // Arrange
         var client = _factory.CreateClient();
-        var request = new HttpRequestMessage(HttpMethod.Get, "/results");
-        request.Content = new StringContent("{\"DocumentId\":\"12345678-1234-1234-1234-123456781234\"}", Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Get, "/results")
+        {
+            Content = new StringContent("{\"DocumentId\":\"12345678-1234-1234-1234-123456781234\"}", Encoding.UTF8, "application/json")
+        };
 
         // Act
         var response = await client.SendAsync(request);
@@ -133,14 +143,8 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
         var parsedJson = JObject.Parse(responseContent);
 
         // Assert
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.Equal("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", parsedJson["url"]);
-        Assert.Equal(false, parsedJson["containsAnonymizedData"]);
-        Assert.Equal(0, parsedJson["anonymizedPercentage"]);
-        Assert.Equal(1, parsedJson["pageCount"]);
-        Assert.Equal(0, parsedJson["anonymizedPercentagePerPage"]["1"]);
-        Assert.Single(parsedJson["originalImages"]);
-        Assert.Single(parsedJson["resultImages"]);
+        Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+        Assert.Equal("Entity with given Id is not in the database.", parsedJson["title"].Value<string>());
     }
 
 
@@ -149,7 +153,7 @@ public class ApiTests : IClassFixture<WebApplicationFactory<API2.Program>>
     {
         // Arrange
 
-        var client = _factory.CreateClient();
+        _ = _factory.CreateClient();
         var options = new DbContextOptionsBuilder<DappDbContext>()
             .Options;
         var context = new DappDbContext(options);
