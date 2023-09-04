@@ -44,6 +44,7 @@
 
 - Nainštalujte .NET 7.0 alebo vyšší
 - Nainštalujte program imagemagick (https://imagemagick.org/)
+- Nainštalujte program ghostscript (https://www.ghostscript.com/)
 
 ## Inštalácia
 
