@@ -102,7 +102,7 @@ namespace ConsoleApp
         /// <summary>
         /// Output folder.
         /// </summary>
-        [Option("output-folder", Default = null, HelpText = "Output folder for images, defaults to null.")]
+        [Option("output-folder", Default = null, HelpText = "Output folder for images, defaults to null (no images will be saved).")]
         public string OutputFolder { get; set; } = default!;
     }
 }
