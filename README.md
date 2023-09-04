@@ -12,6 +12,15 @@
 ## Obsah
 - [Účel a popis](#účel-a-popis)
 - [Obsah](#obsah)
+- [Použitie](#použitie)
+    - [Predpoklady](#predpoklady)
+    - [Inštalácia](#inštalácia)
+
+        -[Možnosti Príkazového riadku](#možnosti-príkazového-riadku)
+
+        -[Príkladové príkazy](#príkladové-príkazy)
+
+        -[Výstup](#výstup)
 - [Cieľ a požiadavky](#cieľ-a-požiadavky)
 	- [Funkčné požiadavky](#funkčné-požiadavky)
     - [Technické požiadavky](#technické-požiadavky)
@@ -29,6 +38,54 @@
 - [Konfigurácia (verzovanie)](#konfigurácia-verzovanie)
 - [Predpoklady](#predpoklady)
 - [Obmedzenia](#obmedzenia)
+
+## Použitie
+### Predpoklady
+
+- Nainštalujte .NET 7.0 alebo vyšší
+- Nainštalujte program imagemagick (https://imagemagick.org/)
+
+## Inštalácia
+
+1. Naklonujte repozitár.
+   ```bash
+   git clone github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis.git
+   ```
+2. Prejdite do priečinka projektu a zostavte riešenie.
+   ```bash
+   cd implementation/Dapp
+   dotnet build
+   ```
+Spustite konzolovú aplikáciu (V priečinku ConsoleApp) s nasledujúcimi príkazovými možnosťami:
+
+### Možnosti Príkazového Riadku
+
+- `--file-location` *(povinné)*: Cesta k súboru, ktorý sa má analyzovať.
+- `--return-images` *(nepovinné, predvolené=false)*: Zadajte `true`, ak chcete vrátiť obrázky.
+- `--output-folder` *(nepovinné)*: Adresár, kam sa uložia obrázky. Ak nie je špecifikovaný, obrázky sa neuložia.
+
+### Príkladové Príkazy
+
+Analýza dokumentu bez vrátenia obrázkov:
+```bash
+dotnet run -- --file-location /cesta/k/súboru
+```
+
+Analýza dokumentu a vrátenie obrázkov, ale neuloženie ich:
+```bash
+dotnet run -- --file-location /cesta/k/súboru --return-images true
+```
+
+Analýza dokumentu, vrátenie a uloženie obrázkov:
+```bash
+dotnet run -- --file-location /cesta/k/súboru --return-images true --output-folder /cesta/k/výstupnému/priečinku
+```
+
+## Výstup
+
+Konzola vypíše JSON dáta prijaté z API, vrátane ID dokumentu. Ak je špecifikovaný výstupný priečinok, obrázky budú uložené vo formáte `original_{i}.jpg` a `result_{i}.jpg`.
+
+To je všetko. Postupujte podľa krokov, aby ste efektívne využili konzolovú aplikáciu.
 
 ## Cieľ a požiadavky
 Cieľom tohto softvérového diela je vyvinúť a implementovať softvér, ktorý je schopný detekovať anonymizované časti v PDF dokumentoch. Softvér bude písaný v jazyku C# s použitím minimal API rozhrania. Výstup bude v podobe JSON formátu obsahujúceho údaje o analyzovanom PDF, ako je počet strán, percento anonymizácie na každej stránke a celková priemerná anonymizácia.
