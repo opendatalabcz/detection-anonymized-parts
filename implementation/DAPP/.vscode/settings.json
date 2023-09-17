@@ -1,6 +1,0 @@
-{
-    "docify.commentService.programmingLanguage": "c_sharp",
-    "docify.commentService.docstringFormat": "XML",
-    "docify.translateService.programmingLanguage": "c_sharp",
-    "docify.translateService.docstringFormat": "Doxygen"
-}
