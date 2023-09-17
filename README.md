@@ -2,162 +2,158 @@
 ![Tests](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/test_api.yml/badge.svg)
 ![Build .NET](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/build_api.yml/badge.svg)
 ![Build and Verify PDF](https://github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis/actions/workflows/build_thesis.yml/badge.svg)
-# Špecifikácia pre projekt: Detekcia anonymizovaných častí v PDF dokumentoch
+# Project Specification: Detection of Anonymized Sections in PDF Documents
 
-## Účel a popis
+## Purpose and Description
 
-- Názov softvérového diela: DAPP (**D**etector of **A**nonymized **P**arts in **P**DFs)
-- Popis: DAPP je nástroj na analýzu PDF dokumentov s cieľom detekcie anonymizovaných častí. Je navrhnutý ako webová služba, ktorá prijíma vstupné dáta vo forme HTTP request s lokálnymi cestami alebo URL na PDF súbory a vráti výsledky analýzy vo formáte JSON.
+- Software Title: DAPP (**D**etector of **A**nonymized **P**arts in **P**DFs)
+- Description: DAPP is a tool for analyzing PDF documents to detect anonymized sections. It is designed as a web service that receives input data as an HTTP request with local paths or URLs to PDF files and returns analysis results in JSON format.
 
-## Obsah
-- [Účel a popis](#účel-a-popis)
-- [Obsah](#obsah)
-- [Použitie](#použitie)
-    - [Predpoklady](#predpoklady)
-    - [Inštalácia](#inštalácia)
+## Table of Contents
+- [Purpose and Description](#purpose-and-description)
+- [Usage](#usage)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
 
-        -[Možnosti Príkazového riadku](#možnosti-príkazového-riadku)
+        -[Command-line Options](#command-line-options)
 
-        -[Príkladové príkazy](#príkladové-príkazy)
+        -[Example Commands](#example-commands)
 
-        -[Výstup](#výstup)
-- [Cieľ a požiadavky](#cieľ-a-požiadavky)
-	- [Funkčné požiadavky](#funkčné-požiadavky)
-    - [Technické požiadavky](#technické-požiadavky)
-- [Architektúra a dizajn](#architektúra-a-dizajn)
-    - [Technológie a nástroje](#technológie-a-nástroje)
-    - [Dátový model](#dátový-model)
-    - [Užívateľské rozhranie](#užívateľské-rozhranie)
-    - [Algoritmy a postupy](#algoritmy-a-postupy)
-- [Testovanie a validácia](#testovanie-a-validácia)
-    - [Plán testovania](#plán-testovania)
-    - [Validácia výsledkov](#validácia-výsledkov)
-- [Časový plán](#časový-plán)
-    - [Fázy vývoja](#fázy-vývoja)
-    - [Odhadované termíny milníkov](#odhadované-termíny-milníkov)
-- [Konfigurácia (verzovanie)](#konfigurácia-verzovanie)
-- [Predpoklady](#predpoklady)
-- [Obmedzenia](#obmedzenia)
+        -[Output](#output)
+- [Objectives and Requirements](#objectives-and-requirements)
+    - [Functional Requirements](#functional-requirements)
+    - [Technical Requirements](#technical-requirements)
+- [Architecture and Design](#architecture-and-design)
+    - [Technologies and Tools](#technologies-and-tools)
+    - [Data Model](#data-model)
+    - [User Interface](#user-interface)
+    - [Algorithms and Procedures](#algorithms-and-procedures)
+- [Testing and Validation](#testing-and-validation)
+    - [Testing Plan](#testing-plan)
+    - [Validation of Results](#validation-of-results)
+- [Timeline](#timeline)
+    - [Estimated Milestone Deadlines](#estimated-milestone-deadlines)
+- [Configuration (Versioning)](#configuration-versioning)
+- [Assumptions](#assumptions)
+- [Limitations](#limitations)
 
-## Použitie
-### Predpoklady
+## Usage
+### Prerequisites
 
-- Nainštalujte .NET 7.0 alebo vyšší
-- Nainštalujte program imagemagick (https://imagemagick.org/)
-- Nainštalujte program ghostscript (https://www.ghostscript.com/)
+- Install .NET 7.0 or higher
+- Install ImageMagick (https://imagemagick.org/)
+- Install Ghostscript (https://www.ghostscript.com/)
 
-## Inštalácia
+## Installation
 
-1. Naklonujte repozitár.
+1. Clone the repository.
    ```bash
    git clone github.com/Oranged9922/detection-anonymized-parts-in-pdfs-bachelor-thesis.git
    ```
-2. Prejdite do priečinka projektu a zostavte riešenie.
+2. Navigate to the project folder and build the solution.
    ```bash
    cd implementation/Dapp
    dotnet build
    ```
-Spustite konzolovú aplikáciu (V priečinku ConsoleApp) s nasledujúcimi príkazovými možnosťami:
+Run the console application (in the ConsoleApp folder) with the following command-line options:
 
-### Možnosti Príkazového Riadku
+### Command-line Options
 
-- `--file-location` *(povinné)*: Cesta k súboru, ktorý sa má analyzovať.
-- `--return-images` *(nepovinné, predvolené=false)*: Zadajte `true`, ak chcete vrátiť obrázky.
-- `--output-folder` *(nepovinné)*: Adresár, kam sa uložia obrázky. Ak nie je špecifikovaný, obrázky sa neuložia.
+- `--file-location` *(mandatory)*: Path to the file to analyze.
+- `--return-images` *(optional, default=false)*: Enter `true` if you want to return images.
+- `--output-folder` *(optional)*: Directory where the images will be saved. If not specified, images won't be saved.
 
-### Príkladové Príkazy
+### Example Commands
 
-Analýza dokumentu bez vrátenia obrázkov:
+Analyzing a document without returning images:
 ```bash
-dotnet run -- --file-location /cesta/k/súboru
+dotnet run -- --file-location /path/to/file
 ```
 
-Analýza dokumentu a vrátenie obrázkov, ale neuloženie ich:
+Analyzing a document and returning images, but not saving them:
 ```bash
-dotnet run -- --file-location /cesta/k/súboru --return-images true
+dotnet run -- --file-location /path/to/file --return-images true
 ```
 
-Analýza dokumentu, vrátenie a uloženie obrázkov:
+Analyzing a document, returning and saving images:
 ```bash
-dotnet run -- --file-location /cesta/k/súboru --return-images true --output-folder /cesta/k/výstupnému/priečinku
+dotnet run -- --file-location /path/to/file --return-images true --output-folder /path/to/output/folder
 ```
 
-## Výstup
+## Output
 
-Konzola vypíše JSON dáta prijaté z API, vrátane ID dokumentu. Ak je špecifikovaný výstupný priečinok, obrázky budú uložené vo formáte `original_{i}.jpg` a `result_{i}.jpg`.
+The console will print JSON data received from the API, including the document ID. If an output folder is specified, images will be saved in the format `original_{i}.jpg` and `result_{i}.jpg`.
 
-To je všetko. Postupujte podľa krokov, aby ste efektívne využili konzolovú aplikáciu.
+That's it. Follow the steps to effectively use the console application.
 
-## Cieľ a požiadavky
-Cieľom tohto softvérového diela je vyvinúť a implementovať softvér, ktorý je schopný detekovať anonymizované časti v PDF dokumentoch. Softvér bude písaný v jazyku C# s použitím minimal API rozhrania. Výstup bude v podobe JSON formátu obsahujúceho údaje o analyzovanom PDF, ako je počet strán, percento anonymizácie na každej stránke a celková priemerná anonymizácia.
+## Objectives and Requirements
+The aim of this software is to develop and implement a tool capable of detecting anonymized sections in PDF documents. The software will be written in C# using the minimal API interface. The output will be in JSON format containing data on the analyzed PDF, such as the number of pages, the percentage of anonymization on each page, and the overall average anonymization.
 
-### Funkčné požiadavky
+### Functional Requirements
 
-- Softvér musí byť schopný prijať HTTP request obsahujúci URL odkaz na PDF súbor alebo lokálnu cestu k súboru.
-- Softvér musí byť schopný prečítať a spracovať PDF súbory.
-- Softvér musí byť schopný detekovať anonymizované časti v PDF dokumentoch.
-- Softvér musí byť schopný analyzovať a vypočítať percento anonymizácie na každej stránke PDF súboru a celkovú priemernú anonymizáciu.
-- Softvér musí byť schopný vrátiť výsledky v špecifikovanom JSON formáte obsahujúcom počet strán, percento anonymizácie na každej stránke a celkovú priemernú anonymizáciu.
-- Softvér musí byť dodaný s príslušnou dokumentáciou, užívateľskou aj vývojárskou
+- The software must be able to accept an HTTP request containing a URL link to a PDF file or a local path to the file.
+- The software must be able to read and process PDF files.
+- The software must be able to detect anonymized sections in PDF documents.
+- The software must be able to analyze and calculate the percentage of anonymization on each page of the PDF file and the overall average anonymization.
+- The software must be able to return the results in a specified JSON format containing the number of pages, the percentage of anonymization on each page, and the overall average anonymization.
+- The software must be accompanied by appropriate documentation, both user and developer.
 
-### Technické požiadavky
+### Technical Requirements
 
-- Softvér musí byť napísaný v jazyku C#.
-- Softvér bude používať minimal API rozhranie pre prijímanie requestov a vracanie výsledkov.
-- Softvér musí byť kompatibilný s najnovšou verziou .NET platformy (.NET 7).
-- Softvér musí podporovať spracovanie PDF súborov.
-- Softvér musí podporovať formát JSON pre výstupné dáta.
+- The software must be written in C#.
+- The software will use the minimal API interface for receiving requests and returning results.
+- The software must be compatible with the latest version of the .NET platform (.NET 7).
+- The software must support the processing of PDF files.
+- The software must support the JSON format for output data.
 
-## Architektúra a dizajn
-### Architektúra systému:
-- Klient-Server: Klient posiela požiadavky na server, ktorý spracúva PDF súbory a vracia výsledky vo formáte JSON.
+## Architecture and Design
+### System Architecture:
+- Client-Server: The client sends requests to the server, which processes PDF files and returns results in JSON format.
 
-### Technológie a nástroje:
-- Jazyk: C#
+### Technologies and Tools:
+- Language: C#
 - Framework: .NET 7
 - API: Minimal API
-- Spracovanie PDF: Vlastná implementácia analyzátoru pre prácu s PDF v jazyku C# 
+- PDF Processing: Custom implementation of analyzer for working with PDFs in C#
 
-### Dátové modely:
-- Vstup: URL alebo lokálna cesta k PDF súboru
-- Výstup: JSON obsahujúci informácie o počte strán, percentuálnej anonymizácii na jednotlivých stranách a celkovú priemernú anonymizáciu
+### Data Models:
+- Input:
 
-### Užívateľské rozhranie:
-- Webové API: Užívatelia interagujú so softvérom prostredníctvom HTTP požiadavkov
+ HTTP Request (URL link to a PDF file or a local path)
+- Output: JSON Response (Number of pages, percentage of anonymization on each page, overall average anonymization)
 
-### Algoritmy a postupy:
-- Vlastná implementácia algoritmu na detegovanie anonymizovaných častí v PDF súboroch (detailný popis bude doložený pri odovzdaní)
+### Algorithms and Procedures:
+- PDF File Reader: Custom implementation using third-party libraries to read and analyze PDF files.
+- Anonymization Detection: Custom implementation using image processing and data analysis.
 
-## Testovanie a validácia
-### Plán testovania
-- Unit testy: Overenie správnej funkcionality jendotlivých komponent
-- Integračné testy: Overenie správnej interakcie medzi jednotlivými komponentami
+## Testing and Validation
+### Testing Plan:
+- Unit Testing: For each implemented method and function.
+- Integration Testing: For testing the interaction between different components.
+- Acceptance Testing: For verifying that the application meets the requirements specified.
 
-### Validácia výsledkov
-#### Testovacie dáta
-- Objem testovacích PDF súborov poskytnutý zo stránok https://www.hlidacstatu.cz/
-#### Validačné kritéria
-- Správna detekcia anonymizovaných častí
-- Správny odhad na percentuálne vyhodnotenie anonymizovania v dokumente
-#### Postup validácie
-- Porovnanie výsledkov s očakávanými hodnotami pre dané testovacie dáta
+### Validation of Results:
+- The output results will be validated by analyzing a set of sample PDFs that contain known amounts of anonymized sections.
 
-## Časový plán
-### Odhadované termíny milníkov
-- Dodanie špecifikácie: 25. 05. 2023
-- Dokončenie projektu: 10. 07. 2023
+## Timeline
+### Estimated Milestone Deadlines:
+- 1. Define Objectives and Requirements: [Date]
+- 2. Develop Preliminary Design: [Date]
+- 3. Implement Core Features: [Date]
+- 4. Testing: [Date]
+- 5. Finalize and Deploy: [Date]
 
-## Konfigurácia (verzovanie)
-- Verzovanie softvéru: Verzovanie softvéru bude zabezpečené pomocou verzovacieho systému git
+## Configuration (Versioning)
+The project will be maintained on GitHub, and versioning will be managed through Git. Periodic backups and branches for new features will be created.
 
-## Predpoklady
+## Assumptions
+- The user will provide valid paths or URLs to PDF files.
+- The PDF files will be properly formatted.
 
-- Predpokladá sa, že užívateľ poskytne platnú URL alebo lokálnu cestu k PDF súboru.
-- Predpokladá sa, že vstupné PDF súbory nebudú obsahovať žiadne formy šifrovania alebo ochrany, ktoré by mohli obmedziť ich spracovanie.
+## Limitations
+- The accuracy of anonymization detection may vary depending on the quality and content of the PDFs.
+- May not be able to handle very large PDF files due to hardware limitations.
 
-## Obmedzenia
+## Conclusion
 
-- Softvér musí byť v súlade so všetkými relevantnými zákonmi a predpismi týkajúcimi sa ochrany dát a súkromia.
-- Softvér nemôže byť použitý na nelegálne účely alebo k porušovaniu ochrany dát.
-- Softvér musí byť schopný efektívne spracovať a analyzovať PDF súbory, a to aj pri veľkých objemoch dát.
-- Softvér musí byť navrhnutý s ohľadom na bezpečnosť a odolnosť voči rôznym typom útokov.
+The DAPP system will be a valuable tool for detecting anonymized sections in PDF documents, providing quick and accurate results. By following the specified objectives and requirements, the project is expected to meet the needs of the users effectively.
