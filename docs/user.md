@@ -75,3 +75,8 @@ request.Content = new StringContent(JsonConvert.SerializeObject(new GetDocumentP
 #### Error Handling
 - API returns standard HTTP error codes.
 - Check the returned JSON for an `IsError` field for additional details.
+
+## Results
+### How to interpret the result images
+
+The example images are in the ```examples``` folder. It's just a visualisation whether the detection was correct and a visual indication of the precision of the algorithm used to detect anonymized parts. In the example, we can see colored stickers in the original image, which are changed to black pixels, representing the area that was detected as anonymized.
