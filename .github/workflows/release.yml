@@ -44,7 +44,7 @@ jobs:
           mkdir -p release_${{ github.run_id }}/thesis
 
           cp -r implementation/DAPP/publish/api docs release_${{ github.run_id }}/applications/api2
-          cp -r /implementation/DAPP/publish/cmd docs release_${{ github.run_id }}/applications/cmd_tool
+          cp -r implementation/DAPP/publish/cmd docs release_${{ github.run_id }}/applications/cmd_tool
           cp thesis/*.pdf release_${{ github.run_id }}/thesis
 
           zip -r release_${{ github.run_id }}.zip release_${{ github.run_id }}
