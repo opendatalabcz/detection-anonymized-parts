@@ -8,6 +8,7 @@ jobs:
   build:
     name: Build Applications and Thesis PDF
     runs-on: ubuntu-latest
+    container: { image: 'aergus/latex' }
 
     steps:
       - uses: actions/checkout@v2
