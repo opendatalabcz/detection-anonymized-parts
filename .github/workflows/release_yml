@@ -1,0 +1,83 @@
+name: Build and release
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Applications and Thesis PDF
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.x'
+      # Build api2
+      - name: Build api2
+        run: |
+          cd implementation/DAPP
+          dotnet publish API2 -c Release -r win-x64 --self-contained true -o publish/api
+
+      # Build cmd_tool
+      - name: Build cmd_tool
+        run: |
+          cd implementation/DAPP
+          dotnet publish ConsoleApp -c Release -r win-x64 --self-contained true -o publish/cmd
+
+      # Build thesis
+      - name: Build thesis
+        run: |
+          cd thesis
+          latexmk thesis
+          latexmk abstract-sk
+          latexmk abstract-en
+
+      # Package everything into a zip file
+      - name: Package artifacts
+        run: |
+          mkdir -p release_${{ github.run_id }}/applications/api2
+          mkdir -p release_${{ github.run_id }}/applications/cmd_tool
+          mkdir -p release_${{ github.run_id }}/thesis
+
+          cp -r publish/api docs release_${{ github.run_id }}/applications/api2
+          cp -r publish/cmd docs release_${{ github.run_id }}/applications/cmd_tool
+          cp thesis/*.pdf release_${{ github.run_id }}/thesis
+
+          zip -r release_${{ github.run_id }}.zip release_${{ github.run_id }}
+
+      # Upload the zip file as an artifact
+      - name: Upload ZIP as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: packaged-artifacts
+          path: release_${{ github.run_id }}.zip
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+
+      # Download the artifact
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: packaged-artifacts
+
+      # Create Release
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release_${{ github.run_id }}
+          release_name: Release ${{ github.run_id }}
+          draft: false
+          prerelease: false
+          asset_path: ./release_${{ github.run_id }}.zip
+          asset_name: release_${{ github.run_id }}.zip
+          asset_content_type: application/zip
