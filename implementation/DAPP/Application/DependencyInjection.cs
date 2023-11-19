@@ -17,7 +17,7 @@ namespace Application
         /// <returns> The service collection</returns>
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(DependencyInjection).Assembly);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
             services.AddScoped(
                 typeof(IPipelineBehavior<,>),
                 typeof(ValidationBehavior<,>));
