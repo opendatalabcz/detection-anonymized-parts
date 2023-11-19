@@ -63,13 +63,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-  release:
-    name: Create Release
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-
       # Download the artifact
       - name: Download Artifact
         uses: actions/download-artifact@v3
