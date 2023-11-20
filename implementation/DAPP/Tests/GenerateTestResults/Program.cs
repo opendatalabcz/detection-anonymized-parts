@@ -16,7 +16,7 @@ public class Program
         var factory = new WebApplicationFactory<API2.Program>();
         var client = factory.CreateClient();
         var returnImages = true;
-        var folder = "G:\\GitHub\\detection-anonymized-parts-in-pdfs-bachelor-thesis\\implementation\\DAPP\\Tests\\Unit.Tests\\TestFiles";
+        var folder = "..\\..\\..\\..\\Unit.Tests\\TestFiles";
 
         // iterate over all files in folder
         List<string> fileLocations = [];
