@@ -52,6 +52,7 @@ public class PDFAnalyzer
     /// <returns> The analyzed result.</returns>
     internal static (Mat anonymizedParts, bool containsAnonymizedData, float anonymizedPercentage) AnalyzePage(Mat page)
     {
+        page = CorrectNonUniformIllumination(page);
         var anonymizedParts = GetAnonymizedParts(page);
         var anonymizedPercentage = (float)((page.Rows * page.Cols) - anonymizedParts.CountNonZero()) / (page.Rows * page.Cols);
         var containsAnonymizedData = anonymizedPercentage > 0.01;
@@ -70,8 +71,11 @@ public class PDFAnalyzer
 
         var coloredPixels = ColoredPixels(img);
         // Increase their saturation 
-        var imgSaturatedColors = IncreaseSaturation(img, coloredPixels, 100);
-
+        var imgSaturatedColors = img;
+        if (coloredPixels.Count != 0)
+        {
+           imgSaturatedColors = IncreaseSaturation(img, coloredPixels, 100);
+        }
         // Create structuring element
         Mat se = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(3, 3));
         var dilated = Dilate(imgSaturatedColors, se);
@@ -93,6 +97,34 @@ public class PDFAnalyzer
         return result;
     }
 
+
+    /// <summary>
+    /// Implementation of nonuniform illumination correction.
+    /// </summary>
+    /// <param name="image"></param>
+    /// <param name="kernelSize"></param>
+    /// <returns> The corrected image.</returns>
+    internal static Mat CorrectNonUniformIllumination(Mat image, int kernelSize = 15)
+    {
+        // Convert to grayscale
+        Mat grayscaleImage = new Mat();
+        Cv2.CvtColor(image, grayscaleImage, ColorConversionCodes.BGR2GRAY);
+
+        // Estimate the background illumination
+        Mat background = new Mat();
+        Mat kernel = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(kernelSize, kernelSize));
+        Cv2.MorphologyEx(grayscaleImage, background, MorphTypes.Close, kernel);
+
+        // Subtract the background
+        Mat subtracted = new Mat();
+        Cv2.Subtract(grayscaleImage, background, subtracted);
+
+        // Normalize the image
+        Mat normalized = new Mat();
+        Cv2.Normalize(subtracted, normalized, 0, 255, NormTypes.MinMax);
+
+        return normalized;
+    }
 
     /// <summary>
     /// Gets the colored pixels.
