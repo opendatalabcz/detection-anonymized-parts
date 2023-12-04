@@ -36,9 +36,8 @@ public class Program
             var responseContent = response.Content.ReadAsStringAsync().Result;
             var parsedJson = JObject.Parse(responseContent);
             Console.WriteLine(fileLocation);
-            //Console.WriteLine(parsedJson);
             var documentId = parsedJson["documentId"]!.ToString();
-
+            string percentages = parsedJson["anonymizedPercentagePerPage"]!.ToString();
             request = CreateGetRequest(documentId);
 
             response = client.SendAsync(request).Result;
@@ -55,6 +54,11 @@ public class Program
                 var imageFilePath = $"{outputFolder}/{i}_original.jpg";
                 // ensure folder exists
                 Directory.CreateDirectory(Path.GetDirectoryName(imageFilePath)!);
+                // create text file with percentages
+                if (!File.Exists($"{outputFolder}/percentages.txt"))
+                {
+                    File.WriteAllText($"{outputFolder}/percentages.txt", percentages);
+                }
                 File.WriteAllBytes(imageFilePath, imageBytes);
                 imageBytes = Convert.FromBase64String(imageResult);
                 imageFilePath = $"{outputFolder}/{i}_result.jpg";

@@ -30,8 +30,7 @@ public class PDFAnalyzer
                 containsAnonymizedData |= cad;
                 anonymizedPercentagePerPage[i++] = ap;
                 originalImages[i] = page.ToBytes(".jpg");
-                var masked = MaskOriginal(page, anonymizedParts);
-                anonymizedImages[i] = masked.ToBytes(".jpg");
+                anonymizedImages[i] = anonymizedParts.ToBytes(".jpg");
             }
             return new AnalyzedResult(
                pdf.ContractName,
@@ -52,11 +51,31 @@ public class PDFAnalyzer
     /// <returns> The analyzed result.</returns>
     internal static (Mat anonymizedParts, bool containsAnonymizedData, float anonymizedPercentage) AnalyzePage(Mat page)
     {
-        page = CorrectNonUniformIllumination(page);
         var anonymizedParts = GetAnonymizedParts(page);
-        var anonymizedPercentage = (float)((page.Rows * page.Cols) - anonymizedParts.CountNonZero()) / (page.Rows * page.Cols);
+        var anonymizedPercentage = CalculatePercentage(page, anonymizedParts);
         var containsAnonymizedData = anonymizedPercentage > 0.01;
         return (anonymizedParts, containsAnonymizedData, anonymizedPercentage);
+    }
+
+
+    /// <summary>
+    /// Calculates the percentage of anonymized data.
+    /// </summary>
+    /// <param name="original"> The original image.</param>
+    /// <param name="mask"> The mask.</param>
+    private static float CalculatePercentage(Mat original, Mat mask)
+    {
+        // Calculate the percentage of anonymized data
+        
+        var countMaskPixels = (mask.Width * mask.Height) - mask.CountNonZero(); 
+        var original2 = Threshold(original, 0);
+        var countOriginalPixels = original2.CountNonZero();
+
+        var maskActual = countMaskPixels * 0.8f;
+        var origWithActualMask = countOriginalPixels - maskActual;
+
+        var percentage = 1 - (origWithActualMask / countOriginalPixels);
+        return percentage;
     }
 
     /// <summary>
@@ -94,36 +113,7 @@ public class PDFAnalyzer
             result = Dilate(result, se);
         }
 
-        return result;
-    }
-
-
-    /// <summary>
-    /// Implementation of nonuniform illumination correction.
-    /// </summary>
-    /// <param name="image"></param>
-    /// <param name="kernelSize"></param>
-    /// <returns> The corrected image.</returns>
-    internal static Mat CorrectNonUniformIllumination(Mat image, int kernelSize = 15)
-    {
-        // Convert to grayscale
-        Mat grayscaleImage = new Mat();
-        Cv2.CvtColor(image, grayscaleImage, ColorConversionCodes.BGR2GRAY);
-
-        // Estimate the background illumination
-        Mat background = new Mat();
-        Mat kernel = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(kernelSize, kernelSize));
-        Cv2.MorphologyEx(grayscaleImage, background, MorphTypes.Close, kernel);
-
-        // Subtract the background
-        Mat subtracted = new Mat();
-        Cv2.Subtract(grayscaleImage, background, subtracted);
-
-        // Normalize the image
-        Mat normalized = new Mat();
-        Cv2.Normalize(subtracted, normalized, 0, 255, NormTypes.MinMax);
-
-        return normalized;
+        return Threshold(result,127);
     }
 
     /// <summary>
@@ -253,18 +243,5 @@ public class PDFAnalyzer
         Cv2.CvtColor(hsv, hsv, ColorConversionCodes.HSV2BGR);
 
         return hsv;
-    }
-
-    /// <summary>
-    /// Masks the original image with the anonymized parts.
-    /// </summary>
-    /// <param name="img"> The original image.</param>
-    /// <param name="eroded"> The eroded image.</param>
-    /// <returns> The masked image.</returns>
-    internal static Mat MaskOriginal(Mat img, Mat eroded)
-    {
-        var result = new Mat();
-        Cv2.BitwiseAnd(img, img, result, mask: eroded);
-        return result;
     }
 }
