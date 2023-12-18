@@ -35,7 +35,6 @@ namespace ManualCheckerUtility
             nextFolder = GetNextFolder();
             nextFolder.MoveNext();
         }
-
         private void LoadImages()
         {
             // if there are no files in the folder
